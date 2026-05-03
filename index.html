@@ -150,15 +150,13 @@ nav {
 
 /* ── PORTFOLIO ────────────────────────────────────────── */
 #portfolio {
-  display: grid;
+  display: none;
   grid-template-columns: 300px 1fr;
   min-height: 100vh;
   overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1);
 }
 #portfolio.is-open {
-  max-height: 100vh;
+  display: grid;
 }
 
 /* left list */
@@ -384,7 +382,7 @@ footer {
   }
   .nav-links.is-open { display: flex; }
   .hero { padding: 90px 24px 60px; }
-  #portfolio { height: auto; grid-template-columns: 1fr; position: static; }
+  #portfolio.is-open { height: auto; grid-template-columns: 1fr; position: static; }
   .port-left { height: auto; border-right: none; border-bottom: 1px solid rgba(44,34,24,0.08); padding: 32px 24px; }
   .artwork-list { padding: 0.5rem 0; }
   .port-right { min-height: 80vh; }
