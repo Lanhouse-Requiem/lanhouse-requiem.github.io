@@ -10,6 +10,7 @@
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+html.locked, body.locked { overflow: hidden; height: 100vh; }
 body {
   font-family: 'DM Sans', sans-serif;
   background: #F5F0E8;
@@ -649,10 +650,20 @@ artworks.forEach(function(a, i) {
   portRight.appendChild(display);
 });
 
+/* ── SCROLL LOCK ─────────────────────────────────────── */
+document.documentElement.classList.add('locked');
+document.body.classList.add('locked');
+
+function unlockScroll() {
+  document.documentElement.classList.remove('locked');
+  document.body.classList.remove('locked');
+}
+
 /* ── PORTFOLIO OPEN ──────────────────────────────────── */
 var portfolioOpen = false;
 function openPortfolio(e) {
   if (e) e.preventDefault();
+  unlockScroll();
   var port = document.getElementById('portfolio');
   port.classList.add('is-open');
   portfolioOpen = true;
@@ -666,13 +677,15 @@ document.getElementById('navPortfolio').addEventListener('click', openPortfolio)
 /* ── SOBRE OPEN ──────────────────────────────────────── */
 function openSobre(e) {
   if (e) e.preventDefault();
+  unlockScroll();
   document.getElementById('sobre').classList.add('is-open');
   setTimeout(function() {
     window.scrollTo({ top: document.getElementById('sobre').offsetTop, behavior: 'smooth' });
   }, 50);
 }
 document.getElementById('navSobre').addEventListener('click', openSobre);
-document.querySelector('a[href="#sobre"].btn-ghost') && document.querySelector('a[href="#sobre"].btn-ghost').addEventListener('click', openSobre);
+var sobreBtn = document.querySelector('a[href="#sobre"].btn-ghost');
+if (sobreBtn) sobreBtn.addEventListener('click', openSobre);
 
 /* ── NAVIGATE ─────────────────────────────────────────── */
 function goTo(idx) {
