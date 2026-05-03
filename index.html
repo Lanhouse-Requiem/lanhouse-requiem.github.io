@@ -145,18 +145,29 @@ nav {
   pointer-events: none;
   user-select: none;
 }
-.hero-tree {
+.hero-tree-frame {
   position: absolute;
   top: 0;
   left: 0;
-  width: clamp(130px, 16vw, 240px);
+  z-index: 1;
+  padding: 10px;
+  background: #c8a97e;
+  border: 3px solid #a07850;
+  box-shadow:
+    inset 0 0 0 2px #e8c89a,
+    inset 0 0 0 4px #9a6a3a,
+    4px 6px 18px rgba(0,0,0,0.28);
+  border-radius: 2px;
+}
+.hero-tree {
+  display: block;
+  width: clamp(120px, 15vw, 220px);
   height: auto;
   image-rendering: pixelated;
-  z-index: 1;
 }
 .hero-mascot {
   position: absolute;
-  bottom: 0;
+  bottom: 10%;
   right: 0;
   width: clamp(180px, 22vw, 340px);
   height: auto;
@@ -465,7 +476,9 @@ footer {
       </div>
     </div>
     <div class="hero-visual">
-      <img src="uploads/tree.png" class="hero-tree" alt="Tree">
+      <div class="hero-tree-frame">
+        <img src="uploads/tree.png" class="hero-tree" alt="Tree">
+      </div>
       <img src="uploads/blipe.png" class="hero-mascot" alt="Blipe">
     </div>
   </div>
