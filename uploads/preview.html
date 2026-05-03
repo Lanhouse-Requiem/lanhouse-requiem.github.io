@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cado Art — Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+  <style>
+/* =========================================================
+   CADO ART — Soft Pastel Rustic
+   ========================================================= */
+:root {
+  --cream:    #F7F2EC;
+  --cream-2:  #EDE6DA;
+  --blush:    #E8C4B0;
+  --sage:     #B8C9B4;
+  --lavender: #C9BDD8;
+  --terra:    #C4906A;
+  --text:     #3A2F28;
+  --text-mid: #7A6A5E;
+  --text-lt:  #A89888;
+  --radius:   0px;
+  --gap:      35px;
+  --max:      1200px;
+  --frame:    18px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 20px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #ffffff;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    linear-gradient(#FFD5DF 4px, transparent 4px),
+    linear-gradient(90deg, #FFD5DF 4px, transparent 4px);
+  background-size: 300px 300px, 124px 124px, 124px 124px;
+}
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { text-decoration: none; color: inherit; }
+h1, h2, h3 { font-family: 'Cormorant Garant', serif; font-weight: 300; line-height: 1.2; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+.label { display: inline-block; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 1rem; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(247,242,236,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(58,47,40,0.07); }
+.nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gap); height: 72px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: 'Cormorant Garant', serif; font-size: 1.4rem; font-weight: 300; letter-spacing: 0.04em; color: var(--text); }
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a { font-size: 0.85rem; font-weight: 300; color: var(--text-mid); transition: color 0.2s; position: relative; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--text); }
+.nav-links a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1.5px; background: var(--terra); border-radius: 2px; }
+.nav-hamburger { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; background: none; border: none; cursor: pointer; padding: 0; z-index: 200; }
+.nav-hamburger span { display: block; height: 2px; background: var(--text); border-radius: 2px; }
+
+/* HERO */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding: 100px var(--gap) 60px; }
+.hero-blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.35; pointer-events: none; z-index: 0; }
+.blob-1 { width: 520px; height: 520px; background: var(--blush); top: -120px; right: -80px; }
+.blob-2 { width: 380px; height: 380px; background: var(--sage); bottom: -60px; left: -60px; }
+.blob-3 { width: 280px; height: 280px; background: var(--lavender); top: 30%; left: 30%; }
+.hero-inner { position: relative; z-index: auto; width: 100%; max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
+.hero-content { flex: 1; max-width: 720px; }
+.hero-mascot { flex-shrink: 0; display: flex; align-items: flex-end; gap: 1rem; }
+.hero-mascot img { width: 240px; max-width: 22vw; mix-blend-mode: multiply; }
+.hero-mascot .placeholder-mascot { width: 220px; height: 200px; background: var(--blush); opacity: 0.4; border-radius: 50% 40% 60% 50%; }
+.hero-title { font-family: 'Cormorant Garant', serif; font-weight: 300; font-size: clamp(2rem,4vw,3.2rem); line-height: 1.25; color: var(--text); margin-bottom: 0.9rem; }
+.hero-subtitle { font-size: 1rem; color: var(--text-mid); margin-bottom: 2.4rem; font-weight: 300; }
+.hero-nav-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.bilingual-block { margin-bottom: 1rem; }
+.bilingual-block p, .bilingual-block h1 { margin-bottom: 0.2rem; }
+.bilingual-tr { display: block; font-family: 'Cormorant Garant', serif; font-style: italic; font-weight: 300; font-size: 1.03em; color: var(--text-lt); line-height: 1.5; }
+.hero-tr { font-size: 0.98rem; margin-bottom: 0.6rem; }
+
+/* BUTTONS */
+.btn-primary { display: inline-block; padding: 0.75rem 2rem; background: var(--text); color: var(--cream) !important; border-radius: 99px; font-size: 0.88rem; font-weight: 400; letter-spacing: 0.04em; transition: background 0.25s; }
+.btn-primary:hover { background: var(--terra); }
+.btn-secondary { display: inline-block; padding: 0.75rem 2rem; border: 1.5px solid var(--text); border-radius: 99px; font-size: 0.88rem; font-weight: 400; letter-spacing: 0.04em; color: var(--text); }
+
+/* SECTION */
+.page-gallery { padding: 100px 80px 100px; max-width: var(--max); margin: 0 auto; }
+.section-header { margin-bottom: 48px; }
+.section-header h2 { margin-bottom: 0.4rem; }
+.section-sub { color: var(--text-lt); font-size: 0.95rem; }
+
+/* GALLERY */
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; align-items: start; }
+.gallery-item-wrap { display: flex; flex-direction: column; }
+.gallery-item { position: relative; cursor: pointer; border-radius: 0; overflow: hidden; padding: 0; background-image: none; box-shadow: 0 2px 16px rgba(58,47,40,0.1); }
+.gallery-item::after { display: none; }
+.gallery-item img { width: 100%; height: auto; display: block; object-fit: contain; background: var(--cream-2); transition: transform 0.5s ease, filter 0.4s ease; filter: saturate(0.85); }
+.gallery-item:hover img { transform: scale(1.03); filter: saturate(1); }
+.overlay { position: absolute; inset: 0; border-radius: 0; background: linear-gradient(to top, rgba(58,47,40,0.78) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; opacity: 0; transition: opacity 0.35s ease; z-index: 3; }
+.gallery-item:hover .overlay { opacity: 1; }
+.gallery-item[data-status="available"] .overlay { display: none; }
+.gallery-item[data-status="available"]:hover img { transform: scale(1.08); filter: saturate(1); }
+.gallery-item[data-status="sold"] .overlay { background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s, background 0.3s; }
+.gallery-item[data-status="sold"]:hover .overlay { background: rgba(0,0,0,0.35); opacity: 1; }
+.gallery-item[data-status="sold"]:hover img { transform: scale(1); filter: saturate(0.4) brightness(0.8); }
+.overlay-vendida { font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 1.4rem; color: rgba(255,255,255,0.9); letter-spacing: 0.06em; }
+
+/* CAPTION */
+.artwork-caption { padding: 0.5rem 0.2rem 0.1rem; display: flex; flex-direction: column; gap: 0.12rem; }
+.caption-main { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+.caption-name { font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 0.76rem; color: var(--text); line-height: 1.2; }
+.caption-dims { font-size: 0.58rem; color: var(--text-mid); white-space: nowrap; flex-shrink: 0; letter-spacing: 0.03em; font-weight: 300; }
+
+/* MODAL */
+#artwork-modal { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: var(--gap); opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+#artwork-modal.is-open { opacity: 1; pointer-events: all; }
+.modal-backdrop { position: absolute; inset: 0; background-color: #EDE8DF; background-image: radial-gradient(ellipse at center, transparent 35%, rgba(160,135,105,0.22) 100%); }
+.modal-content { position: relative; z-index: 1; display: flex; align-items: flex-end; gap: 0; max-height: 88vh; }
+.modal-frame { flex-shrink: 0; padding: 0; background-image: none; box-shadow: 0 8px 32px rgba(20,8,2,0.28); }
+.modal-img { display: block; max-height: 74vh; max-width: 54vw; width: auto; height: auto; object-fit: contain; }
+.wall-tag { width: 270px; flex-shrink: 0; background: var(--cream); border: 1px solid rgba(58,47,40,0.12); padding: 1.4rem 1.3rem 1.5rem; margin-bottom: 2.4rem; box-shadow: 4px 4px 20px rgba(30,12,2,0.2); transform: translateX(18px); opacity: 0; transition: transform 0.42s cubic-bezier(0.22,1,0.36,1) 0.18s, opacity 0.38s ease 0.18s; }
+#artwork-modal.is-open .wall-tag { transform: translateX(0); opacity: 1; }
+.wall-tag-rule { width: 28px; height: 1.5px; background: var(--terra); margin-bottom: 0.9rem; }
+.wall-tag-name { font-family: 'Cormorant Garant', serif; font-size: 1.35rem; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 0.5rem; }
+.wall-tag-dims { font-size: 0.88rem; color: var(--text-mid); letter-spacing: 0.06em; margin-bottom: 0.25rem; font-weight: 300; }
+.wall-tag-cta { display: inline-block; padding: 0.5rem 1.1rem; background: var(--text); color: var(--cream) !important; border-radius: 99px; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.04em; }
+.wall-tag-cta:hover { background: var(--terra); }
+.wall-tag-sold-label { display: inline-block; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mid); border: 1px solid rgba(58,47,40,0.2); padding: 0.3rem 0.8rem; border-radius: 99px; }
+.modal-prev, .modal-next { position: absolute; top: 50%; transform: translateY(-50%); background: var(--cream); border: 1px solid var(--blush); color: var(--text); font-size: 1.4rem; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; z-index: 10; display: none; align-items: center; justify-content: center; opacity: 0.85; }
+#artwork-modal.is-open .modal-prev, #artwork-modal.is-open .modal-next { display: flex; }
+.modal-prev { left: 0.5rem; }
+.modal-next { right: 0.5rem; }
+
+/* FOOTER */
+footer { background: var(--text); color: rgba(247,242,236,0.5); text-align: center; padding: 2rem var(--gap); font-size: 0.8rem; letter-spacing: 0.05em; }
+
+/* Placeholder artwork colors */
+.ph { width: 100%; background: var(--cream-2); display: block; }
+
+@media (max-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .nav-hamburger { display: flex; }
+  .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); flex-direction: column; align-items: center; justify-content: center; gap: 2rem; z-index: 150; font-size: 1.3rem; }
+  .nav-links.is-open { display: flex; }
+  .hero-inner { flex-direction: column; }
+  .hero-mascot img { max-width: 60vw; }
+}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">Cado Art</a>
+      <button class="nav-hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links">
+        <a href="#" class="active">Portfólio</a>
+        <a href="#">Sobre</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="hero-blob blob-3"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="bilingual-block">
+          <h1 class="hero-title">Arte original em acrílica, carvão e nanquim.</h1>
+          <em class="bilingual-tr hero-tr">Original art in acrylic, charcoal and ink.</em>
+        </div>
+        <div class="bilingual-block">
+          <p class="hero-subtitle">Entrega para todo o Brasil e mundo.</p>
+          <em class="bilingual-tr hero-tr">Shipping across Brazil and worldwide.</em>
+        </div>
+        <div class="hero-nav-btns">
+          <a href="#portfolio" class="btn-primary">Ver portfólio</a>
+        </div>
+      </div>
+      <div class="hero-mascot">
+        <!-- imagens locais não carregam aqui — use placeholders abaixo se quiser -->
+        <div class="placeholder-mascot" style="width:220px;height:200px;background:var(--blush);opacity:0.5;border-radius:50% 40% 60% 50%;"></div>
+        <div class="placeholder-mascot" style="width:180px;height:170px;background:var(--sage);opacity:0.5;border-radius:40% 60% 50% 55%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-gallery" id="portfolio">
+    <div class="section-header">
+      <span class="label">Portfólio</span>
+      <h2>Todas as obras</h2>
+    </div>
+    <div class="gallery-grid" id="grid"></div>
+  </section>
+
+  <footer>
+    <p>© 2026 Cado Art &nbsp;·&nbsp; Arte Míope &nbsp;·&nbsp; @cado.bass &nbsp;·&nbsp; @cado.art</p>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="artwork-modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-frame">
+        <div class="modal-img ph" id="modal-ph" style="background:var(--cream-2);"></div>
+      </div>
+      <aside class="wall-tag">
+        <div class="wall-tag-rule"></div>
+        <p class="wall-tag-name" id="tagName"></p>
+        <p class="wall-tag-dims" id="tagDims"></p>
+        <a class="wall-tag-cta" href="#">Converse comigo sobre a tela</a>
+      </aside>
+      <button class="modal-prev">&#8592;</button>
+      <button class="modal-next">&#8594;</button>
+    </div>
+  </div>
+
+  <script>
+    var artworks = [
+      { name: 'De Petrolina para Juazeiro', w: 120, h: 80,  color: '#D4B896', status: 'available' },
+      { name: 'Frescas Pescarias',          w: 120, h: 80,  color: '#B8C9B4', status: 'available' },
+      { name: 'Erva do Diabo',              w: 50,  h: 50,  color: '#C9BDD8', status: 'available' },
+      { name: 'Fire Gecko',                 w: 50,  h: 50,  color: '#E8C4B0', status: 'available' },
+      { name: 'Miopia',                     w: 50,  h: 50,  color: '#B8C9B4', status: 'available' },
+      { name: 'Incommoditie',               w: 50,  h: 50,  color: '#D4C5B0', status: 'available' },
+      { name: 'Fluxo Contínuo',             w: 30,  h: 30,  color: '#C4906A', status: 'available' },
+      { name: 'Nave Especial',              w: 30,  h: 20,  color: '#E8D4C0', status: 'available' },
+      { name: 'Homem Cacto',                w: 30,  h: 30,  color: '#B8C9B4', status: 'available' },
+      { name: 'Trauma',                     w: 30,  h: 20,  color: '#C9BDD8', status: 'available' },
+    ];
+
+    var grid = document.getElementById('grid');
+    grid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+    grid.style.gap = '32px';
+
+    artworks.forEach(function(a, i) {
+      var item = document.createElement('div');
+      item.className = 'gallery-item gallery-item--no-frame';
+      item.dataset.status = a.status;
+      item.dataset.name = a.name;
+      item.dataset.widthCm = a.w;
+      item.dataset.heightCm = a.h;
+      item.dataset.index = i;
+
+      var ph = document.createElement('div');
+      ph.className = 'ph';
+      ph.style.aspectRatio = a.w + '/' + a.h;
+      ph.style.background = a.color;
+
+      var overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      var span = document.createElement('span');
+      span.className = 'overlay-vendida';
+      span.textContent = 'Vendida';
+      overlay.appendChild(span);
+
+      item.appendChild(ph);
+      item.appendChild(overlay);
+
+      var wrap = document.createElement('div');
+      wrap.className = 'gallery-item-wrap';
+      var cap = document.createElement('div');
+      cap.className = 'artwork-caption';
+      cap.innerHTML = '<div class="caption-main"><span class="caption-name">' + a.name + '</span><span class="caption-dims">' + a.w + ' × ' + a.h + ' cm</span></div>';
+      wrap.appendChild(item);
+      wrap.appendChild(cap);
+      grid.appendChild(wrap);
+    });
+
+    // Modal
+    var modal = document.getElementById('artwork-modal');
+    var backdrop = modal.querySelector('.modal-backdrop');
+    var modalPh = document.getElementById('modal-ph');
+    var tagName = document.getElementById('tagName');
+    var tagDims = document.getElementById('tagDims');
+    var currentIndex = 0;
+
+    function openModal(i) {
+      currentIndex = i;
+      var a = artworks[i];
+      modalPh.style.aspectRatio = a.w + '/' + a.h;
+      modalPh.style.background = a.color;
+      modalPh.style.maxHeight = '74vh';
+      modalPh.style.maxWidth = '54vw';
+      modalPh.style.width = 'auto';
+      modalPh.style.height = 'auto';
+      tagName.textContent = a.name;
+      tagDims.textContent = a.w + ' × ' + a.h + ' cm';
+      modal.setAttribute('aria-hidden', 'false');
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.querySelectorAll('.gallery-item').forEach(function(item) {
+      item.addEventListener('click', function() { openModal(parseInt(item.dataset.index)); });
+    });
+
+    function closeModal() { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+    backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+      if (!modal.classList.contains('is-open')) return;
+      if (e.key === 'ArrowLeft')  openModal((currentIndex - 1 + artworks.length) % artworks.length);
+      if (e.key === 'ArrowRight') openModal((currentIndex + 1) % artworks.length);
+    });
+    modal.querySelector('.modal-prev').addEventListener('click', function(e) { e.stopPropagation(); openModal((currentIndex - 1 + artworks.length) % artworks.length); });
+    modal.querySelector('.modal-next').addEventListener('click', function(e) { e.stopPropagation(); openModal((currentIndex + 1) % artworks.length); });
+
+    // Hamburger
+    var btn = document.querySelector('.nav-hamburger');
+    var links = document.querySelector('.nav-links');
+    btn.addEventListener('click', function() {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      links.classList.toggle('is-open', !open);
+    });
+  </script>
+
+</body>
+</html>

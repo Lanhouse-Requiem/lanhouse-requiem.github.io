@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cado Art — Arte Original</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #F5F0E8;
+  color: #2C2218;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(44,34,24,0.08);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 48px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 1.1rem; font-weight: 400; letter-spacing: 0.08em;
+}
+.logo em { font-style: italic; color: #B87C55; }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  font-size: 0.78rem; font-weight: 300; color: rgba(44,34,24,0.5);
+  text-decoration: none; letter-spacing: 0.06em;
+  transition: color 0.2s; position: relative;
+}
+.nav-links a:hover { color: #2C2218; }
+.nav-links a.active { color: #2C2218; }
+.nav-links a.active::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: #B87C55;
+}
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-hamburger span { display: block; width: 22px; height: 1.5px; background: #2C2218; }
+
+/* ── HERO ─────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 100px 48px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(100px); opacity: 0.22; pointer-events: none;
+}
+.blob-1 { width: 500px; height: 500px; background: #E8C4B0; top: -120px; right: -60px; }
+.blob-2 { width: 380px; height: 380px; background: #B8C9B4; bottom: -60px; left: -60px; }
+.blob-3 { width: 260px; height: 260px; background: #C9BDD8; top: 40%; left: 35%; }
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  position: relative; z-index: 3;
+}
+.hero-content { max-width: 900px; }
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.6rem;
+}
+.eyebrow-line { width: 28px; height: 1px; background: #B87C55; }
+.eyebrow-label {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(44,34,24,0.5);
+}
+.hero-title {
+  font-family: 'Cormorant Garant', serif;
+  font-size: clamp(1.5rem, 3.8vw, 3.8rem);
+  font-weight: 300; line-height: 1.18;
+  color: #2C2218; margin-bottom: 0.5rem;
+}
+.hero-title-tr {
+  font-family: 'Cormorant Garant', serif;
+  font-style: italic; font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: rgba(44,34,24,0.35); display: block; margin-bottom: 2rem;
+}
+.hero-sub { font-size: 0.9rem; color: rgba(44,34,24,0.55); margin-bottom: 0.25rem; }
+.hero-sub-tr {
+  font-family: 'Cormorant Garant', serif; font-style: italic;
+  font-size: 0.88rem; color: rgba(44,34,24,0.3); display: block; margin-bottom: 2.8rem;
+}
+.hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-block; padding: 0.7rem 1.8rem;
+  background: #2C2218; color: #F5F0E8;
+  border-radius: 99px; font-size: 0.8rem;
+  letter-spacing: 0.06em; text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: #B87C55; }
+.btn-ghost {
+  display: inline-block; padding: 0.7rem 1.8rem;
+  border: 1px solid rgba(44,34,24,0.25); border-radius: 99px;
+  font-size: 0.8rem; letter-spacing: 0.06em;
+  text-decoration: none; color: #2C2218;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: #B87C55; color: #B87C55; }
+
+
+
+
+
+
+/* hero mascot */
+.hero-mascot {
+  width: clamp(200px, 26vw, 400px);
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  flex-shrink: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* scroll cue */
+.scroll-cue {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(44,34,24,0.3); font-size: 0.65rem; letter-spacing: 0.15em;
+  text-transform: uppercase; animation: bounce 2s ease-in-out infinite;
+}
+.scroll-cue svg { opacity: 0.4; }
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── PORTFOLIO ────────────────────────────────────────── */
+#portfolio {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+#portfolio.is-open {
+  max-height: 100vh;
+}
+
+/* left list */
+.port-left {
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 60px 36px;
+  border-right: 1px solid rgba(44,34,24,0.08);
+  background: #F5F0E8;
+}
+.port-label {
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(44,34,24,0.35); margin-bottom: 2.5rem;
+}
+.artwork-list {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; gap: 0; padding: 0 0 2rem;
+  max-height: calc(100vh - 200px); overflow: hidden;
+}
+.artwork-item {
+  display: flex; align-items: baseline; gap: 0.7rem;
+  padding: 0.45rem 0; cursor: pointer;
+  border: none; background: none; text-align: left; width: 100%;
+  position: relative;
+  transition: padding-left 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.artwork-item::before {
+  content: ''; position: absolute; left: -36px; top: 50%;
+  transform: translateY(-50%); width: 0; height: 1px;
+  background: #B87C55; transition: width 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.artwork-item.active::before { width: 20px; }
+.artwork-item.active { padding-left: 28px; }
+.item-num {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(44,34,24,0.2);
+  flex-shrink: 0;
+  transition: background 0.3s;
+  align-self: center;
+}
+.item-name {
+  font-family: 'Cormorant Garant', serif; font-weight: 300;
+  font-size: 1.1rem; color: rgba(44,34,24,0.3);
+  line-height: 1.2; letter-spacing: 0.01em;
+  transition: font-size 0.35s cubic-bezier(0.22,1,0.36,1), color 0.3s;
+}
+.artwork-item.active .item-name { font-size: 1.5rem; color: #2C2218; font-weight: 400; }
+.artwork-item.active .item-num { background: #B87C55; }
+.artwork-item:hover:not(.active) .item-name { color: rgba(44,34,24,0.55); }
+.port-nav {
+  display: flex; gap: 0.6rem; margin-top: 2.5rem;
+}
+.arrow-btn {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(44,34,24,0.18); background: transparent;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: #2C2218; font-size: 0.8rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.arrow-btn:hover { background: #2C2218; color: #F5F0E8; border-color: #2C2218; }
+
+/* right artwork display */
+.port-right {
+  position: relative; background: #EDE9E0; overflow: hidden;
+  min-height: 100vh;
+}
+.port-right::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  background-size: 300px; pointer-events: none;
+}
+.artwork-display {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; align-items: center; gap: 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.artwork-display.active { opacity: 1; pointer-events: all; }
+.artwork-img-wrap {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 56px 32px 56px 56px; height: 100%;
+}
+.artwork-img-wrap img {
+  max-height: 76vh; max-width: 100%;
+  width: auto; height: auto; display: block; object-fit: contain;
+  box-shadow: 0 12px 56px rgba(20,10,2,0.16);
+  transform: translateY(14px);
+  transition: transform 0.65s cubic-bezier(0.22,1,0.36,1) 0.1s;
+}
+.artwork-display.active .artwork-img-wrap img { transform: translateY(0); }
+.wall-tag {
+  width: 220px; flex-shrink: 0;
+  padding: 0 36px 72px 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  transform: translateX(-10px); opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1) 0.22s, opacity 0.4s ease 0.22s;
+}
+.artwork-display.active .wall-tag { transform: translateX(0); opacity: 1; }
+.tag-rule { width: 22px; height: 1px; background: #B87C55; margin-bottom: 1rem; }
+.tag-name {
+  font-family: 'Cormorant Garant', serif; font-size: 1.35rem;
+  font-weight: 400; color: #2C2218; line-height: 1.25; margin-bottom: 0.5rem;
+}
+.tag-dims { font-size: 0.72rem; color: rgba(44,34,24,0.45); letter-spacing: 0.08em; margin-bottom: 0.2rem; }
+.tag-medium { font-size: 0.65rem; color: rgba(44,34,24,0.35); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.4rem; }
+.tag-cta {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.55rem 1.1rem; background: #2C2218; color: #F5F0E8 !important;
+  border-radius: 99px; font-size: 0.7rem; letter-spacing: 0.05em;
+  text-decoration: none; transition: background 0.2s; width: fit-content;
+}
+.tag-cta:hover { background: #B87C55; }
+.tag-sold {
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(44,34,24,0.35); border: 1px solid rgba(44,34,24,0.15);
+  padding: 0.3rem 0.8rem; border-radius: 99px; width: fit-content;
+}
+.port-counter {
+  position: absolute; bottom: 28px; left: 56px;
+  font-size: 0.62rem; color: rgba(44,34,24,0.25); letter-spacing: 0.12em; z-index: 5;
+}
+
+/* ── SOBRE ────────────────────────────────────────────── */
+.sobre-section {
+  background: #2C2218; color: #F5F0E8;
+  padding: 120px 48px;
+}
+.sobre-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.sobre-label { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,232,0.35); margin-bottom: 0.8rem; }
+.sobre-title { font-family: 'Cormorant Garant', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); color: #E8C4B0; margin-bottom: 1.6rem; font-weight: 300; }
+.sobre-text { font-size: 1.15rem; line-height: 1.9; color: rgba(245,240,232,0.6); margin-bottom: 1rem; }
+.sobre-text em { font-family: 'Cormorant Garant', serif; font-style: italic; color: rgba(245,240,232,0.35); font-size: 1.05rem; display: block; margin-top: 0.3rem; }
+.sobre-sig { font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 1.95rem; color: #E8C4B0; margin-top: 2rem; }
+.sobre-art { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sobre-ph { border-radius: 2px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+.sobre-ph:first-child { grid-row: span 2; }
+
+/* ── CONTATO ──────────────────────────────────────────── */
+.contato-section {
+  padding: 120px 48px;
+  background: linear-gradient(to bottom, #F5F0E8, #EDE9DF);
+}
+.contato-inner { max-width: 520px; margin: 0 auto; text-align: center; }
+.contato-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(44,34,24,0.4); margin-bottom: 0.8rem; display: block; }
+.contato-inner h2 { font-family: 'Cormorant Garant', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300; margin-bottom: 0.6rem; }
+.contato-sub { font-size: 0.88rem; color: rgba(44,34,24,0.5); margin-bottom: 0.3rem; }
+.contato-sub-tr { font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 0.85rem; color: rgba(44,34,24,0.3); display: block; margin-bottom: 2.8rem; }
+.contact-links { display: flex; flex-direction: column; gap: 0.65rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.95rem 1.3rem;
+  border: 1px solid rgba(44,34,24,0.1); border-radius: 6px;
+  color: #2C2218; font-size: 0.85rem; font-weight: 300;
+  text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s;
+  text-align: left;
+}
+.contact-link:hover { border-color: #B87C55; color: #B87C55; background: rgba(184,124,85,0.04); }
+
+/* ── FOOTER ───────────────────────────────────────────── */
+footer {
+  background: #2C2218; color: rgba(245,240,232,0.3);
+  padding: 2rem 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem; font-size: 0.7rem; letter-spacing: 0.04em;
+}
+.footer-logo { font-family: 'Cormorant Garant', serif; font-size: 1rem; color: rgba(245,240,232,0.5); }
+.footer-logo em { font-style: italic; color: #E8C4B0; }
+
+/* ── TWEAKS PANEL ─────────────────────────────────────── */
+#tweaks-panel {
+  display: none;
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  width: 260px;
+  background: #F5F0E8;
+  border: 1px solid rgba(44,34,24,0.14);
+  border-radius: 10px;
+  padding: 20px 18px 18px;
+  box-shadow: 0 8px 40px rgba(44,34,24,0.16);
+  font-family: 'DM Sans', sans-serif;
+}
+#tweaks-panel h4 {
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(44,34,24,0.4); font-weight: 400; margin-bottom: 18px;
+}
+.tweak-section { margin-bottom: 16px; }
+.tweak-label {
+  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(44,34,24,0.5); font-weight: 400; display: block; margin-bottom: 8px;
+}
+.tweak-options { display: flex; gap: 6px; flex-wrap: wrap; }
+.tweak-opt {
+  padding: 5px 12px; border-radius: 99px; font-size: 0.75rem;
+  border: 1px solid rgba(44,34,24,0.18); background: transparent;
+  cursor: pointer; color: rgba(44,34,24,0.6); font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.tweak-opt:hover { border-color: #B87C55; color: #B87C55; }
+.tweak-opt.active { background: #2C2218; color: #F5F0E8; border-color: #2C2218; }
+#tweaks-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 22px; height: 22px; border-radius: 50%;
+  border: none; background: rgba(44,34,24,0.08);
+  cursor: pointer; font-size: 0.7rem; color: rgba(44,34,24,0.5);
+  display: flex; align-items: center; justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 24px; }
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: none; position: fixed; inset: 0;
+    background: #F5F0E8; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 2rem; z-index: 150; font-size: 1.2rem;
+  }
+  .nav-links.is-open { display: flex; }
+  .hero { padding: 90px 24px 60px; }
+  #portfolio { height: auto; grid-template-columns: 1fr; position: static; }
+  .port-left { height: auto; border-right: none; border-bottom: 1px solid rgba(44,34,24,0.08); padding: 32px 24px; }
+  .artwork-list { padding: 0.5rem 0; }
+  .port-right { min-height: 80vh; }
+  .artwork-display { flex-direction: column; padding: 32px 24px; gap: 28px; }
+  .artwork-img-wrap { padding: 0; height: auto; }
+  .wall-tag { width: 100%; padding: 0; }
+  .sobre-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .sobre-art { display: none; }
+  .sobre-section, .contato-section { padding: 80px 24px; }
+  footer { flex-direction: column; text-align: center; padding: 2rem 24px; }
+}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="logo">Cado <em>Art</em></a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#portfolio" id="navPortfolio">Portfólio</a>
+      <a href="#sobre" id="navSobre">Sobre</a>
+      <a href="#contato" id="navContato">Contato</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-blob blob-1"></div>
+  <div class="hero-blob blob-2"></div>
+  <div class="hero-blob blob-3"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-label">Arte Original</span>
+      </div>
+      <h1 class="hero-title">Arte original em acrílica, digital e nanquim.</h1>
+      <em class="hero-title-tr">Original art in acrylic, digital and ink.</em>
+      <p class="hero-sub" style="font-size: 27px">Entrega para todo o Brasil e mundo.</p>
+      <em class="hero-sub-tr" style="font-size: 20px">Shipping across Brazil and worldwide.</em>
+      <div class="hero-actions">
+        <a href="#portfolio" class="btn-primary" id="btnVerPortfolio">Ver portfólio</a>
+        <a href="#sobre" class="btn-ghost">Sobre</a>
+        <a href="https://wa.me/5511993268188?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20encomenda." target="_blank" class="btn-ghost">Encomendar</a>
+      </div>
+    </div>
+    <img src="uploads/blipe.png" class="hero-mascot" alt="Blipe">
+  </div>
+  <div class="scroll-cue">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    scroll
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="port-left">
+    <span class="port-label">Portfólio</span>
+    <div class="artwork-list" id="artworkList"></div>
+    <div class="port-nav">
+      <button class="arrow-btn" id="btnPrev">↑</button>
+      <button class="arrow-btn" id="btnNext">↓</button>
+    </div>
+  </div>
+  <div class="port-right" id="portRight"></div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre-section" id="sobre" style="color: rgb(255, 255, 255)">
+  <div class="sobre-inner">
+    <div>
+      <p class="sobre-label">Sobre</p>
+      <p class="sobre-text">
+        Sou Cado, artista visual paulista morando em Petrolina, Pernambuco. Trabalho com acrílica, digital e nanquim. Estou vendendo muitas telas antigas e dando espaço para telas novas surgirem.
+        <em>I am Cado, a visual artist from São Paulo living in Petrolina, Pernambuco. I work with acrylic, digital art and ink. I am selling many older pieces to make room for new work.</em>
+      </p>
+      <p class="sobre-text">
+        Envio para todo o Brasil e para o mundo. Entre em contato para encomendas ou obras disponíveis!
+        <em>Shipping across Brazil and worldwide. Commissions welcome — get in touch!</em>
+      </p>
+      <p class="sobre-sig">— Ricardo Souto Schützer</p>
+    </div>
+    <div class="sobre-art" id="sobreArt"></div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato-section" id="contato">
+  <div class="contato-inner">
+    <span class="contato-label">Contato</span>
+    <h2>Vamos conversar</h2>
+    <p class="contato-sub">Encomendas, dúvidas ou só pra dizer oi.</p>
+    <em class="contato-sub-tr">Commissions, questions, or just to say hi.</em>
+    <div class="contact-links">
+      <a href="https://wa.me/5511993268188" target="_blank" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp · (11) 99326-8188
+      </a>
+      <a href="https://instagram.com/cado.bass" target="_blank" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @cado.bass
+      </a>
+      <a href="https://instagram.com/cado.art" target="_blank" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @cado.art
+      </a>
+      <a href="https://tiktok.com/@cado.art" target="_blank" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.17 8.17 0 004.78 1.52V6.82a4.85 4.85 0 01-1.01-.13z"/></svg>
+        TikTok
+      </a>
+      <a href="mailto:cadoschutzer@gmail.com" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        cadoschutzer@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TWEAKS PANEL -->
+<div id="tweaks-panel">
+  <button id="tweaks-close">✕</button>
+  <h4>Tweaks</h4>
+
+  <div class="tweak-section">
+    <span class="tweak-label">Mood</span>
+    <div class="tweak-options" id="tweak-mood">
+      <button class="tweak-opt active" data-mood="creme">Creme</button>
+      <button class="tweak-opt" data-mood="noturno">Noturno</button>
+      <button class="tweak-opt" data-mood="nevoa">Névoa</button>
+    </div>
+  </div>
+
+  <div class="tweak-section">
+    <span class="tweak-label">Tipografia</span>
+    <div class="tweak-options" id="tweak-tipo">
+      <button class="tweak-opt active" data-tipo="serif">Serif</button>
+      <button class="tweak-opt" data-tipo="sans">Sans</button>
+      <button class="tweak-opt" data-tipo="mono">Mono</button>
+    </div>
+  </div>
+
+  <div class="tweak-section">
+    <span class="tweak-label">Densidade da lista</span>
+    <div class="tweak-options" id="tweak-densidade">
+      <button class="tweak-opt" data-densidade="compacto">Compacto</button>
+      <button class="tweak-opt active" data-densidade="normal">Normal</button>
+      <button class="tweak-opt" data-densidade="espacoso">Espaçoso</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Cado <em>Art</em></span>
+  <span>© 2026 Cado Art · Arte Míope</span>
+</footer>
+
+<script>
+/* ── DATA ─────────────────────────────────────────────── */
+var artworks = [
+  { name: 'De Petrolina para Juazeiro', w: 120, h: 80,  img: 'uploads/120X80 - De Petrolina para Juazeiro.jpg', medium: 'Acrílica', status: 'available' },
+  { name: 'Frescas Pescarias',          w: 120, h: 80,  img: 'uploads/120x80 - Frescas Pescarias.jpg',           medium: 'Acrílica', status: 'available' },
+  { name: 'Tarot',                      w: 90,  h: 60,  img: 'uploads/Tarot.png',                                medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Reflexo',                    w: 80,  h: 54,  img: 'uploads/Reflexo.png',                              medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Botanicografia',             w: 60,  h: 75,  img: 'uploads/Botanicografia.png',                       medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Raio',                       w: 60,  h: 43,  img: 'uploads/Raio.png',                                 medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Zé Mosquitinho e elegante',  w: 50,  h: 63,  img: 'uploads/Zé Mosquitinho e elegante 2021.png',       medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Erva do Diabo',              w: 50,  h: 50,  img: 'uploads/50x50 - Erva do Diabo.jpg',                medium: 'Acrílica', status: 'available' },
+  { name: 'Fire Gecko',                 w: 50,  h: 50,  img: 'uploads/50x50 - Fire Gecko.jpg',                   medium: 'Acrílica', status: 'available' },
+  { name: 'Miopia',                     w: 50,  h: 50,  img: 'uploads/50x50 - Miopia.jpg',                       medium: 'Acrílica', status: 'available' },
+  { name: 'Incommoditie',               w: 50,  h: 50,  img: 'uploads/50x50 -Incommoditie.jpg',                  medium: 'Acrílica', status: 'sold' },
+  { name: 'Roso',                       w: 50,  h: 50,  img: 'uploads/Roso.png',                                 medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Que cobre a nuvem',          w: 47,  h: 45,  img: 'uploads/Que cobre a nuvem.png',                    medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Sem Nome',                   w: 46,  h: 36,  img: 'uploads/Sem Nome (2).png',                         medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Corujoinha',                 w: 40,  h: 50,  img: 'uploads/Corujoinha.png',                           medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Tratiabs',                   w: 40,  h: 32,  img: 'uploads/Tratiabs.png',                             medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Brisa',                      w: 40,  h: 30,  img: 'uploads/Brisa.png',                                medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Ceiros',                     w: 40,  h: 26,  img: 'uploads/Ceiros.png',                               medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Taking care of love',        w: 38,  h: 26,  img: 'uploads/Taking care of love.png',                  medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Quiça',                      w: 36,  h: 30,  img: 'uploads/Quiça.png',                                medium: 'Acrílica', status: 'available' },
+  { name: 'O molda-nuvem',              w: 36,  h: 36,  img: 'uploads/O molda-nuvem.png',                        medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Sem nome',                   w: 35,  h: 23,  img: 'uploads/Sem nome.png',                             medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Trovão',                     w: 32,  h: 22,  img: 'uploads/Trovão.png',                               medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Fluxo Contínuo',             w: 30,  h: 30,  img: 'uploads/30x30 - Fluxo Contínuo.jpg',               medium: 'Acrílica', status: 'available' },
+  { name: 'Homem Cacto',                w: 30,  h: 30,  img: 'uploads/30x30 - Homem Cacto.jpg',                  medium: 'Acrílica', status: 'available' },
+  { name: 'Tempinho',                   w: 30,  h: 30,  img: 'uploads/Tempinho.png',                             medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Sorte',                      w: 30,  h: 16,  img: 'uploads/Sorte.png',                                medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Paisage',                    w: 30,  h: 14,  img: 'uploads/Paisage.png',                              medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Nave Especial',              w: 30,  h: 20,  img: 'uploads/30x20 - Nave Especial.jpg',                medium: 'Acrílica', status: 'available' },
+  { name: 'Trauma',                     w: 30,  h: 20,  img: 'uploads/20x30 - Trauma.png',                       medium: 'Acrílica', status: 'available' },
+  { name: 'Mato',                       w: 10,  h: 15,  img: 'uploads/Captura de tela 2026-05-02 155839.png',      medium: 'Acrílica', status: 'available' },
+];
+
+var current = 0;
+
+/* hero art removed */
+
+/* ── SOBRE ART ────────────────────────────────────────── */
+(function() {
+  var sobreArt = document.getElementById('sobreArt');
+  var colors = ['#C9BDD8','#E8C4B0','#B8C9B4'];
+  var ratios = ['1/1.6','1/0.85','1/0.9'];
+  colors.forEach(function(c, i) {
+    var b = document.createElement('div');
+    b.className = 'sobre-ph';
+    b.style.background = c; b.style.aspectRatio = ratios[i];
+    sobreArt.appendChild(b);
+  });
+})();
+
+/* ── BUILD LIST ───────────────────────────────────────── */
+var list = document.getElementById('artworkList');
+artworks.forEach(function(a, i) {
+  var btn = document.createElement('button');
+  btn.className = 'artwork-item' + (i === 0 ? ' active' : '');
+  btn.innerHTML =
+    '<span class="item-num"></span>' +
+    '<span class="item-name">' + a.name + '</span>';
+  btn.addEventListener('click', function() { goTo(i); });
+  list.appendChild(btn);
+});
+
+/* ── BUILD DISPLAYS ───────────────────────────────────── */
+var portRight = document.getElementById('portRight');
+artworks.forEach(function(a, i) {
+  var display = document.createElement('div');
+  display.className = 'artwork-display' + (i === 0 ? ' active' : '');
+
+  var imgWrap = document.createElement('div');
+  imgWrap.className = 'artwork-img-wrap';
+  var img = document.createElement('img');
+  img.src = a.img; img.alt = a.name;
+  imgWrap.appendChild(img);
+
+  var msg = encodeURIComponent('Olá! Tenho interesse na obra "' + a.name + '" (' + a.w + '×' + a.h + ' cm).');
+  var ctaHTML = a.status === 'sold'
+    ? '<span class="tag-sold">Vendida</span>'
+    : a.status === 'unavailable'
+    ? '<span class="tag-sold">Não disponível</span>'
+    : '<a class="tag-cta" href="https://wa.me/5511993268188?text=' + msg + '" target="_blank">'
+      + '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>'
+      + 'Conversar no WhatsApp</a>';
+
+  var tag = document.createElement('div');
+  tag.className = 'wall-tag';
+  tag.innerHTML =
+    '<div class="tag-rule"></div>' +
+    '<p class="tag-name">' + a.name + '</p>' +
+    '<p class="tag-dims">' + a.w + ' × ' + a.h + ' cm</p>' +
+    '<p class="tag-medium">' + a.medium + '</p>' +
+    ctaHTML;
+
+  var counter = document.createElement('div');
+  counter.className = 'port-counter';
+  counter.textContent = String(i+1).padStart(2,'0') + ' / ' + String(artworks.length).padStart(2,'0');
+
+  display.appendChild(imgWrap);
+  display.appendChild(tag);
+  display.appendChild(counter);
+  portRight.appendChild(display);
+});
+
+/* ── PORTFOLIO OPEN ──────────────────────────────────── */
+var portfolioOpen = false;
+document.getElementById('btnVerPortfolio').addEventListener('click', function(e) {
+  e.preventDefault();
+  var port = document.getElementById('portfolio');
+  port.classList.add('is-open');
+  portfolioOpen = true;
+  setTimeout(function() {
+    window.scrollTo({ top: document.getElementById('portfolio').offsetTop, behavior: 'smooth' });
+  }, 50);
+});
+
+/* ── NAVIGATE ─────────────────────────────────────────── */
+function goTo(idx) {
+  var items = list.querySelectorAll('.artwork-item');
+  var displays = portRight.querySelectorAll('.artwork-display');
+  items[current].classList.remove('active');
+  displays[current].classList.remove('active');
+  current = (idx + artworks.length) % artworks.length;
+  items[current].classList.add('active');
+  displays[current].classList.add('active');
+}
+
+document.getElementById('btnPrev').addEventListener('click', function() { goTo(current - 1); });
+document.getElementById('btnNext').addEventListener('click', function() { goTo(current + 1); });
+document.addEventListener('keydown', function(e) {
+  var portfolio = document.getElementById('portfolio');
+  var rect = portfolio.getBoundingClientRect();
+  if (rect.top > window.innerHeight || rect.bottom < 0) return;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+  if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
+});
+portRight.addEventListener('wheel', function(e) {
+  e.preventDefault();
+  if (e.deltaY > 30)  goTo(current + 1);
+  if (e.deltaY < -30) goTo(current - 1);
+}, { passive: false });
+
+/* ── NAV ACTIVE ON SCROLL ─────────────────────────────── */
+var navItems = [
+  { id: 'portfolio', el: document.getElementById('navPortfolio') },
+  { id: 'sobre',     el: document.getElementById('navSobre') },
+  { id: 'contato',   el: document.getElementById('navContato') },
+];
+window.addEventListener('scroll', function() {
+  var y = window.scrollY + 100;
+  navItems.forEach(function(n) { n.el.classList.remove('active'); });
+  for (var i = navItems.length - 1; i >= 0; i--) {
+    var sec = document.getElementById(navItems[i].id);
+    if (sec && y >= sec.offsetTop) { navItems[i].el.classList.add('active'); break; }
+  }
+}, { passive: true });
+
+/* ── TWEAKS ───────────────────────────────────────────── */
+var tweaksPanel = document.getElementById('tweaks-panel');
+
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === '__activate_edit_mode')   tweaksPanel.style.display = 'block';
+  if (e.data && e.data.type === '__deactivate_edit_mode') tweaksPanel.style.display = 'none';
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+document.getElementById('tweaks-close').addEventListener('click', function() {
+  tweaksPanel.style.display = 'none';
+  window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+});
+
+// ── MOOD ──
+var moods = {
+  creme:   { bg: '#F5F0E8', text: '#2C2218', accent: '#B87C55', portBg: '#EDE9E0', darkBg: '#2C2218', darkAccent: '#E8C4B0', navBg: 'rgba(245,240,232,0.92)' },
+  noturno: { bg: '#1A1612', text: '#E8E0D4', accent: '#C4906A', portBg: '#221E19', darkBg: '#0E0B09', darkAccent: '#C4906A', navBg: 'rgba(26,22,18,0.95)' },
+  nevoa:   { bg: '#EDF0F5', text: '#1E2433', accent: '#7A8FBB', portBg: '#E4E8F2', darkBg: '#1E2433', darkAccent: '#B8C6E0', navBg: 'rgba(237,240,245,0.92)' },
+};
+
+function applyMood(m) {
+  var c = moods[m];
+  document.body.style.background = c.bg;
+  document.body.style.color = c.text;
+  document.documentElement.style.setProperty('--bg', c.bg);
+  // nav
+  document.querySelector('nav').style.background = c.navBg;
+  // port-left
+  var pl = document.querySelector('.port-left');
+  if (pl) pl.style.background = c.bg;
+  // port-right
+  var pr = document.querySelector('.port-right');
+  if (pr) pr.style.background = c.portBg;
+  // sobre
+  var sobre = document.querySelector('.sobre-section');
+  if (sobre) { sobre.style.background = c.darkBg; }
+  // footer
+  var footer = document.querySelector('footer');
+  if (footer) footer.style.background = c.darkBg;
+  // tweaks panel
+  tweaksPanel.style.background = c.bg;
+  tweaksPanel.style.color = c.text;
+  // accent dots & lines
+  document.querySelectorAll('.artwork-item.active .item-num').forEach(function(el) {
+    el.style.background = c.accent;
+  });
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { mood: m } }, '*');
+}
+
+document.getElementById('tweak-mood').addEventListener('click', function(e) {
+  var btn = e.target.closest('.tweak-opt');
+  if (!btn) return;
+  document.querySelectorAll('#tweak-mood .tweak-opt').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  applyMood(btn.dataset.mood);
+});
+
+// ── TIPOGRAFIA ──
+var tipoFonts = {
+  serif: { body: "'DM Sans', sans-serif",      title: "'Cormorant Garant', serif" },
+  sans:  { body: "'DM Sans', sans-serif",      title: "'DM Sans', sans-serif" },
+  mono:  { body: "'Courier New', monospace",   title: "'Courier New', monospace" },
+};
+
+function applyTipo(t) {
+  var f = tipoFonts[t];
+  document.body.style.fontFamily = f.body;
+  document.querySelectorAll('h1,h2,h3,h4,.logo,.item-name,.tag-name,.hero-title,.sobre-title,.wall-tag-name').forEach(function(el) {
+    el.style.fontFamily = f.title;
+  });
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { tipo: t } }, '*');
+}
+
+document.getElementById('tweak-tipo').addEventListener('click', function(e) {
+  var btn = e.target.closest('.tweak-opt');
+  if (!btn) return;
+  document.querySelectorAll('#tweak-tipo .tweak-opt').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  applyTipo(btn.dataset.tipo);
+});
+
+// ── DENSIDADE ──
+var densidades = {
+  compacto: { padding: '0.15rem 0', fontSize: '0.85rem', activeFontSize: '1.1rem' },
+  normal:   { padding: '0.45rem 0', fontSize: '1.1rem',  activeFontSize: '1.5rem' },
+  espacoso: { padding: '0.9rem 0',  fontSize: '1.2rem',  activeFontSize: '1.8rem' },
+};
+
+function applyDensidade(d) {
+  var s = densidades[d];
+  document.querySelectorAll('.artwork-item').forEach(function(el) {
+    el.style.padding = s.padding;
+  });
+  document.querySelectorAll('.item-name').forEach(function(el) {
+    el.style.fontSize = s.fontSize;
+  });
+  document.querySelectorAll('.artwork-item.active .item-name').forEach(function(el) {
+    el.style.fontSize = s.activeFontSize;
+  });
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { densidade: d } }, '*');
+}
+
+document.getElementById('tweak-densidade').addEventListener('click', function(e) {
+  var btn = e.target.closest('.tweak-opt');
+  if (!btn) return;
+  document.querySelectorAll('#tweak-densidade .tweak-opt').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  applyDensidade(btn.dataset.densidade);
+});
+
+
+var hamburger = document.getElementById('hamburger');
+var navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', function() {
+  var open = hamburger.getAttribute('aria-expanded') === 'true';
+  hamburger.setAttribute('aria-expanded', String(!open));
+  navLinks.classList.toggle('is-open', !open);
+});
+navLinks.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    navLinks.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+</script>
+</body>
+</html>
