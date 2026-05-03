@@ -10,7 +10,19 @@
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-html.locked, body.locked { overflow: hidden; height: 100vh; }
+html.locked { overflow: hidden; height: 100%; }
+body.locked { overflow: hidden; height: 100vh; }
+.section-page {
+  height: calc(100vh - 96px);
+  margin-top: 96px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.hero.section-page {
+  margin-top: 0;
+  height: 100vh;
+  padding-top: 96px;
+}
 body {
   font-family: 'DM Sans', sans-serif;
   background: #F5F0E8;
@@ -415,7 +427,7 @@ footer {
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<section class="hero section-page" id="home">
   <div class="hero-blob blob-1"></div>
   <div class="hero-blob blob-2"></div>
   <div class="hero-blob blob-3"></div>
@@ -444,7 +456,7 @@ footer {
 </section>
 
 <!-- PORTFOLIO -->
-<section id="portfolio">
+<section id="portfolio" class="section-page">
   <div class="port-left">
     <span class="port-label">Portfólio</span>
     <div class="artwork-list" id="artworkList"></div>
@@ -457,7 +469,7 @@ footer {
 </section>
 
 <!-- SOBRE -->
-<section class="sobre-section" id="sobre" style="color: rgb(255, 255, 255)">
+<section class="sobre-section section-page" id="sobre" style="color: rgb(255, 255, 255)">
   <div class="sobre-inner">
     <div>
       <p class="sobre-label">Sobre</p>
@@ -476,7 +488,7 @@ footer {
 </section>
 
 <!-- CONTATO -->
-<section class="contato-section" id="contato">
+<section class="contato-section section-page" id="contato">
   <div class="contato-inner">
     <span class="contato-label">Contato</span>
     <h2>Vamos conversar</h2>
