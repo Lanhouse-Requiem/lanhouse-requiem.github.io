@@ -282,6 +282,8 @@ nav {
 }
 
 /* ── SOBRE ────────────────────────────────────────────── */
+.sobre-section { display: none; }
+.sobre-section.is-open { display: block; }
 .sobre-section {
   background: #2C2218; color: #F5F0E8;
   padding: 120px 48px;
@@ -649,15 +651,28 @@ artworks.forEach(function(a, i) {
 
 /* ── PORTFOLIO OPEN ──────────────────────────────────── */
 var portfolioOpen = false;
-document.getElementById('btnVerPortfolio').addEventListener('click', function(e) {
-  e.preventDefault();
+function openPortfolio(e) {
+  if (e) e.preventDefault();
   var port = document.getElementById('portfolio');
   port.classList.add('is-open');
   portfolioOpen = true;
   setTimeout(function() {
     window.scrollTo({ top: document.getElementById('portfolio').offsetTop, behavior: 'smooth' });
   }, 50);
-});
+}
+document.getElementById('btnVerPortfolio').addEventListener('click', openPortfolio);
+document.getElementById('navPortfolio').addEventListener('click', openPortfolio);
+
+/* ── SOBRE OPEN ──────────────────────────────────────── */
+function openSobre(e) {
+  if (e) e.preventDefault();
+  document.getElementById('sobre').classList.add('is-open');
+  setTimeout(function() {
+    window.scrollTo({ top: document.getElementById('sobre').offsetTop, behavior: 'smooth' });
+  }, 50);
+}
+document.getElementById('navSobre').addEventListener('click', openSobre);
+document.querySelector('a[href="#sobre"].btn-ghost') && document.querySelector('a[href="#sobre"].btn-ghost').addEventListener('click', openSobre);
 
 /* ── NAVIGATE ─────────────────────────────────────────── */
 function goTo(idx) {
