@@ -65,13 +65,14 @@ nav {
 }
 .hero-venda-link {
   flex-shrink: 0;
-  width: 116px; height: 116px; border-radius: 50%;
+  width: 132px; height: 132px; border-radius: 50%;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   border: 1px solid rgba(110,42,46,0.35);
   font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 1.05rem;
   color: #6E2A2E; text-decoration: none; text-align: center; line-height: 1.3;
   transition: transform 0.25s, background 0.25s, border-color 0.25s;
 }
+.hero-venda-icon { width: 30px; height: 30px; object-fit: contain; image-rendering: pixelated; margin-bottom: 4px; }
 .hero-venda-link:hover { transform: scale(1.08); background: rgba(184,124,85,0.08); border-color: #B87C55; }
 .hero-venda-arrow { display: block; margin-top: 4px; font-size: 0.85rem; font-style: normal; }
 .nav-hamburger {
@@ -95,7 +96,7 @@ nav {
 .blob-2 { width: 380px; height: 380px; background: #B8C9B4; bottom: -60px; left: -60px; }
 .blob-3 { width: 260px; height: 260px; background: #C9BDD8; top: 40%; left: 35%; }
 .hero-gibberish {
-  position: absolute; right: 0; bottom: 0; top: auto; left: auto;
+  position: absolute; left: 0; bottom: 0; top: auto; right: auto;
   height: clamp(200px, 32vw, 380px); width: auto; max-width: 100%;
   image-rendering: pixelated; pointer-events: none;
   z-index: 1;
@@ -250,12 +251,12 @@ nav {
   align-self: center;
 }
 .item-name {
-  font-family: 'EB Garamond', serif; font-style: italic; font-weight: 500;
-  font-size: 1.15rem; color: #3D2F17;
+  font-family: 'Montserrat', sans-serif; font-weight: 500;
+  font-size: 1.05rem; color: #3D2F17;
   line-height: 1.2; letter-spacing: 0.01em;
   transition: font-size 0.35s cubic-bezier(0.22,1,0.36,1), color 0.3s;
 }
-.artwork-item.active .item-name { font-size: 1.6rem; color: #B87C55; font-weight: 500; }
+.artwork-item.active .item-name { font-size: 1.45rem; color: #B87C55; font-weight: 600; }
 .artwork-item.active .item-num { background: #B87C55; }
 .artwork-item:hover:not(.active) .item-name { color: rgba(61,47,23,0.55); }
 .port-nav {
@@ -508,7 +509,10 @@ footer {
         <a href="https://wa.me/5511993268188?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20encomenda." target="_blank" class="btn-ghost">Encomendar</a>
       </div>
     </div>
-    <a href="#portfolio" id="btnTelasVenda" class="hero-venda-link">Telas à<br>venda<span class="hero-venda-arrow">→</span></a>
+    <a href="#portfolio" id="btnTelasVenda" class="hero-venda-link">
+      <img src="uploads/telas-a-venda-icon.png" class="hero-venda-icon" alt="">
+      Telas à<br>venda<span class="hero-venda-arrow">→</span>
+    </a>
   </div>
   <div class="scroll-cue">
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
