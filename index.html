@@ -61,14 +61,17 @@ nav {
   content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
   height: 1px; background: #B87C55;
 }
-.nav-venda-icon {
-  width: 30px; height: 30px; border: none; background: none; padding: 3px;
-  cursor: pointer; border-radius: 7px; opacity: 0.6;
-  display: flex; align-items: center; justify-content: center;
-  transition: opacity 0.25s, transform 0.25s, background 0.25s;
+.hero-venda-link {
+  flex-shrink: 0;
+  width: 116px; height: 116px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1px solid rgba(110,42,46,0.35);
+  font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 1.05rem;
+  color: #6E2A2E; text-decoration: none; text-align: center; line-height: 1.3;
+  transition: transform 0.25s, background 0.25s, border-color 0.25s;
 }
-.nav-venda-icon img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
-.nav-venda-icon:hover { opacity: 1; transform: scale(1.18); background: rgba(184,124,85,0.18); }
+.hero-venda-link:hover { transform: scale(1.08); background: rgba(184,124,85,0.08); border-color: #B87C55; }
+.hero-venda-arrow { display: block; margin-top: 4px; font-size: 0.85rem; font-style: normal; }
 .nav-hamburger {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 4px;
@@ -446,6 +449,8 @@ footer {
   }
   .nav-links.is-open { display: flex; }
   .hero { padding: 170px 24px 60px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-venda-link { margin: 1.5rem auto 0; }
   #portfolio.is-open { height: auto; grid-template-columns: 1fr; position: static; }
   .port-left { height: auto; border-right: none; border-bottom: 1px solid rgba(61,47,23,0.08); padding: 32px 24px; }
   .artwork-list { padding: 0.5rem 0; }
@@ -479,9 +484,6 @@ footer {
       <a href="#portfolio" id="navPortfolio">Portfólio</a>
       <a href="#sobre" id="navSobre">Sobre</a>
       <a href="#contato" id="navContato">Contato</a>
-      <button class="nav-venda-icon" id="btnTelasVenda" title="Telas à venda" aria-label="Ver telas disponíveis para venda">
-        <img src="uploads/telas-a-venda-icon.png" alt="">
-      </button>
     </div>
   </div>
 </nav>
@@ -502,6 +504,7 @@ footer {
         <a href="https://wa.me/5511993268188?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20encomenda." target="_blank" class="btn-ghost">Encomendar</a>
       </div>
     </div>
+    <a href="#portfolio" id="btnTelasVenda" class="hero-venda-link">Telas à<br>venda<span class="hero-venda-arrow">→</span></a>
   </div>
   <div class="scroll-cue">
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
