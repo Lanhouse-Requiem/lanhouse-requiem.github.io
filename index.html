@@ -13,15 +13,15 @@ html { scroll-behavior: smooth; }
 html.locked { overflow: hidden; height: 100%; }
 body.locked { overflow: hidden; height: 100vh; }
 .section-page {
-  height: calc(100vh - 96px);
-  margin-top: 96px;
+  height: calc(100vh - 163px);
+  margin-top: 163px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 .hero.section-page {
   margin-top: 0;
   height: 100vh;
-  padding-top: 96px;
+  padding-top: 163px;
 }
 body {
   font-family: 'DM Sans', sans-serif;
@@ -40,17 +40,17 @@ nav {
 }
 .nav-inner {
   max-width: 1200px; margin: 0 auto;
-  padding: 0 48px; height: 96px;
+  padding: 0 82px; height: 163px;
   display: flex; align-items: center; justify-content: space-between;
 }
 .logo {
   font-family: 'Cormorant Garant', serif;
-  font-size: 1.1rem; font-weight: 400; letter-spacing: 0.08em;
+  font-size: 1.87rem; font-weight: 400; letter-spacing: 0.08em;
 }
 .logo em { font-style: italic; color: #B87C55; }
-.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links { display: flex; gap: 3.4rem; align-items: center; }
 .nav-links a {
-  font-size: 0.78rem; font-weight: 300; color: rgba(44,34,24,0.5);
+  font-size: 1.33rem; font-weight: 300; color: rgba(44,34,24,0.5);
   text-decoration: none; letter-spacing: 0.06em;
   transition: color 0.2s; position: relative;
 }
@@ -70,7 +70,7 @@ nav {
 .hero {
   min-height: 100vh;
   display: flex; align-items: center;
-  padding: 100px 48px 80px;
+  padding: 163px 48px 80px;
   position: relative; overflow: hidden;
 }
 .hero-blob {
@@ -184,7 +184,7 @@ nav {
 #portfolio {
   display: none;
   grid-template-columns: 300px 1fr;
-  min-height: 100vh;
+  height: 100%;
   overflow: hidden;
 }
 #portfolio.is-open {
@@ -254,7 +254,7 @@ nav {
 /* right artwork display */
 .port-right {
   position: relative; background: #EDE9E0; overflow: hidden;
-  min-height: 100vh;
+  height: 100%;
 }
 .port-right::before {
   content: ''; position: absolute; inset: 0; z-index: 0;
@@ -412,7 +412,7 @@ footer {
     gap: 2rem; z-index: 150; font-size: 1.2rem;
   }
   .nav-links.is-open { display: flex; }
-  .hero { padding: 90px 24px 60px; }
+  .hero { padding: 170px 24px 60px; }
   #portfolio.is-open { height: auto; grid-template-columns: 1fr; position: static; }
   .port-left { height: auto; border-right: none; border-bottom: 1px solid rgba(44,34,24,0.08); padding: 32px 24px; }
   .artwork-list { padding: 0.5rem 0; }
