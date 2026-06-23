@@ -231,12 +231,13 @@ nav {
   align-self: center;
 }
 .item-name {
-  font-family: 'Cormorant Garant', serif; font-weight: 300;
-  font-size: 1.1rem; color: rgba(44,34,24,0.3);
+  font-family: Arial, Helvetica, sans-serif; font-weight: 700;
+  font-size: 1.1rem; color: #FFE600;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 0 1px 2px rgba(0,0,0,0.5);
   line-height: 1.2; letter-spacing: 0.01em;
   transition: font-size 0.35s cubic-bezier(0.22,1,0.36,1), color 0.3s;
 }
-.artwork-item.active .item-name { font-size: 1.5rem; color: #2C2218; font-weight: 400; }
+.artwork-item.active .item-name { font-size: 1.5rem; color: #FFE600; font-weight: 700; }
 .artwork-item.active .item-num { background: #B87C55; }
 .artwork-item:hover:not(.active) .item-name { color: rgba(44,34,24,0.55); }
 .port-nav {
@@ -599,7 +600,7 @@ var artworks = [
   { name: 'Brisa',                      w: 40,  h: 30,  img: 'uploads/Brisa.png',                                medium: 'Acrílica', status: 'unavailable' },
   { name: 'Ceiros',                     w: 40,  h: 26,  img: 'uploads/Ceiros.png',                               medium: 'Acrílica', status: 'unavailable' },
   { name: 'Taking care of love',        w: 38,  h: 26,  img: 'uploads/Taking care of love.png',                  medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Quiça',                      w: 36,  h: 30,  img: 'uploads/Quiça.png',                                medium: 'Acrílica', status: 'available' },
+  { name: 'Quicá',                      w: 36,  h: 30,  img: 'uploads/Quiça.png',                                medium: 'Acrílica', status: 'available' },
   { name: 'O molda-nuvem',              w: 36,  h: 36,  img: 'uploads/O molda-nuvem.png',                        medium: 'Acrílica', status: 'unavailable' },
   { name: 'Sem nome',                   w: 35,  h: 23,  img: 'uploads/Sem nome.png',                             medium: 'Acrílica', status: 'unavailable' },
   { name: 'Trovão',                     w: 32,  h: 22,  img: 'uploads/Trovão.png',                               medium: 'Acrílica', status: 'unavailable' },
