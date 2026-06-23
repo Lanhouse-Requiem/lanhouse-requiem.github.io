@@ -265,19 +265,15 @@ nav {
   display: flex; align-items: center; gap: 0;
   opacity: 0; pointer-events: none;
   transition: opacity 0.5s ease;
-  overflow-y: auto; -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin; scrollbar-color: #B87C55 transparent;
+  overflow: hidden;
 }
 .artwork-display.active { opacity: 1; pointer-events: all; }
-.artwork-display::-webkit-scrollbar { width: 6px; }
-.artwork-display::-webkit-scrollbar-track { background: transparent; }
-.artwork-display::-webkit-scrollbar-thumb { background: #B87C55; border-radius: 99px; }
 .artwork-img-wrap {
   flex: 1; display: flex; align-items: center; justify-content: center;
-  padding: 56px 32px 56px 56px; min-height: 100%;
+  padding: 56px 32px 56px 56px; height: 100%; min-height: 0; overflow: hidden;
 }
 .artwork-img-wrap img {
-  max-height: 76vh; max-width: 100%;
+  max-height: 100%; max-width: 100%;
   width: auto; height: auto; display: block; object-fit: contain;
   box-shadow: 0 12px 56px rgba(20,10,2,0.16);
   transform: translateY(14px);
@@ -420,9 +416,9 @@ footer {
   .port-left { height: auto; border-right: none; border-bottom: 1px solid rgba(44,34,24,0.08); padding: 32px 24px; }
   .artwork-list { padding: 0.5rem 0; }
   .port-right { min-height: 80vh; }
-  .artwork-display { flex-direction: column; padding: 32px 24px; gap: 28px; }
-  .artwork-img-wrap { padding: 0; height: auto; }
-  .wall-tag { width: 100%; padding: 0; }
+  .artwork-display { flex-direction: column; padding: 32px 24px; gap: 16px; }
+  .artwork-img-wrap { padding: 0; min-height: 0; flex: 1 1 auto; }
+  .wall-tag { width: 100%; padding: 0; flex: 0 0 auto; }
   .sobre-inner { grid-template-columns: 1fr; gap: 3rem; }
   .sobre-art { display: none; }
   .sobre-section, .contato-section { padding: 80px 24px; }
