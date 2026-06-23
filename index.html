@@ -622,9 +622,9 @@ var current = 0;
 (function() {
   var sobreArt = document.getElementById('sobreArt');
   var items = [
-    { img: 'uploads/Paticos.png',    ratio: '1/1.6' },
+    { color: '#B8C9B4',              ratio: '1/1.6' },
     { img: 'uploads/Portazinha.png', ratio: '1/0.85' },
-    { color: '#B8C9B4',              ratio: '1/0.9' },
+    { img: 'uploads/Paticos.png',    ratio: '1/0.9', fit: 'contain' },
   ];
   items.forEach(function(it) {
     var b = document.createElement('div');
@@ -632,8 +632,9 @@ var current = 0;
     b.style.aspectRatio = it.ratio;
     if (it.img) {
       b.style.backgroundImage = "url('" + it.img + "')";
-      b.style.backgroundSize = 'cover';
+      b.style.backgroundSize = it.fit || 'cover';
       b.style.backgroundPosition = 'center';
+      b.style.backgroundRepeat = 'no-repeat';
     } else {
       b.style.background = it.color;
     }
