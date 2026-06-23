@@ -621,12 +621,22 @@ var current = 0;
 /* ── SOBRE ART ────────────────────────────────────────── */
 (function() {
   var sobreArt = document.getElementById('sobreArt');
-  var colors = ['#C9BDD8','#E8C4B0','#B8C9B4'];
-  var ratios = ['1/1.6','1/0.85','1/0.9'];
-  colors.forEach(function(c, i) {
+  var items = [
+    { img: 'uploads/Paticos.png', ratio: '1/1.6' },
+    { color: '#E8C4B0',           ratio: '1/0.85' },
+    { color: '#B8C9B4',           ratio: '1/0.9' },
+  ];
+  items.forEach(function(it) {
     var b = document.createElement('div');
     b.className = 'sobre-ph';
-    b.style.background = c; b.style.aspectRatio = ratios[i];
+    b.style.aspectRatio = it.ratio;
+    if (it.img) {
+      b.style.backgroundImage = "url('" + it.img + "')";
+      b.style.backgroundSize = 'cover';
+      b.style.backgroundPosition = 'center';
+    } else {
+      b.style.background = it.color;
+    }
     sobreArt.appendChild(b);
   });
 })();
