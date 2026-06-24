@@ -11,10 +11,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 html.locked { overflow: hidden; height: 100%; }
-body.locked { overflow: hidden; height: 100vh; height: 100dvh; }
+body.locked { overflow: hidden; height: 100vh; height: 100dvh; height: calc(var(--real-vh, 1vh) * 100); }
 .section-page {
   height: calc(100vh - 163px);
   height: calc(100dvh - 163px);
+  height: calc(var(--real-vh, 1vh) * 100 - 163px);
   margin-top: 163px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -23,6 +24,7 @@ body.locked { overflow: hidden; height: 100vh; height: 100dvh; }
   margin-top: 0;
   height: 100vh;
   height: 100dvh;
+  height: calc(var(--real-vh, 1vh) * 100);
   padding-top: 163px;
 }
 body {
@@ -298,8 +300,7 @@ nav {
   padding: 56px 32px 56px 56px; height: 100%; min-height: 0; overflow: hidden;
 }
 .artwork-img-wrap img {
-  max-height: min(100%, 82vh);
-  max-height: min(100%, 82dvh);
+  max-height: 100%;
   max-width: 100%;
   width: auto; height: auto; display: block; object-fit: contain;
   box-shadow: 0 12px 56px rgba(20,10,2,0.16);
@@ -629,6 +630,14 @@ footer {
 </footer>
 
 <script>
+/* ── REAL VIEWPORT HEIGHT (avoids vh/dvh mismatch with OS taskbar) ── */
+function setRealVH() {
+  document.documentElement.style.setProperty('--real-vh', (window.innerHeight * 0.01) + 'px');
+}
+setRealVH();
+window.addEventListener('resize', setRealVH);
+window.addEventListener('orientationchange', setRealVH);
+
 /* ── DATA ─────────────────────────────────────────────── */
 var artworks = [
   { name: 'De Petrolina para Juazeiro', w: 120, h: 80,  img: 'uploads/120X80 - De Petrolina para Juazeiro.jpg', medium: 'Acrílica', status: 'available' },
