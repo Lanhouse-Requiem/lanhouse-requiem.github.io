@@ -65,16 +65,20 @@ nav {
 }
 .hero-venda-link {
   flex-shrink: 0;
-  width: 150px; height: 150px; border-radius: 50%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  border: 1px solid rgba(110,42,46,0.35);
-  font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 1.05rem;
-  color: #6E2A2E; text-decoration: none; text-align: center; line-height: 1.3;
-  transition: transform 0.25s, background 0.25s, border-color 0.25s;
+  display: flex; flex-direction: column; align-items: center;
+  text-decoration: none; color: #6E2A2E;
+  transition: transform 0.25s;
 }
-.hero-venda-icon { width: 52px; height: 52px; object-fit: contain; margin-bottom: 4px; }
-.hero-venda-link:hover { transform: scale(1.08); background: rgba(184,124,85,0.08); border-color: #B87C55; }
-.hero-venda-arrow { display: block; margin-top: 4px; font-size: 0.85rem; font-style: normal; }
+.hero-venda-link:hover { transform: scale(1.03); }
+.hero-venda-icon {
+  width: clamp(180px, 22vw, 280px); height: auto; max-width: 100%;
+  object-fit: contain; display: block; border-radius: 10px;
+  box-shadow: 0 14px 36px rgba(20,10,2,0.2);
+}
+.hero-venda-arrow {
+  display: block; margin-top: 0.7rem;
+  font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 1.3rem;
+}
 .nav-hamburger {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 4px;
@@ -510,8 +514,8 @@ footer {
       </div>
     </div>
     <a href="#portfolio" id="btnTelasVenda" class="hero-venda-link">
-      <img src="uploads/telas-a-venda-icon.png" class="hero-venda-icon" alt="">
-      Telas à<br>venda<span class="hero-venda-arrow">→</span>
+      <img src="uploads/telas-a-venda-icon.png" class="hero-venda-icon" alt="Telas à venda">
+      <span class="hero-venda-arrow">→</span>
     </a>
   </div>
   <div class="scroll-cue">
