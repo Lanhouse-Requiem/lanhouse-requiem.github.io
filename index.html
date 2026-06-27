@@ -6,12 +6,14 @@
   <title>Cado Art — Arte Original</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700&family=Roboto:ital,wght@0,300;0,400;0,500&family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700&family=Roboto:ital,wght@0,300;0,400;0,500&family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-html.locked { overflow: hidden; height: 100%; }
-body.locked { overflow: hidden; height: 100vh; height: 100dvh; height: calc(var(--real-vh, 1vh) * 100); }
+html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: #B87C55 #F0E9D9; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #F0E9D9; }
+::-webkit-scrollbar-thumb { background: #B87C55; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #3D2F17; }
 .section-page {
   height: calc(100vh - 122px);
   height: calc(100dvh - 122px);
@@ -19,6 +21,7 @@ body.locked { overflow: hidden; height: 100vh; height: 100dvh; height: calc(var(
   margin-top: 122px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  scroll-margin-top: 122px;
 }
 .hero.section-page {
   margin-top: 0;
@@ -46,25 +49,28 @@ nav {
   max-width: 1200px; margin: 0 auto;
   padding: 0 62px; height: 122px;
   display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem;
 }
 .logo {
-  font-family: 'Cormorant Garant', serif;
-  font-size: 1.4rem; font-weight: 400; letter-spacing: 0.08em;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.4rem; font-weight: 700; letter-spacing: 0.02em;
+  flex-shrink: 0;
 }
 .logo em { font-style: italic; color: #B87C55; }
-.nav-links { display: flex; gap: 2.55rem; align-items: center; }
-.nav-links a {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem; font-weight: 500; color: rgba(110,42,46,0.6);
-  text-decoration: none; letter-spacing: 0.02em;
-  transition: color 0.2s; position: relative;
+.nav-buttons { display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.nav-btn {
+  display: inline-flex; align-items: center;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700; font-size: 0.92rem;
+  padding: 0.62rem 1.35rem; border-radius: 14px;
+  text-decoration: none; letter-spacing: 0.01em;
+  border: none; white-space: nowrap;
+  transition: filter 0.2s, transform 0.2s;
 }
-.nav-links a:hover { color: #6E2A2E; }
-.nav-links a.active { color: #6E2A2E; }
-.nav-links a.active::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-  height: 1px; background: #B87C55;
-}
+.nav-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.nav-btn-portfolio { background: #2B0F14; color: #E2D8C2; }
+.nav-btn-sobre { background: #B87C55; color: #2B0F14; }
+.nav-btn-encomendar { background: #B8C9B4; color: #2B0F14; }
 .hero-venda-link {
   flex-shrink: 0;
   display: flex; flex-direction: column; align-items: center;
@@ -81,12 +87,6 @@ nav {
   display: block; margin-top: 0.7rem;
   font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 1.3rem;
 }
-.nav-hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
-}
-.nav-hamburger span { display: block; width: 22px; height: 1.5px; background: #3D2F17; }
-
 /* ── HERO ─────────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
@@ -131,23 +131,6 @@ nav {
   color: #3D2F17; margin-bottom: 2rem;
 }
 .hero-sub { font-size: 0.9rem; color: rgba(61,47,23,0.55); margin-bottom: 2.8rem; }
-.hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-.btn-primary {
-  display: inline-block; padding: 0.84rem 2.16rem;
-  background: #3D2F17; color: #E2D8C2;
-  border-radius: 99px; font-size: 0.96rem;
-  letter-spacing: 0.06em; text-decoration: none;
-  transition: background 0.2s;
-}
-.btn-primary:hover { background: #B87C55; }
-.btn-ghost {
-  display: inline-block; padding: 0.84rem 2.16rem;
-  border: 1px solid rgba(61,47,23,0.25); border-radius: 99px;
-  font-size: 0.96rem; letter-spacing: 0.06em;
-  text-decoration: none; color: #3D2F17;
-  transition: border-color 0.2s, color 0.2s;
-}
-.btn-ghost:hover { border-color: #B87C55; color: #B87C55; }
 
 
 
@@ -208,13 +191,10 @@ nav {
 
 /* ── PORTFOLIO ────────────────────────────────────────── */
 #portfolio {
-  display: none;
+  display: grid;
   grid-template-columns: 300px 1fr;
   grid-template-rows: 100%;
   overflow: hidden;
-}
-#portfolio.is-open {
-  display: grid;
 }
 
 /* left list */
@@ -357,11 +337,11 @@ nav {
 }
 
 /* ── SOBRE ────────────────────────────────────────────── */
-.sobre-section { display: none; }
-.sobre-section.is-open { display: block; }
 .sobre-section {
+  display: block;
   background: #3D2F17; color: #E2D8C2;
   padding: 120px 48px;
+  scroll-margin-top: 122px;
 }
 .sobre-inner {
   max-width: 1200px; margin: 0 auto;
@@ -376,11 +356,11 @@ nav {
 .sobre-ph:first-child { grid-row: span 2; }
 
 /* ── CONTATO ──────────────────────────────────────────── */
-.contato-section { display: none; }
-.contato-section.is-open { display: block; }
 .contato-section {
+  display: block;
   padding: 120px 48px;
   background: linear-gradient(to bottom, #E2D8C2, #DBD2BA);
+  scroll-margin-top: 122px;
 }
 .contato-inner {
   max-width: 980px; margin: 0 auto;
@@ -450,19 +430,13 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .nav-inner { padding: 0 24px; }
-  .nav-hamburger { display: flex; }
-  .nav-links {
-    display: none; position: fixed; inset: 0;
-    background: #E2D8C2; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 2rem; z-index: 150; font-size: 1.2rem;
-  }
-  .nav-links.is-open { display: flex; }
+  .nav-inner { padding: 0 20px; }
+  .nav-btn { padding: 0.5rem 0.95rem; font-size: 0.78rem; }
+  .nav-buttons { gap: 0.45rem; }
   .hero { padding: 170px 24px 60px; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-venda-link { margin: 1.5rem auto 0; }
-  #portfolio.is-open { height: auto; grid-template-columns: 1fr; grid-template-rows: auto; position: static; }
+  #portfolio { height: auto; grid-template-columns: 1fr; grid-template-rows: auto; position: static; }
   .port-left { height: auto; border-right: none; border-bottom: 1px solid rgba(61,47,23,0.08); padding: 32px 24px; }
   .artwork-list { padding: 0.5rem 0; }
   .port-right { min-height: 80vh; }
@@ -479,6 +453,11 @@ footer {
 @media (max-width: 980px) and (min-width: 769px) {
   .contato-inner { flex-wrap: wrap; justify-content: center; row-gap: 2.5rem; }
 }
+@media (max-width: 420px) {
+  .logo { font-size: 1.1rem; }
+  .nav-btn { padding: 0.4rem 0.7rem; font-size: 0.68rem; border-radius: 10px; }
+  .nav-buttons { gap: 0.3rem; }
+}
   </style>
 </head>
 <body>
@@ -487,14 +466,10 @@ footer {
 <nav>
   <div class="nav-inner">
     <a href="#home" class="logo">Cado <em>Art</em></a>
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a href="#home" id="navHome" class="active">Home</a>
-      <a href="#portfolio" id="navPortfolio">Portfólio</a>
-      <a href="#sobre" id="navSobre">Sobre</a>
-      <a href="#contato" id="navContato">Contato</a>
+    <div class="nav-buttons">
+      <a href="#portfolio" id="btnVerPortfolio" class="nav-btn nav-btn-portfolio">Ver portfólio</a>
+      <a href="#sobre" class="nav-btn nav-btn-sobre">Sobre</a>
+      <a href="https://wa.me/5511993268188?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20encomenda." target="_blank" class="nav-btn nav-btn-encomendar">Encomendar</a>
     </div>
   </div>
 </nav>
@@ -509,15 +484,10 @@ footer {
     <div class="hero-content">
       <h1 class="hero-title">Arte original em acrílica, digital e nanquim.</h1>
       <p class="hero-sub" style="font-size: 27px">Entrega para todo o Brasil e mundo.</p>
-      <div class="hero-actions">
-        <a href="#portfolio" class="btn-primary" id="btnVerPortfolio">Ver portfólio</a>
-        <a href="#sobre" class="btn-ghost">Sobre</a>
-        <a href="https://wa.me/5511993268188?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20encomenda." target="_blank" class="btn-ghost">Encomendar</a>
-      </div>
     </div>
     <a href="#portfolio" id="btnTelasVenda" class="hero-venda-link">
       <img src="uploads/telas-a-venda-icon.png" class="hero-venda-icon" alt="Telas à venda">
-      <span class="hero-venda-arrow">→</span>
+      <span class="hero-venda-arrow">Obras Disponíveis</span>
     </a>
   </div>
   <div class="scroll-cue">
@@ -540,7 +510,7 @@ footer {
 </section>
 
 <!-- SOBRE -->
-<section class="sobre-section section-page" id="sobre" style="color: rgb(255, 255, 255)">
+<section class="sobre-section" id="sobre" style="color: rgb(255, 255, 255)">
   <div class="sobre-inner">
     <div>
       <p class="sobre-label">Sobre</p>
@@ -557,7 +527,7 @@ footer {
 </section>
 
 <!-- CONTATO -->
-<section class="contato-section section-page" id="contato">
+<section class="contato-section" id="contato">
   <div class="contato-inner">
     <div class="contato-text">
     <span class="contato-label">Contato</span>
@@ -766,68 +736,14 @@ function renderPortfolio(items) {
 
 renderPortfolio(artworks);
 
-/* ── SECTION SWITCHER ────────────────────────────────── */
-var sections = {
-  home:      document.getElementById('home'),
-  portfolio: document.getElementById('portfolio'),
-  sobre:     document.getElementById('sobre'),
-  contato:   document.getElementById('contato')
-};
-var navBtns = {
-  home:      document.getElementById('navHome'),
-  portfolio: document.getElementById('navPortfolio'),
-  sobre:     document.getElementById('navSobre'),
-  contato:   document.getElementById('navContato')
-};
-
-function showSection(name) {
-  // lock scroll always
-  document.documentElement.classList.add('locked');
-  document.body.classList.add('locked');
-  window.scrollTo(0, 0);
-
-  // hide all sections
-  sections.home.style.display = 'none';
-  sections.portfolio.classList.remove('is-open');
-  sections.sobre.classList.remove('is-open');
-  sections.contato.classList.remove('is-open');
-
-  // deactivate all nav links
-  Object.values(navBtns).forEach(function(b) { if (b) b.classList.remove('active'); });
-
-  // show target
-  if (name === 'home') {
-    sections.home.style.display = '';
-  } else if (name === 'portfolio') {
-    sections.portfolio.classList.add('is-open');
-  } else if (name === 'sobre') {
-    sections.sobre.classList.add('is-open');
-  } else if (name === 'contato') {
-    sections.contato.classList.add('is-open');
-  }
-
-  if (navBtns[name]) navBtns[name].classList.add('active');
-}
-
-// init
-document.documentElement.classList.add('locked');
-document.body.classList.add('locked');
-
-document.getElementById('navHome').addEventListener('click', function(e) { e.preventDefault(); showSection('home'); });
-document.getElementById('navPortfolio').addEventListener('click', function(e) { e.preventDefault(); renderPortfolio(artworks); showSection('portfolio'); });
-document.getElementById('navSobre').addEventListener('click', function(e) { e.preventDefault(); showSection('sobre'); });
-document.getElementById('navContato').addEventListener('click', function(e) { e.preventDefault(); showSection('contato'); });
-
-document.getElementById('btnTelasVenda').addEventListener('click', function(e) {
-  e.preventDefault(); e.stopPropagation();
+/* ── NAV ACTIONS (plain anchor scroll, no section locking) ───────── */
+document.getElementById('btnTelasVenda').addEventListener('click', function() {
   renderPortfolio(artworks.filter(function(a) { return a.status === 'available'; }));
-  showSection('portfolio');
 });
 
-var portfolioOpen = false;
-document.getElementById('btnVerPortfolio').addEventListener('click', function(e) { e.preventDefault(); renderPortfolio(artworks); showSection('portfolio'); portfolioOpen = true; });
-var sobreBtn = document.querySelector('a[href="#sobre"].btn-ghost');
-if (sobreBtn) sobreBtn.addEventListener('click', function(e) { e.preventDefault(); showSection('sobre'); });
+document.getElementById('btnVerPortfolio').addEventListener('click', function() {
+  renderPortfolio(artworks);
+});
 
 /* ── NAVIGATE ─────────────────────────────────────────── */
 function goTo(idx) {
@@ -854,21 +770,6 @@ portRight.addEventListener('wheel', function(e) {
   if (e.deltaY > 30)  goTo(current + 1);
   if (e.deltaY < -30) goTo(current - 1);
 }, { passive: false });
-
-/* ── NAV ACTIVE ON SCROLL ─────────────────────────────── */
-var navItems = [
-  { id: 'portfolio', el: document.getElementById('navPortfolio') },
-  { id: 'sobre',     el: document.getElementById('navSobre') },
-  { id: 'contato',   el: document.getElementById('navContato') },
-];
-window.addEventListener('scroll', function() {
-  var y = window.scrollY + 100;
-  navItems.forEach(function(n) { n.el.classList.remove('active'); });
-  for (var i = navItems.length - 1; i >= 0; i--) {
-    var sec = document.getElementById(navItems[i].id);
-    if (sec && y >= sec.offsetTop) { navItems[i].el.classList.add('active'); break; }
-  }
-}, { passive: true });
 
 /* ── TWEAKS ───────────────────────────────────────────── */
 var tweaksPanel = document.getElementById('tweaks-panel');
@@ -979,21 +880,6 @@ document.getElementById('tweak-densidade').addEventListener('click', function(e)
   document.querySelectorAll('#tweak-densidade .tweak-opt').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   applyDensidade(btn.dataset.densidade);
-});
-
-
-var hamburger = document.getElementById('hamburger');
-var navLinks = document.getElementById('navLinks');
-hamburger.addEventListener('click', function() {
-  var open = hamburger.getAttribute('aria-expanded') === 'true';
-  hamburger.setAttribute('aria-expanded', String(!open));
-  navLinks.classList.toggle('is-open', !open);
-});
-navLinks.querySelectorAll('a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    navLinks.classList.remove('is-open');
-    hamburger.setAttribute('aria-expanded', 'false');
-  });
 });
 
 </script>
