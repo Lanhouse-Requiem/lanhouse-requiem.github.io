@@ -61,16 +61,16 @@ nav {
 .nav-btn {
   display: inline-flex; align-items: center;
   font-family: 'Libre Baskerville', serif;
-  font-weight: 700; font-size: 0.92rem;
-  padding: 0.62rem 1.35rem; border-radius: 14px;
+  font-weight: 700; font-size: 1rem;
+  padding: 0.4rem 0.3rem;
   text-decoration: none; letter-spacing: 0.01em;
-  border: none; white-space: nowrap;
-  transition: filter 0.2s, transform 0.2s;
+  background: none; border: none; white-space: nowrap;
+  transition: opacity 0.2s;
 }
-.nav-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
-.nav-btn-portfolio { background: #2B0F14; color: #E2D8C2; }
-.nav-btn-sobre { background: #B87C55; color: #2B0F14; }
-.nav-btn-contato { background: #B8C9B4; color: #2B0F14; }
+.nav-btn:hover { opacity: 0.7; }
+.nav-btn-portfolio { color: #2B0F14; }
+.nav-btn-sobre { color: #B87C55; }
+.nav-btn-contato { color: #B8C9B4; }
 .hero-venda-link {
   flex-shrink: 0;
   display: flex; flex-direction: column; align-items: center;
@@ -455,7 +455,7 @@ footer {
 }
 @media (max-width: 420px) {
   .logo { font-size: 1.1rem; }
-  .nav-btn { padding: 0.4rem 0.7rem; font-size: 0.68rem; border-radius: 10px; }
+  .nav-btn { padding: 0.35rem 0.4rem; font-size: 0.72rem; }
   .nav-buttons { gap: 0.3rem; }
 }
   </style>
@@ -467,7 +467,7 @@ footer {
   <div class="nav-inner">
     <a href="#home" class="logo">Cado <em>Art</em></a>
     <div class="nav-buttons">
-      <a href="#portfolio" id="btnVerPortfolio" class="nav-btn nav-btn-portfolio">Ver portfólio</a>
+      <a href="#portfolio" id="btnVerPortfolio" class="nav-btn nav-btn-portfolio">Portfólio</a>
       <a href="#sobre" class="nav-btn nav-btn-sobre">Sobre</a>
       <a href="#contato" class="nav-btn nav-btn-contato">Contato</a>
     </div>
