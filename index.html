@@ -52,11 +52,10 @@ nav {
   gap: 1.5rem;
 }
 .logo {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 1.4rem; font-weight: 700; letter-spacing: 0.02em;
+  display: inline-flex; align-items: center;
   flex-shrink: 0;
 }
-.logo em { font-style: italic; color: #B87C55; }
+.logo-img { height: 40px; width: auto; display: block; }
 .nav-buttons { display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
 .nav-btn {
   display: inline-flex; align-items: center;
@@ -454,7 +453,7 @@ footer {
   .contato-inner { flex-wrap: wrap; justify-content: center; row-gap: 2.5rem; }
 }
 @media (max-width: 420px) {
-  .logo { font-size: 1.1rem; }
+  .logo-img { height: 30px; }
   .nav-btn { padding: 0.35rem 0.4rem; font-size: 0.72rem; }
   .nav-buttons { gap: 0.3rem; }
 }
@@ -465,7 +464,7 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#home" class="logo">Cado <em>Art</em></a>
+    <a href="#home" class="logo"><img src="uploads/logo-cado.png" alt="Cado Art" class="logo-img"></a>
     <div class="nav-buttons">
       <a href="#portfolio" id="btnVerPortfolio" class="nav-btn nav-btn-portfolio">Portfólio</a>
       <a href="#sobre" class="nav-btn nav-btn-sobre">Sobre</a>
