@@ -248,6 +248,15 @@ nav {
   transition: background 0.2s, border-color 0.2s;
 }
 .arrow-btn:hover { background: #3D2F17; color: #E2D8C2; border-color: #3D2F17; }
+.port-toolbar-mobile { display: none; }
+.arrow-btn-h {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(61,47,23,0.18); background: transparent;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: #3D2F17; font-size: 0.9rem; flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+.arrow-btn-h:hover { background: #3D2F17; color: #E2D8C2; border-color: #3D2F17; }
 
 /* filter buttons */
 .port-filters { display: flex; gap: 0.4rem; margin-bottom: 1.4rem; }
@@ -438,7 +447,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  html { scroll-snap-type: none; }
+  html { scroll-snap-type: y proximity; }
 
   /* ── NAV ── */
   .nav-inner { padding: 0 16px; height: 80px; }
@@ -456,10 +465,11 @@ footer {
   /* ── HERO ── */
   .hero.section-page {
     height: auto; min-height: auto;
-    padding: 64px 24px 56px;
+    margin-top: 80px;
+    padding: 32px 24px 56px;
   }
   .hero {
-    padding: 64px 24px 56px;
+    padding: 32px 24px 56px;
     align-items: center; justify-content: center;
     text-align: center;
   }
@@ -482,7 +492,7 @@ footer {
     padding: 20px 16px 12px;
     overflow-y: visible;
   }
-  .port-filters { justify-content: center; }
+  .port-left .port-filters { display: none; }
   .artwork-list {
     width: 100%;
     display: flex; flex-wrap: nowrap; overflow-x: auto;
@@ -498,12 +508,25 @@ footer {
   .artwork-item.active { padding-left: 0.8rem; }
   .item-name { font-size: 0.82rem; white-space: nowrap; }
   .artwork-item.active .item-name { font-size: 0.95rem; }
-  .port-nav { margin-top: 8px; justify-content: center; }
+  .port-nav { display: none; }
+
+  /* gallery toolbar: filter + left/right arrows, pinned under nav */
+  .port-toolbar-mobile {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
+    position: sticky; top: 80px; z-index: 5;
+    background: #E2D8C2;
+    padding: 10px 16px;
+    border-top: 1px solid rgba(61,47,23,0.1);
+    border-bottom: 1px solid rgba(61,47,23,0.08);
+  }
+  .port-toolbar-mobile .port-filters { margin-bottom: 0; }
+  .port-toolbar-mobile .filter-btn { padding: 0.25rem 0.7rem; font-size: 0.62rem; }
 
   .port-right {
     position: relative;
     width: 100%; height: auto;
-    padding: 24px 20px 32px;
+    padding: 20px 20px 32px;
   }
   .artwork-display {
     position: static;
@@ -515,24 +538,35 @@ footer {
   }
   .artwork-display.active { display: flex; }
   .artwork-img-wrap {
-    width: 100%; padding: 0; margin-bottom: 20px;
+    width: 100%; padding: 0; margin-bottom: 14px;
     display: flex; align-items: center; justify-content: center;
-    max-height: 55vh; min-height: 0; overflow: visible;
+    max-height: 50vh; min-height: 0; overflow: visible;
   }
   .artwork-img-wrap img {
-    max-height: 55vh; max-width: 100%;
+    max-height: 50vh; max-width: 100%;
     transform: none;
   }
   .wall-tag {
     width: 100%; padding: 0;
-    align-items: center;
+    align-items: flex-start;
     transform: none; opacity: 1;
   }
-  .tag-card { width: 100%; max-width: 360px; padding: 20px 24px; text-align: center; }
-  .tag-rule { margin: 0 auto 1.2rem; }
-  .tag-name { font-size: 1.4rem; }
-  .tag-cta-wrap { width: 100%; display: flex; justify-content: center; }
-  .port-counter { position: static; margin-top: 14px; text-align: center; }
+  .tag-card {
+    width: 100%; max-width: 100%;
+    background: transparent; border: none; box-shadow: none;
+    border-top: 1px solid rgba(61,47,23,0.15);
+    border-radius: 0;
+    padding: 12px 2px 0;
+    text-align: left;
+  }
+  .tag-card::before { display: none; }
+  .tag-rule { display: none; }
+  .tag-name { font-size: 1rem; margin-bottom: 0.3rem; }
+  .tag-dims { font-size: 0.8rem; margin-bottom: 0.15rem; }
+  .tag-medium { font-size: 0.65rem; }
+  .tag-cta-wrap { width: 100%; display: flex; justify-content: flex-start; margin-top: 10px; }
+  .tag-cta { padding: 0.45rem 1.1rem; font-size: 0.75rem; }
+  .port-counter { position: static; margin-top: 10px; text-align: left; }
 
   /* ── SOBRE ── */
   .sobre-section {
@@ -602,6 +636,14 @@ footer {
       <button class="arrow-btn" id="btnPrev">↑</button>
       <button class="arrow-btn" id="btnNext">↓</button>
     </div>
+  </div>
+  <div class="port-toolbar-mobile" id="portToolbarMobile">
+    <button class="arrow-btn-h" id="btnPrevMobile" aria-label="Anterior">←</button>
+    <div class="port-filters" id="portFiltersMobile">
+      <button class="filter-btn active" data-filter="all">Todas</button>
+      <button class="filter-btn" data-filter="available">Disponíveis</button>
+    </div>
+    <button class="arrow-btn-h" id="btnNextMobile" aria-label="Próxima">→</button>
   </div>
   <div class="port-right" id="portRight"></div>
 </section>
@@ -826,14 +868,20 @@ function renderPortfolio(items) {
 
 renderPortfolio(artworks);
 
-/* ── FILTER BUTTONS ─────────────────────────────────────── */
-document.getElementById('portFilters').addEventListener('click', function(e) {
-  var btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  var f = btn.dataset.filter;
-  renderPortfolio(f === 'available' ? artworks.filter(function(a) { return a.status === 'available'; }) : artworks);
+/* ── FILTER BUTTONS (desktop list + mobile toolbar, kept in sync) ── */
+var filterContainers = [document.getElementById('portFilters'), document.getElementById('portFiltersMobile')].filter(Boolean);
+filterContainers.forEach(function(container) {
+  container.addEventListener('click', function(e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    var f = btn.dataset.filter;
+    filterContainers.forEach(function(c) {
+      c.querySelectorAll('.filter-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.filter === f);
+      });
+    });
+    renderPortfolio(f === 'available' ? artworks.filter(function(a) { return a.status === 'available'; }) : artworks);
+  });
 });
 
 /* ── NAVIGATE ─────────────────────────────────────────── */
@@ -849,6 +897,8 @@ function goTo(idx) {
 
 document.getElementById('btnPrev').addEventListener('click', function() { goTo(current - 1); });
 document.getElementById('btnNext').addEventListener('click', function() { goTo(current + 1); });
+document.getElementById('btnPrevMobile').addEventListener('click', function() { goTo(current - 1); });
+document.getElementById('btnNextMobile').addEventListener('click', function() { goTo(current + 1); });
 document.addEventListener('keydown', function(e) {
   var portfolio = document.getElementById('portfolio');
   var rect = portfolio.getBoundingClientRect();
