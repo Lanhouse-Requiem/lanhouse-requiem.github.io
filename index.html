@@ -255,6 +255,18 @@ nav {
 }
 .arrow-btn:hover { background: #3D2F17; color: #E2D8C2; border-color: #3D2F17; }
 
+/* filter buttons */
+.port-filters { display: flex; gap: 0.4rem; margin-bottom: 1.4rem; }
+.filter-btn {
+  padding: 0.3rem 0.9rem; border-radius: 99px; font-size: 0.7rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid rgba(61,47,23,0.2); background: transparent;
+  cursor: pointer; color: rgba(61,47,23,0.5); font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.filter-btn:hover { border-color: #B87C55; color: #B87C55; }
+.filter-btn.active { background: #3D2F17; color: #E2D8C2; border-color: #3D2F17; }
+
 /* right artwork display */
 .port-right {
   position: relative; background: #DBD2BB; overflow: hidden;
@@ -317,12 +329,12 @@ nav {
 .tag-medium { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: rgba(61,47,23,0.4); letter-spacing: 0.08em; text-transform: uppercase; }
 .tag-cta-wrap { margin-top: 22px; }
 .tag-cta {
-  display: inline-flex; align-items: center; gap: 1.35rem;
-  padding: 1.65rem 3.3rem; background: #25D366; color: #FFFFFF !important;
-  border-radius: 99px; font-size: 2.1rem; letter-spacing: 0.05em;
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.7rem 1.4rem; background: #FFF8C2; color: #3D2F17 !important;
+  border-radius: 99px; font-size: 0.9rem; letter-spacing: 0.05em;
   text-decoration: none; transition: background 0.2s; width: fit-content;
 }
-.tag-cta:hover { background: #1DA851; }
+.tag-cta:hover { background: #FFE96A; }
 .tag-sold {
   font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
   color: rgba(61,47,23,0.35); border: 1px solid rgba(61,47,23,0.15);
@@ -487,10 +499,6 @@ footer {
       <h1 class="hero-title">Arte original em acrílica,<br>digital e nanquim.</h1>
       <p class="hero-sub" style="font-size: 27px">Entrega para todo o Brasil e mundo.</p>
     </div>
-    <a href="#portfolio" id="btnTelasVenda" class="hero-venda-link">
-      <img src="uploads/telas-a-venda-icon.png" class="hero-venda-icon" alt="Telas à venda">
-      <span class="hero-venda-arrow">Obras Disponíveis</span>
-    </a>
   </div>
   <div class="scroll-cue">
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -502,6 +510,10 @@ footer {
 <section id="portfolio" class="section-page">
   <div class="port-left">
     <span class="port-label">Portfólio</span>
+    <div class="port-filters" id="portFilters">
+      <button class="filter-btn active" data-filter="all">Todas</button>
+      <button class="filter-btn" data-filter="available">Disponíveis</button>
+    </div>
     <div class="artwork-list" id="artworkList"></div>
     <div class="port-nav">
       <button class="arrow-btn" id="btnPrev">↑</button>
@@ -553,12 +565,6 @@ footer {
         cadoschutzer@gmail.com
       </a>
     </div>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-tree-frame">
-        <img src="uploads/tree.png" class="hero-tree" alt="Tree">
-      </div>
-      <img src="uploads/blipe.png" class="hero-mascot" alt="Blipe">
     </div>
   </div>
 </section>
@@ -710,7 +716,7 @@ function renderPortfolio(items) {
       : a.status === 'unavailable'
       ? '<span class="tag-sold">Não disponível</span>'
       : '<a class="tag-cta" href="https://wa.me/5511993268188?text=' + msg + '" target="_blank">'
-        + '<svg width="39" height="39" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>'
+        + '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>'
         + 'Disponível</a>';
 
     var tag = document.createElement('div');
@@ -737,13 +743,14 @@ function renderPortfolio(items) {
 
 renderPortfolio(artworks);
 
-/* ── NAV ACTIONS (plain anchor scroll, no section locking) ───────── */
-document.getElementById('btnTelasVenda').addEventListener('click', function() {
-  renderPortfolio(artworks.filter(function(a) { return a.status === 'available'; }));
-});
-
-document.getElementById('btnVerPortfolio').addEventListener('click', function() {
-  renderPortfolio(artworks);
+/* ── FILTER BUTTONS ─────────────────────────────────────── */
+document.getElementById('portFilters').addEventListener('click', function(e) {
+  var btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var f = btn.dataset.filter;
+  renderPortfolio(f === 'available' ? artworks.filter(function(a) { return a.status === 'available'; }) : artworks);
 });
 
 /* ── NAVIGATE ─────────────────────────────────────────── */
