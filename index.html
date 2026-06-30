@@ -438,33 +438,53 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .nav-inner { padding: 0 20px; }
-  .nav-btn { padding: 0.5rem 0.95rem; font-size: 0.78rem; }
-  .nav-buttons { gap: 0.45rem; }
-  .hero { padding: 170px 24px 60px; }
+  /* disable snap on mobile — portfolio stacks vertically */
+  html { scroll-snap-type: none; }
+
+  /* nav: slim down to 90px */
+  .nav-inner { padding: 0 16px; height: 90px; }
+  .logo-img { height: 68px; }
+  .nav-btn { font-size: 0.82rem; padding: 0.4rem 0.5rem; }
+  .nav-buttons { gap: 0.3rem; }
+
+  /* section offsets use 90px nav */
+  .section-page {
+    height: auto;
+    min-height: calc(100vh - 90px);
+    margin-top: 90px;
+    scroll-margin-top: 90px;
+    overflow-y: visible;
+  }
+  .hero.section-page {
+    min-height: 100vh;
+    padding-top: 90px;
+  }
+  .sobre-section { scroll-margin-top: 90px; min-height: auto; }
+  .contato-section { scroll-margin-top: 90px; min-height: auto; }
+
+  /* hero text: full width, left-aligned */
+  .hero { padding: 90px 24px 60px; }
   .hero-inner { grid-template-columns: 1fr; }
-  .hero-venda-link { margin: 1.5rem auto 0; }
+  .hero-content { max-width: 100%; margin-left: 0; }
+
+  /* portfolio: vertical stack */
   #portfolio { height: auto; grid-template-columns: 1fr; grid-template-rows: auto; position: static; }
-  .port-left { height: auto; border-right: none; border-bottom: 1px solid rgba(61,47,23,0.08); padding: 32px 24px; }
+  .port-left { height: auto; border-right: none; border-bottom: 1px solid rgba(61,47,23,0.08); padding: 24px 16px; }
   .artwork-list { padding: 0.5rem 0; }
-  .port-right { min-height: 80vh; }
-  .artwork-display { flex-direction: column; padding: 32px 24px; gap: 16px; }
+  .port-right { min-height: 70vh; }
+  .artwork-display { flex-direction: column; padding: 24px 16px; gap: 16px; }
   .artwork-img-wrap { padding: 0; min-height: 0; flex: 1 1 auto; }
   .wall-tag { width: 100%; padding: 0; flex: 0 0 auto; }
+
   .sobre-inner { grid-template-columns: 1fr; gap: 3rem; }
   .sobre-art { display: none; }
-  .sobre-section, .contato-section { padding: 80px 24px; }
+  .sobre-section, .contato-section { padding: 60px 24px; }
   .contato-inner { flex-direction: column; gap: 2.5rem; }
   .contato-text { text-align: center; }
   footer { flex-direction: column; text-align: center; padding: 2rem 24px; }
 }
 @media (max-width: 980px) and (min-width: 769px) {
   .contato-inner { flex-wrap: wrap; justify-content: center; row-gap: 2.5rem; }
-}
-@media (max-width: 420px) {
-  .logo-img { height: 120px; }
-  .nav-btn { padding: 0.35rem 0.4rem; font-size: 0.9rem; }
-  .nav-buttons { gap: 0.3rem; }
 }
   </style>
 </head>
