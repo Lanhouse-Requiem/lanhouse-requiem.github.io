@@ -108,12 +108,12 @@ nav {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(1.6rem, 2.8vw, 2.8rem);
   font-weight: 700; line-height: 1.25;
-  color: #3D2F17; margin-bottom: 2rem;
+  color: #2B0B12; margin-bottom: 2rem;
 }
-.hero-sig { font-family: 'Cormorant Garant', serif; font-style: italic; font-size: 1.2rem; color: #000; margin-bottom: 1.2rem; text-align: left; }
+.hero-sig { font-family: 'DM Sans', sans-serif; font-style: normal; font-weight: 300; font-size: 27px; color: rgba(61,47,23,0.55); margin-left: 0.5rem; }
 .hero-sub { font-size: 0.9rem; color: rgba(61,47,23,0.55); margin-bottom: 2.8rem; }
 .hero-cachorro {
-  position: absolute; left: 56.6%; top: 43.7%;
+  position: absolute; left: 56.6%; top: 33.7%;
   width: 45%; max-width: 512px; height: auto;
   image-rendering: pixelated; pointer-events: none;
   z-index: 2;
@@ -442,7 +442,7 @@ footer {
   .hero-eyebrow { justify-content: center; }
   .hero-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
   .scroll-cue { display: none; }
-  .hero-cachorro { left: 50%; top: 71%; width: 38%; max-width: 200px; transform: translateX(-50%); }
+  .hero-cachorro { left: 50%; top: 71%; width: 38%; max-width: 200px; transform: translateX(-50%); z-index: 4; }
 
   /* ── PORTFOLIO ── */
   #portfolio {
@@ -584,8 +584,7 @@ footer {
   <img src="uploads/cachorro.gif" class="hero-cachorro" alt="">
 <div class="hero-inner">
     <div class="hero-content">
-      <h1 class="hero-title">Arte original em acrílica,<br>digital e nanquim.</h1>
-      <p class="hero-sig">— Por Cado Schutzer</p>
+      <h1 class="hero-title">Arte original em acrílica,<br>digital e nanquim. <span class="hero-sig">— Por Cado Schutzer</span></h1>
       <p class="hero-sub" style="font-size: 27px">Entrega para todo o Brasil e mundo.</p>
     </div>
   </div>
@@ -718,44 +717,44 @@ window.addEventListener('orientationchange', setRealVH);
 var artworks = [
   { name: 'De Petrolina para Juazeiro', w: 120, h: 80,  img: 'uploads/120X80 - De Petrolina para Juazeiro.jpg', medium: 'Acrílica', status: 'available' },
   { name: 'Frescas Pescarias',          w: 120, h: 80,  img: 'uploads/120x80 - Frescas Pescarias.jpg',           medium: 'Acrílica', status: 'available' },
-  { name: 'Tarot',                      w: 90,  h: 60,  img: 'uploads/Tarot.png',                                medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Reflexo',                    w: 80,  h: 54,  img: 'uploads/Reflexo.png',                              medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Botanicografia',             w: 60,  h: 75,  img: 'uploads/Botanicografia.png',                       medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Raio',                       w: 60,  h: 43,  img: 'uploads/Raio.png',                                 medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Zé Mosquitinho e elegante',  w: 50,  h: 63,  img: 'uploads/Zé Mosquitinho e elegante 2021.png',       medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Tarot',                      w: 90,  h: 60,  img: 'uploads/Tarot.jpg',                                medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Reflexo',                    w: 80,  h: 54,  img: 'uploads/Reflexo.jpg',                              medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Botanicografia',             w: 60,  h: 75,  img: 'uploads/Botanicografia.jpg',                       medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Raio',                       w: 60,  h: 43,  img: 'uploads/Raio.jpg',                                 medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Zé Mosquitinho e elegante',  w: 50,  h: 63,  img: 'uploads/Zé Mosquitinho e elegante 2021.jpg',       medium: 'Acrílica', status: 'unavailable' },
   { name: 'Erva do Diabo',              w: 50,  h: 50,  img: 'uploads/50x50 - Erva do Diabo.jpg',                medium: 'Acrílica', status: 'available' },
   { name: 'Fire Gecko',                 w: 50,  h: 50,  img: 'uploads/50x50 - Fire Gecko.jpg',                   medium: 'Acrílica', status: 'available' },
   { name: 'Miopia',                     w: 50,  h: 50,  img: 'uploads/50x50 - Miopia.jpg',                       medium: 'Acrílica', status: 'available' },
   { name: 'Incommoditie',               w: 50,  h: 50,  img: 'uploads/50x50 -Incommoditie.jpg',                  medium: 'Acrílica', status: 'available' },
-  { name: 'Roso',                       w: 50,  h: 50,  img: 'uploads/Roso.png',                                 medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Que cobre a nuvem',          w: 47,  h: 45,  img: 'uploads/Que cobre a nuvem.png',                    medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Casa',                       w: 46,  h: 36,  img: 'uploads/Sem Nome (2).png',                         medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Corujoinha',                 w: 40,  h: 50,  img: 'uploads/Corujoinha.png',                           medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Tratado',                    w: 40,  h: 32,  img: 'uploads/Tratiabs.png',                             medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Brisa',                      w: 40,  h: 30,  img: 'uploads/Brisa.png',                                medium: 'Acrílica', status: 'available' },
-  { name: 'Ceiros',                     w: 40,  h: 26,  img: 'uploads/Ceiros.png',                               medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Taking care of love',        w: 38,  h: 26,  img: 'uploads/Taking care of love.png',                  medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Quicá',                      w: 36,  h: 30,  img: 'uploads/Quiça.png',                                medium: 'Acrílica', status: 'available' },
-  { name: 'O molda-nuvem',              w: 36,  h: 36,  img: 'uploads/O molda-nuvem.png',                        medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Sem nome',                   w: 35,  h: 23,  img: 'uploads/Sem nome.png',                             medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Trovão',                     w: 32,  h: 22,  img: 'uploads/Trovão.png',                               medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Roso',                       w: 50,  h: 50,  img: 'uploads/Roso.jpg',                                 medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Que cobre a nuvem',          w: 47,  h: 45,  img: 'uploads/Que cobre a nuvem.jpg',                    medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Casa',                       w: 46,  h: 36,  img: 'uploads/Sem Nome (2).jpg',                         medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Corujoinha',                 w: 40,  h: 50,  img: 'uploads/Corujoinha.jpg',                           medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Tratado',                    w: 40,  h: 32,  img: 'uploads/Tratiabs.jpg',                             medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Brisa',                      w: 40,  h: 30,  img: 'uploads/Brisa.jpg',                                medium: 'Acrílica', status: 'available' },
+  { name: 'Ceiros',                     w: 40,  h: 26,  img: 'uploads/Ceiros.jpg',                               medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Taking care of love',        w: 38,  h: 26,  img: 'uploads/Taking care of love.jpg',                  medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Quicá',                      w: 36,  h: 30,  img: 'uploads/Quiça.jpg',                                medium: 'Acrílica', status: 'available' },
+  { name: 'O molda-nuvem',              w: 36,  h: 36,  img: 'uploads/O molda-nuvem.jpg',                        medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Sem nome',                   w: 35,  h: 23,  img: 'uploads/Sem nome.jpg',                             medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Trovão',                     w: 32,  h: 22,  img: 'uploads/Trovão.jpg',                               medium: 'Acrílica', status: 'unavailable' },
   { name: 'Fluxo Contínuo',             w: 30,  h: 30,  img: 'uploads/30x30 - Fluxo Contínuo.jpg',               medium: 'Acrílica', status: 'available' },
   { name: 'Homem Cacto',                w: 30,  h: 30,  img: 'uploads/30x30 - Homem Cacto.jpg',                  medium: 'Acrílica', status: 'available' },
-  { name: 'Tempinho',                   w: 30,  h: 30,  img: 'uploads/Tempinho.png',                             medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Sorte',                      w: 30,  h: 16,  img: 'uploads/Sorte.png',                                medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Paisage',                    w: 30,  h: 14,  img: 'uploads/Paisage.png',                              medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Tempinho',                   w: 30,  h: 30,  img: 'uploads/Tempinho.jpg',                             medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Sorte',                      w: 30,  h: 16,  img: 'uploads/Sorte.jpg',                                medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Paisage',                    w: 30,  h: 14,  img: 'uploads/Paisage.jpg',                              medium: 'Acrílica', status: 'unavailable' },
   { name: 'Nave Especial',              w: 30,  h: 20,  img: 'uploads/30x20 - Nave Especial.jpg',                medium: 'Acrílica', status: 'available' },
-  { name: 'Trauma',                     w: 30,  h: 20,  img: 'uploads/20x30 - Trauma.png',                       medium: 'Acrílica', status: 'available' },
-  { name: 'Mato',                       w: 10,  h: 15,  img: 'uploads/Captura de tela 2026-05-02 155839.png',      medium: 'Acrílica', status: 'available' },
-  { name: 'Memória de Carnaval',        w: 0,   h: 0,   img: 'uploads/Memoria de Carnaval.png',                   medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Convergência',               w: 50,  h: 50,  img: 'uploads/Convergencia.png',                          medium: 'Acrílica', status: 'available' },
-  { name: 'Zuko',                       w: 0,   h: 0,   img: 'uploads/Zuko.png',                                  medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Libélula Elétrica',          w: 0,   h: 0,   img: 'uploads/Libélula Elétrica.png',                     medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Narrativa',                  w: 0,   h: 0,   img: 'uploads/Narrativa.png',                             medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Juá',                        w: 0,   h: 0,   img: 'uploads/Juá.png',                                   medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Kalo dando conta',           w: 0,   h: 0,   img: 'uploads/Kalo dando conta.png',                      medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Jardim Encharcado',          w: 0,   h: 0,   img: 'uploads/Jardim Encharcado.png',                     medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Ecobag Olho',                w: 0,   h: 0,   img: 'uploads/Ecobag Olho.png',                           medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Trauma',                     w: 30,  h: 20,  img: 'uploads/20x30 - Trauma.jpg',                       medium: 'Acrílica', status: 'available' },
+  { name: 'Mato',                       w: 10,  h: 15,  img: 'uploads/Captura de tela 2026-05-02 155839.jpg',      medium: 'Acrílica', status: 'available' },
+  { name: 'Memória de Carnaval',        w: 0,   h: 0,   img: 'uploads/Memoria de Carnaval.jpg',                   medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Convergência',               w: 50,  h: 50,  img: 'uploads/Convergencia.jpg',                          medium: 'Acrílica', status: 'available' },
+  { name: 'Zuko',                       w: 0,   h: 0,   img: 'uploads/Zuko.jpg',                                  medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Libélula Elétrica',          w: 0,   h: 0,   img: 'uploads/Libélula Elétrica.jpg',                     medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Narrativa',                  w: 0,   h: 0,   img: 'uploads/Narrativa.jpg',                             medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Juá',                        w: 0,   h: 0,   img: 'uploads/Juá.jpg',                                   medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Kalo dando conta',           w: 0,   h: 0,   img: 'uploads/Kalo dando conta.jpg',                      medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Jardim Encharcado',          w: 0,   h: 0,   img: 'uploads/Jardim Encharcado.jpg',                     medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Ecobag Olho',                w: 0,   h: 0,   img: 'uploads/Ecobag Olho.jpg',                           medium: 'Acrílica', status: 'unavailable' },
 ];
 
 var current = 0;
@@ -767,8 +766,8 @@ var current = 0;
   var sobreArt = document.getElementById('sobreArt');
   var items = [
     { img: 'uploads/Sobre.jpg',      ratio: '1/1.6', pos: 'center 30%' },
-    { img: 'uploads/Portazinha.png', ratio: '1/0.85', pos: '65% center' },
-    { img: 'uploads/Paticos.png',    ratio: '1/0.9', fit: 'contain' },
+    { img: 'uploads/Portazinha.jpg', ratio: '1/0.85', pos: '65% center' },
+    { img: 'uploads/Paticos.jpg',    ratio: '1/0.9', fit: 'contain' },
   ];
   items.forEach(function(it) {
     var b = document.createElement('div');
