@@ -95,7 +95,7 @@ nav {
   gap: 2rem;
   position: relative; z-index: 3;
 }
-.hero-content { max-width: 680px; }
+.hero-content { max-width: 800px; }
 .hero-eyebrow {
   display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.6rem;
 }
@@ -181,7 +181,7 @@ nav {
   align-self: center;
 }
 .item-name {
-  font-family: 'Montserrat', sans-serif; font-weight: 500;
+  font-family: 'DM Sans', sans-serif; font-weight: 300;
   font-size: 1.05rem; color: #3D2F17;
   line-height: 1.2; letter-spacing: 0.01em;
   transition: font-size 0.35s cubic-bezier(0.22,1,0.36,1), color 0.3s;
@@ -442,7 +442,7 @@ footer {
   .hero-eyebrow { justify-content: center; }
   .hero-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
   .scroll-cue { display: none; }
-  .hero-cachorro { left: 50%; top: 71%; width: 38%; max-width: 200px; transform: translateX(-50%); z-index: 4; }
+  .hero-cachorro { left: 50%; top: 19%; width: 38%; max-width: 200px; transform: translateX(-50%); z-index: 4; }
 
   /* ── PORTFOLIO ── */
   #portfolio {
@@ -463,7 +463,9 @@ footer {
     display: flex; flex-wrap: nowrap; overflow-x: auto;
     flex-direction: row; justify-content: flex-start; gap: 0; padding: 0;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .artwork-list::-webkit-scrollbar { display: none; height: 0; }
   .artwork-item {
     flex-shrink: 0; padding: 0.5rem 0.8rem;
     border-bottom: none;
