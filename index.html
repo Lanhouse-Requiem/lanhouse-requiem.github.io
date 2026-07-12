@@ -498,13 +498,8 @@ footer {
     overflow-y: visible;
   }
   .port-left .port-filters { display: none; }
-  .artwork-list {
-    width: 100%;
-    display: flex; flex-wrap: nowrap; overflow-x: auto;
-    flex-direction: row; justify-content: flex-start; gap: 0; padding: 0;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
+  .port-label { display: none; }
+  .artwork-list { display: none; }
   .artwork-list::-webkit-scrollbar { display: none; height: 0; }
   .artwork-item {
     flex-shrink: 0; padding: 0.5rem 0.8rem;
@@ -567,9 +562,9 @@ footer {
   }
   .tag-card::before { display: none; }
   .tag-rule { display: none; }
-  .tag-name { font-size: 1rem; margin-bottom: 0.3rem; }
-  .tag-dims { font-size: 0.8rem; margin-bottom: 0.15rem; }
-  .tag-medium { font-size: 0.65rem; }
+  .tag-name { font-size: 1.3rem; margin-bottom: 0.3rem; }
+  .tag-dims { font-size: 1.04rem; margin-bottom: 0.15rem; }
+  .tag-medium { font-size: 0.845rem; }
   .tag-cta-wrap { width: 100%; display: flex; justify-content: flex-start; margin-top: 10px; }
   .tag-cta { padding: 0.45rem 1.1rem; font-size: 0.75rem; }
   .port-counter { position: static; margin-top: 10px; text-align: left; }
