@@ -220,8 +220,18 @@ nav {
   transition: background 0.2s, border-color 0.2s;
 }
 .arrow-btn-h:hover { background: #3D2F17; color: #E2D8C2; border-color: #3D2F17; }
-.port-nav-mobile { display: none; }
-.port-right-wrap { display: contents; }
+.port-right-wrap { position: relative; height: 100%; }
+.port-nav-mobile { display: block; }
+.port-nav-mobile .arrow-btn-h {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border-width: 2px;
+  background: #3D2F17; color: #E6D2AF; border-color: #3D2F17;
+  font-size: 1.2rem; font-weight: 700;
+  z-index: 10;
+}
+#btnPrevMobile { left: 8px; }
+#btnNextMobile { right: 8px; }
 
 /* filter buttons */
 .port-filters { display: flex; gap: 0.4rem; margin-bottom: 1.4rem; }
@@ -568,19 +578,6 @@ footer {
   .port-toolbar-mobile .port-filters { margin-bottom: 0; }
   .port-toolbar-mobile .filter-btn { padding: 0.25rem 0.7rem; font-size: 0.62rem; }
 
-  .port-right-wrap { position: relative; }
-  .port-nav-mobile {
-    display: block;
-  }
-  .port-nav-mobile .arrow-btn-h {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    width: 44px; height: 44px;
-    border-width: 2px;
-    background: #3D2F17; color: #E6D2AF; border-color: #3D2F17;
-    font-size: 1.2rem; font-weight: 700;
-  }
-  #btnPrevMobile { left: 8px; }
-  #btnNextMobile { right: 8px; }
 
   .port-right {
     position: relative;
@@ -706,10 +703,6 @@ footer {
   <div class="port-left">
     <div class="port-header-row">
       <span class="port-label">Portfólio</span>
-      <div class="port-nav">
-        <button class="arrow-btn" id="btnPrev">←</button>
-        <button class="arrow-btn" id="btnNext">→</button>
-      </div>
     </div>
     <div class="port-filters" id="portFilters">
       <button class="filter-btn active" data-filter="all">Todas</button>
@@ -1058,8 +1051,6 @@ function goTo(idx) {
   sizeCertCards();
 }
 
-document.getElementById('btnPrev').addEventListener('click', function() { goTo(current - 1); });
-document.getElementById('btnNext').addEventListener('click', function() { goTo(current + 1); });
 document.getElementById('btnPrevMobile').addEventListener('click', function() { goTo(current - 1); });
 document.getElementById('btnNextMobile').addEventListener('click', function() { goTo(current + 1); });
 document.addEventListener('keydown', function(e) {
