@@ -205,12 +205,12 @@ nav {
 }
 .arrow-btn {
   width: 34px; height: 34px; border-radius: 50%;
-  border: 1px solid rgba(61,47,23,0.18); background: transparent;
+  border: 1px solid #3D2F17; background: #3D2F17;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: #3D2F17; font-size: 0.8rem;
-  transition: background 0.2s, border-color 0.2s;
+  color: #E6D2AF; font-size: 0.8rem;
+  transition: background 0.15s, border-color 0.15s;
 }
-.arrow-btn:hover { background: #3D2F17; color: #E2D8C2; border-color: #3D2F17; }
+.arrow-btn:active { background: #000; border-color: #000; }
 .port-toolbar-mobile { display: none; }
 .arrow-btn-h {
   width: 34px; height: 34px; border-radius: 50%;
@@ -265,7 +265,9 @@ nav {
   box-shadow: 0 12px 56px rgba(20,10,2,0.16);
   border: 1px solid rgba(61,47,23,0.1);
   transform: translateY(14px);
-  transition: transform 0.65s cubic-bezier(0.22,1,0.36,1) 0.1s;
+  transition: transform 0.65s cubic-bezier(0.22,1,0.36,1) 0.1s,
+              width 0.5s cubic-bezier(0.22,1,0.36,1),
+              height 0.5s cubic-bezier(0.22,1,0.36,1);
   flex-shrink: 0;
   width: min(70vw, 320px);
   aspect-ratio: 806 / 1242;
@@ -713,8 +715,8 @@ footer {
     <div class="port-header-row">
       <span class="port-label">Portfólio</span>
       <div class="port-nav">
-        <button class="arrow-btn" id="btnPrev">↑</button>
-        <button class="arrow-btn" id="btnNext">↓</button>
+        <button class="arrow-btn" id="btnPrev">←</button>
+        <button class="arrow-btn" id="btnNext">→</button>
       </div>
     </div>
     <div class="port-filters" id="portFilters">
