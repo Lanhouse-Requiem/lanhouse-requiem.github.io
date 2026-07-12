@@ -949,7 +949,7 @@ function renderPortfolio(items) {
     artSlot.className = 'cert-art-slot';
     var img = document.createElement('img');
     img.src = a.img; img.alt = a.name;
-    img.onload = function() { sizeCertCards(); };
+    img.onload = function() { sizeCertCards(); positionCardNavButtons(); };
     artSlot.appendChild(img);
 
     var sig = document.createElement('img');
@@ -1033,9 +1033,27 @@ function sizeCertCards() {
     c.style.height = h + 'px';
   });
 }
+
+/* Position the nav arrows tight against the card's own edges (the card
+   doesn't fill the whole image area, so flanking the wrap left them too far away) */
+function positionCardNavButtons() {
+  document.querySelectorAll('.artwork-img-wrap').forEach(function(wrap) {
+    var card = wrap.querySelector('.cert-card');
+    var prevBtn = wrap.querySelector('.card-nav-prev');
+    var nextBtn = wrap.querySelector('.card-nav-next');
+    if (!card || !prevBtn || !nextBtn) return;
+    var gap = 10, btnWidth = 44;
+    var cardLeft = card.offsetLeft;
+    var cardRight = wrap.clientWidth - (card.offsetLeft + card.offsetWidth);
+    prevBtn.style.left = Math.max(4, cardLeft - btnWidth - gap) + 'px';
+    nextBtn.style.right = Math.max(4, cardRight - btnWidth - gap) + 'px';
+  });
+}
+
 sizeCertCards();
-window.addEventListener('resize', sizeCertCards);
-window.addEventListener('orientationchange', sizeCertCards);
+positionCardNavButtons();
+window.addEventListener('resize', function() { sizeCertCards(); positionCardNavButtons(); });
+window.addEventListener('orientationchange', function() { sizeCertCards(); positionCardNavButtons(); });
 
 /* ── FILTER BUTTONS (desktop list + mobile toolbar, kept in sync) ── */
 var filterContainers = [document.getElementById('portFilters'), document.getElementById('portFiltersMobile')].filter(Boolean);
@@ -1052,6 +1070,7 @@ filterContainers.forEach(function(container) {
     renderPortfolio(f === 'available' ? artworks.filter(function(a) { return a.status === 'available'; }) : artworks);
     updatePortCounterLeft();
     sizeCertCards();
+    positionCardNavButtons();
   });
 });
 
@@ -1067,6 +1086,7 @@ function goTo(idx) {
   items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   updatePortCounterLeft();
   sizeCertCards();
+  positionCardNavButtons();
 }
 
 portRight.addEventListener('click', function(e) {
