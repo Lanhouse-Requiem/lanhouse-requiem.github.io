@@ -149,9 +149,13 @@ nav {
   background: #E2D8C2;
   height: 100%; min-height: 0; overflow-y: auto;
 }
+.port-header-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
 .port-label {
   font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(61,47,23,0.35); margin-bottom: 2.5rem;
+  color: rgba(61,47,23,0.35);
 }
 .artwork-list {
   flex: 1; display: flex; flex-direction: column;
@@ -190,7 +194,7 @@ nav {
 .artwork-item.active .item-num { background: #B87C55; }
 .artwork-item:hover:not(.active) .item-name { color: rgba(61,47,23,0.55); }
 .port-nav {
-  display: flex; gap: 0.6rem; margin-top: 2.5rem;
+  display: flex; gap: 0.6rem;
 }
 .arrow-btn {
   width: 34px; height: 34px; border-radius: 50%;
@@ -498,7 +502,7 @@ footer {
     overflow-y: visible;
   }
   .port-left .port-filters { display: none; }
-  .port-label { display: none; }
+  .port-header-row { display: none; }
   .artwork-list { display: none; }
   .artwork-list::-webkit-scrollbar { display: none; height: 0; }
   .artwork-item {
@@ -632,16 +636,18 @@ footer {
 <!-- PORTFOLIO -->
 <section id="portfolio" class="section-page">
   <div class="port-left">
-    <span class="port-label">Portfólio</span>
+    <div class="port-header-row">
+      <span class="port-label">Portfólio</span>
+      <div class="port-nav">
+        <button class="arrow-btn" id="btnPrev">↑</button>
+        <button class="arrow-btn" id="btnNext">↓</button>
+      </div>
+    </div>
     <div class="port-filters" id="portFilters">
       <button class="filter-btn active" data-filter="all">Todas</button>
       <button class="filter-btn" data-filter="available">Disponíveis</button>
     </div>
     <div class="artwork-list" id="artworkList"></div>
-    <div class="port-nav">
-      <button class="arrow-btn" id="btnPrev">↑</button>
-      <button class="arrow-btn" id="btnNext">↓</button>
-    </div>
   </div>
   <div class="port-toolbar-mobile" id="portToolbarMobile">
     <button class="arrow-btn-h" id="btnPrevMobile" aria-label="Anterior">←</button>
