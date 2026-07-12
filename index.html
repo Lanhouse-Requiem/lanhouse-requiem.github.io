@@ -555,8 +555,7 @@ footer {
     margin-top: 80px; scroll-margin-top: 80px;
     overflow-y: auto;
   }
-  .sobre-inner { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-  .sobre-art { display: none; }
+  .sobre-inner { grid-template-columns: 1fr; gap: 2rem; text-align: right; }
 
   /* ── CONTATO ── */
   .contato-section {
@@ -896,7 +895,8 @@ renderPortfolio(artworks);
 function sizeCertCards() {
   var activeWrap = document.querySelector('.artwork-display.active .artwork-img-wrap');
   if (!activeWrap) return;
-  var maxH = activeWrap.clientHeight;
+  var isMobile = window.matchMedia('(max-width: 768px)').matches;
+  var maxH = isMobile ? window.innerHeight * 0.5 : activeWrap.clientHeight;
   var maxW = activeWrap.clientWidth;
   if (!maxH || !maxW) return;
   var ratio = 806 / 1242;
