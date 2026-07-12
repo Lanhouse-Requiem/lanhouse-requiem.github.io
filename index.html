@@ -898,8 +898,8 @@ function sizeCertCards() {
     var wrap = card.closest('.artwork-img-wrap');
     var artImg = card.querySelector('.cert-art-slot img');
     if (!wrap || !artImg || !artImg.naturalWidth) return;
-    var maxH = wrap.clientHeight;
-    var maxW = wrap.clientWidth;
+    var maxH = wrap.clientHeight * 0.55;
+    var maxW = wrap.clientWidth * 0.55;
     if (!maxH || !maxW) return;
     var ratio = artImg.naturalWidth / artImg.naturalHeight;
     var h = Math.min(maxH, artImg.naturalHeight);
