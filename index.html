@@ -249,28 +249,16 @@ nav {
 }
 .cert-card {
   position: relative;
-  height: 100%;
-  width: auto;
-  max-width: 100%;
-  aspect-ratio: 806 / 1242;
   background: #E2D8C2;
   box-shadow: 0 12px 56px rgba(20,10,2,0.16);
   border: 1px solid rgba(61,47,23,0.1);
   transform: translateY(14px);
   transition: transform 0.65s cubic-bezier(0.22,1,0.36,1) 0.1s;
+  flex-shrink: 0;
 }
 .artwork-display.active .cert-card { transform: translateY(0); }
-.cert-logo, .cert-signature {
-  position: absolute;
-  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-  -webkit-mask-size: contain; mask-size: contain;
-  -webkit-mask-position: center; mask-position: center;
-  transition: background-color 0.4s ease;
-}
 .cert-logo {
-  top: 6%; left: 5%; width: 20%; aspect-ratio: 739 / 502;
-  -webkit-mask-image: url('uploads/logo-cado.png');
-  mask-image: url('uploads/logo-cado.png');
+  position: absolute; top: 6%; left: 5%; width: 20%; height: auto;
 }
 .cert-art-slot {
   position: absolute; top: 20%; left: 8%; width: 84%; height: 56%;
@@ -280,9 +268,7 @@ nav {
   max-width: 100%; max-height: 100%; width: auto; height: auto; display: block;
 }
 .cert-signature {
-  bottom: 6%; right: 6%; width: 46%; aspect-ratio: 634 / 125;
-  -webkit-mask-image: url('uploads/signature-clean.png');
-  mask-image: url('uploads/signature-clean.png');
+  position: absolute; bottom: 6%; right: 6%; width: 46%; height: auto;
 }
 .wall-tag {
   flex-shrink: 0;
@@ -538,10 +524,6 @@ footer {
     max-height: 50vh; min-height: 0; overflow: visible;
   }
   .cert-card {
-    height: auto;
-    max-height: 50vh;
-    width: auto;
-    max-width: 100%;
     transform: none;
   }
   .wall-tag {
@@ -748,46 +730,46 @@ window.addEventListener('orientationchange', setRealVH);
 
 /* ── DATA ─────────────────────────────────────────────── */
 var artworks = [
-  { name: 'De Petrolina para Juazeiro', w: 120, h: 80,  img: 'uploads/120X80 - De Petrolina para Juazeiro.jpg', palette: ['#6D92A0', '#93502B'], medium: 'Acrílica', status: 'available' },
-  { name: 'Frescas Pescarias',          w: 120, h: 80,  img: 'uploads/120x80 - Frescas Pescarias.jpg', palette: ['#5A321D', '#C29078'], medium: 'Acrílica', status: 'available' },
-  { name: 'Tarot',                      w: 90,  h: 60,  img: 'uploads/Tarot.jpg', palette: ['#9E261F', '#B83E3D'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Reflexo',                    w: 80,  h: 54,  img: 'uploads/Reflexo.jpg', palette: ['#62371B', '#4D2C15'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Botanicografia',             w: 60,  h: 75,  img: 'uploads/Botanicografia.jpg', palette: ['#A85D3D', '#3C3D3A'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Raio',                       w: 60,  h: 43,  img: 'uploads/Raio.jpg', palette: ['#C58D3C', '#B5701C'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Zé Mosquitinho e elegante',  w: 50,  h: 63,  img: 'uploads/Zé Mosquitinho e elegante 2021.jpg', palette: ['#464025', '#4E694A'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Erva do Diabo',              w: 50,  h: 50,  img: 'uploads/50x50 - Erva do Diabo.jpg', palette: ['#34461F', '#7E8248'], medium: 'Acrílica', status: 'available' },
-  { name: 'Fire Gecko',                 w: 50,  h: 50,  img: 'uploads/50x50 - Fire Gecko.jpg', palette: ['#8A534C', '#AD8C65'], medium: 'Acrílica', status: 'available' },
-  { name: 'Miopia',                     w: 50,  h: 50,  img: 'uploads/50x50 - Miopia.jpg', palette: ['#A46838', '#AC855D'], medium: 'Acrílica', status: 'available' },
-  { name: 'Incommoditie',               w: 50,  h: 50,  img: 'uploads/50x50 -Incommoditie.jpg', palette: ['#425B47', '#AC6156'], medium: 'Acrílica', status: 'available' },
-  { name: 'Roso',                       w: 50,  h: 50,  img: 'uploads/Roso.jpg', palette: ['#4F2D42', '#79445E'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Que cobre a nuvem',          w: 47,  h: 45,  img: 'uploads/Que cobre a nuvem.jpg', palette: ['#3D3310', '#B86721'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Casa',                       w: 46,  h: 36,  img: 'uploads/Sem Nome (2).jpg', palette: ['#D28D52', '#B73E32'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Corujoinha',                 w: 40,  h: 50,  img: 'uploads/Corujoinha.jpg', palette: ['#27282D', '#6F624D'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Tratado',                    w: 40,  h: 32,  img: 'uploads/Tratiabs.jpg', palette: ['#729B86', '#8463A3'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Brisa',                      w: 40,  h: 30,  img: 'uploads/Brisa.jpg', palette: ['#B7244D', '#CA6E83'], medium: 'Acrílica', status: 'available' },
-  { name: 'Ceiros',                     w: 40,  h: 26,  img: 'uploads/Ceiros.jpg', palette: ['#305086', '#467173'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Taking care of love',        w: 38,  h: 26,  img: 'uploads/Taking care of love.jpg', palette: ['#E6C1C9', '#75847B'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Quicá',                      w: 36,  h: 30,  img: 'uploads/Quiça.jpg', palette: ['#547CC7', '#9E5345'], medium: 'Acrílica', status: 'available' },
-  { name: 'O molda-nuvem',              w: 36,  h: 36,  img: 'uploads/O molda-nuvem.jpg', palette: ['#B9736B', '#9F5C5F'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Sem nome',                   w: 35,  h: 23,  img: 'uploads/Sem nome.jpg', palette: ['#6093B0', '#C05843'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Trovão',                     w: 32,  h: 22,  img: 'uploads/Trovão.jpg', palette: ['#84541F', '#E3D9C3'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Fluxo Contínuo',             w: 30,  h: 30,  img: 'uploads/30x30 - Fluxo Contínuo.jpg', palette: ['#807049', '#765538'], medium: 'Acrílica', status: 'available' },
-  { name: 'Homem Cacto',                w: 30,  h: 30,  img: 'uploads/30x30 - Homem Cacto.jpg', palette: ['#B46555', '#AE918C'], medium: 'Acrílica', status: 'available' },
-  { name: 'Tempinho',                   w: 30,  h: 30,  img: 'uploads/Tempinho.jpg', palette: ['#427CD4', '#5E95DD'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Sorte',                      w: 30,  h: 16,  img: 'uploads/Sorte.jpg', palette: ['#796C96', '#D7783E'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Paisage',                    w: 30,  h: 14,  img: 'uploads/Paisage.jpg', palette: ['#2D3024', '#3E4A3D'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Nave Especial',              w: 30,  h: 20,  img: 'uploads/30x20 - Nave Especial.jpg', palette: ['#C1A4B4', '#A13228'], medium: 'Acrílica', status: 'available' },
-  { name: 'Trauma',                     w: 30,  h: 20,  img: 'uploads/20x30 - Trauma.jpg', palette: ['#5993C4', '#76BBDC'], medium: 'Acrílica', status: 'available' },
-  { name: 'Mato',                       w: 10,  h: 15,  img: 'uploads/Captura de tela 2026-05-02 155839.jpg', palette: ['#B88857', '#425349'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Memória de Carnaval',        w: 0,   h: 0,   img: 'uploads/Memoria de Carnaval.jpg', palette: ['#703817', '#B96624'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Convergência',               w: 50,  h: 50,  img: 'uploads/Convergencia.jpg', palette: ['#AE4225', '#752313'], medium: 'Acrílica', status: 'available' },
-  { name: 'Zuko',                       w: 0,   h: 0,   img: 'uploads/Zuko.jpg', palette: ['#807B6F', '#9A929C'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Libélula Elétrica',          w: 0,   h: 0,   img: 'uploads/Libélula Elétrica.jpg', palette: ['#EB835F', '#E1704F'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Narrativa',                  w: 0,   h: 0,   img: 'uploads/Narrativa.jpg', palette: ['#A14A44', '#6C252E'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Juá',                        w: 0,   h: 0,   img: 'uploads/Juá.jpg', palette: ['#6C6E79', '#704338'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Kalo dando conta',           w: 0,   h: 0,   img: 'uploads/Kalo dando conta.jpg', palette: ['#C1845C', '#6E372E'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Jardim Encharcado',          w: 0,   h: 0,   img: 'uploads/Jardim Encharcado.jpg', palette: ['#7F7859', '#75654E'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Ecobag Olho',                w: 0,   h: 0,   img: 'uploads/Ecobag Olho.jpg', palette: ['#D1BEA1', '#A48868'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'De Petrolina para Juazeiro', w: 120, h: 80,  img: 'uploads/120X80 - De Petrolina para Juazeiro.jpg', certId: 0, palette: ['#6D92A0', '#93502B'], medium: 'Acrílica', status: 'available' },
+  { name: 'Frescas Pescarias',          w: 120, h: 80,  img: 'uploads/120x80 - Frescas Pescarias.jpg', certId: 1, palette: ['#5A321D', '#C29078'], medium: 'Acrílica', status: 'available' },
+  { name: 'Tarot',                      w: 90,  h: 60,  img: 'uploads/Tarot.jpg', certId: 2, palette: ['#9E261F', '#B83E3D'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Reflexo',                    w: 80,  h: 54,  img: 'uploads/Reflexo.jpg', certId: 3, palette: ['#62371B', '#4D2C15'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Botanicografia',             w: 60,  h: 75,  img: 'uploads/Botanicografia.jpg', certId: 4, palette: ['#A85D3D', '#3C3D3A'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Raio',                       w: 60,  h: 43,  img: 'uploads/Raio.jpg', certId: 5, palette: ['#C58D3C', '#B5701C'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Zé Mosquitinho e elegante',  w: 50,  h: 63,  img: 'uploads/Zé Mosquitinho e elegante 2021.jpg', certId: 6, palette: ['#464025', '#4E694A'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Erva do Diabo',              w: 50,  h: 50,  img: 'uploads/50x50 - Erva do Diabo.jpg', certId: 7, palette: ['#34461F', '#7E8248'], medium: 'Acrílica', status: 'available' },
+  { name: 'Fire Gecko',                 w: 50,  h: 50,  img: 'uploads/50x50 - Fire Gecko.jpg', certId: 8, palette: ['#8A534C', '#AD8C65'], medium: 'Acrílica', status: 'available' },
+  { name: 'Miopia',                     w: 50,  h: 50,  img: 'uploads/50x50 - Miopia.jpg', certId: 9, palette: ['#A46838', '#AC855D'], medium: 'Acrílica', status: 'available' },
+  { name: 'Incommoditie',               w: 50,  h: 50,  img: 'uploads/50x50 -Incommoditie.jpg', certId: 10, palette: ['#425B47', '#AC6156'], medium: 'Acrílica', status: 'available' },
+  { name: 'Roso',                       w: 50,  h: 50,  img: 'uploads/Roso.jpg', certId: 11, palette: ['#4F2D42', '#79445E'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Que cobre a nuvem',          w: 47,  h: 45,  img: 'uploads/Que cobre a nuvem.jpg', certId: 12, palette: ['#3D3310', '#B86721'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Casa',                       w: 46,  h: 36,  img: 'uploads/Sem Nome (2).jpg', certId: 13, palette: ['#D28D52', '#B73E32'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Corujoinha',                 w: 40,  h: 50,  img: 'uploads/Corujoinha.jpg', certId: 14, palette: ['#27282D', '#6F624D'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Tratado',                    w: 40,  h: 32,  img: 'uploads/Tratiabs.jpg', certId: 15, palette: ['#729B86', '#8463A3'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Brisa',                      w: 40,  h: 30,  img: 'uploads/Brisa.jpg', certId: 16, palette: ['#B7244D', '#CA6E83'], medium: 'Acrílica', status: 'available' },
+  { name: 'Ceiros',                     w: 40,  h: 26,  img: 'uploads/Ceiros.jpg', certId: 17, palette: ['#305086', '#467173'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Taking care of love',        w: 38,  h: 26,  img: 'uploads/Taking care of love.jpg', certId: 18, palette: ['#E6C1C9', '#75847B'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Quicá',                      w: 36,  h: 30,  img: 'uploads/Quiça.jpg', certId: 19, palette: ['#547CC7', '#9E5345'], medium: 'Acrílica', status: 'available' },
+  { name: 'O molda-nuvem',              w: 36,  h: 36,  img: 'uploads/O molda-nuvem.jpg', certId: 20, palette: ['#B9736B', '#9F5C5F'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Sem nome',                   w: 35,  h: 23,  img: 'uploads/Sem nome.jpg', certId: 21, palette: ['#6093B0', '#C05843'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Trovão',                     w: 32,  h: 22,  img: 'uploads/Trovão.jpg', certId: 22, palette: ['#84541F', '#E3D9C3'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Fluxo Contínuo',             w: 30,  h: 30,  img: 'uploads/30x30 - Fluxo Contínuo.jpg', certId: 23, palette: ['#807049', '#765538'], medium: 'Acrílica', status: 'available' },
+  { name: 'Homem Cacto',                w: 30,  h: 30,  img: 'uploads/30x30 - Homem Cacto.jpg', certId: 24, palette: ['#B46555', '#AE918C'], medium: 'Acrílica', status: 'available' },
+  { name: 'Tempinho',                   w: 30,  h: 30,  img: 'uploads/Tempinho.jpg', certId: 25, palette: ['#427CD4', '#5E95DD'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Sorte',                      w: 30,  h: 16,  img: 'uploads/Sorte.jpg', certId: 26, palette: ['#796C96', '#D7783E'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Paisage',                    w: 30,  h: 14,  img: 'uploads/Paisage.jpg', certId: 27, palette: ['#2D3024', '#3E4A3D'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Nave Especial',              w: 30,  h: 20,  img: 'uploads/30x20 - Nave Especial.jpg', certId: 28, palette: ['#C1A4B4', '#A13228'], medium: 'Acrílica', status: 'available' },
+  { name: 'Trauma',                     w: 30,  h: 20,  img: 'uploads/20x30 - Trauma.jpg', certId: 29, palette: ['#5993C4', '#76BBDC'], medium: 'Acrílica', status: 'available' },
+  { name: 'Mato',                       w: 10,  h: 15,  img: 'uploads/Captura de tela 2026-05-02 155839.jpg', certId: 30, palette: ['#B88857', '#425349'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Memória de Carnaval',        w: 0,   h: 0,   img: 'uploads/Memoria de Carnaval.jpg', certId: 31, palette: ['#703817', '#B96624'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Convergência',               w: 50,  h: 50,  img: 'uploads/Convergencia.jpg', certId: 32, palette: ['#AE4225', '#752313'], medium: 'Acrílica', status: 'available' },
+  { name: 'Zuko',                       w: 0,   h: 0,   img: 'uploads/Zuko.jpg', certId: 33, palette: ['#807B6F', '#9A929C'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Libélula Elétrica',          w: 0,   h: 0,   img: 'uploads/Libélula Elétrica.jpg', certId: 34, palette: ['#EB835F', '#E1704F'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Narrativa',                  w: 0,   h: 0,   img: 'uploads/Narrativa.jpg', certId: 35, palette: ['#A14A44', '#6C252E'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Juá',                        w: 0,   h: 0,   img: 'uploads/Juá.jpg', certId: 36, palette: ['#6C6E79', '#704338'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Kalo dando conta',           w: 0,   h: 0,   img: 'uploads/Kalo dando conta.jpg', certId: 37, palette: ['#C1845C', '#6E372E'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Jardim Encharcado',          w: 0,   h: 0,   img: 'uploads/Jardim Encharcado.jpg', certId: 38, palette: ['#7F7859', '#75654E'], medium: 'Acrílica', status: 'unavailable' },
+  { name: 'Ecobag Olho',                w: 0,   h: 0,   img: 'uploads/Ecobag Olho.jpg', certId: 39, palette: ['#D1BEA1', '#A48868'], medium: 'Acrílica', status: 'unavailable' },
 ];
 
 var current = 0;
@@ -849,12 +831,12 @@ function renderPortfolio(items) {
     var certCard = document.createElement('div');
     certCard.className = 'cert-card';
 
-    var palette = a.palette || ['#3D2F17', '#3D2F17'];
+    var certId = (a.certId !== undefined) ? a.certId : 0;
 
-    var logo = document.createElement('div');
+    var logo = document.createElement('img');
     logo.className = 'cert-logo';
-    logo.style.backgroundColor = palette[0];
-    logo.setAttribute('aria-hidden', 'true');
+    logo.src = 'uploads/cert/logo-' + certId + '.png';
+    logo.alt = '';
 
     var artSlot = document.createElement('div');
     artSlot.className = 'cert-art-slot';
@@ -862,11 +844,10 @@ function renderPortfolio(items) {
     img.src = a.img; img.alt = a.name;
     artSlot.appendChild(img);
 
-    var sig = document.createElement('div');
+    var sig = document.createElement('img');
     sig.className = 'cert-signature';
-    sig.style.backgroundColor = palette[1];
-    sig.setAttribute('role', 'img');
-    sig.setAttribute('aria-label', 'Assinatura de Ricardo Souto Schützer');
+    sig.src = 'uploads/cert/sig-' + certId + '.png';
+    sig.alt = 'Assinatura de Ricardo Souto Schützer';
 
     certCard.appendChild(logo);
     certCard.appendChild(artSlot);
@@ -908,6 +889,27 @@ function renderPortfolio(items) {
 
 renderPortfolio(artworks);
 
+/* ── CERT CARD SIZING (computed in JS, mirrors the --real-vh workaround above:
+   avoids relying on aspect-ratio + flex auto-sizing resolving correctly) ── */
+function sizeCertCards() {
+  var activeWrap = document.querySelector('.artwork-display.active .artwork-img-wrap');
+  if (!activeWrap) return;
+  var maxH = activeWrap.clientHeight;
+  var maxW = activeWrap.clientWidth;
+  if (!maxH || !maxW) return;
+  var ratio = 806 / 1242;
+  var h = maxH;
+  var w = h * ratio;
+  if (w > maxW) { w = maxW; h = w / ratio; }
+  document.querySelectorAll('.cert-card').forEach(function(c) {
+    c.style.width = w + 'px';
+    c.style.height = h + 'px';
+  });
+}
+sizeCertCards();
+window.addEventListener('resize', sizeCertCards);
+window.addEventListener('orientationchange', sizeCertCards);
+
 /* ── FILTER BUTTONS (desktop list + mobile toolbar, kept in sync) ── */
 var filterContainers = [document.getElementById('portFilters'), document.getElementById('portFiltersMobile')].filter(Boolean);
 filterContainers.forEach(function(container) {
@@ -921,6 +923,7 @@ filterContainers.forEach(function(container) {
       });
     });
     renderPortfolio(f === 'available' ? artworks.filter(function(a) { return a.status === 'available'; }) : artworks);
+    sizeCertCards();
   });
 });
 
@@ -934,6 +937,7 @@ function goTo(idx) {
   items[current].classList.add('active');
   displays[current].classList.add('active');
   items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  sizeCertCards();
 }
 
 document.getElementById('btnPrev').addEventListener('click', function() { goTo(current - 1); });
