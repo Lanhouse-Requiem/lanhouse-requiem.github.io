@@ -249,27 +249,26 @@ nav {
 }
 .cert-card {
   position: relative;
-  display: inline-flex;
-  background: #E2D8C2;
-  padding: 28px 28px 46px 28px;
   box-shadow: 0 12px 56px rgba(20,10,2,0.16);
-  border: 1px solid rgba(61,47,23,0.1);
   transform: translateY(14px);
   transition: transform 0.65s cubic-bezier(0.22,1,0.36,1) 0.1s;
   flex-shrink: 0;
+  overflow: hidden;
 }
 .artwork-display.active .cert-card { transform: translateY(0); }
+.cert-art-slot {
+  position: absolute; inset: 0;
+}
 .cert-art-slot img {
-  display: block;
-  max-width: 38vw;
-  max-height: 38vh;
-  width: auto; height: auto;
+  display: block; width: 100%; height: 100%;
 }
 .cert-logo {
-  position: absolute; top: 8px; left: 8px; width: 34px; height: auto;
+  position: absolute; top: 4%; left: 4%; width: 13%; height: auto;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.45));
 }
 .cert-signature {
-  position: absolute; bottom: 10px; right: 12px; width: 88px; height: auto;
+  position: absolute; bottom: 4%; right: 4%; width: 27%; height: auto;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.45));
 }
 .wall-tag {
   flex-shrink: 0;
@@ -844,6 +843,7 @@ function renderPortfolio(items) {
     artSlot.className = 'cert-art-slot';
     var img = document.createElement('img');
     img.src = a.img; img.alt = a.name;
+    img.onload = function() { sizeCertCards(); };
     artSlot.appendChild(img);
 
     var sig = document.createElement('img');
@@ -891,6 +891,28 @@ function renderPortfolio(items) {
 
 renderPortfolio(artworks);
 
+/* ── CERT CARD SIZING (computed in JS, mirrors the --real-vh workaround above:
+   avoids relying on aspect-ratio + flex auto-sizing resolving correctly) ── */
+function sizeCertCards() {
+  document.querySelectorAll('.cert-card').forEach(function(card) {
+    var wrap = card.closest('.artwork-img-wrap');
+    var artImg = card.querySelector('.cert-art-slot img');
+    if (!wrap || !artImg || !artImg.naturalWidth) return;
+    var maxH = wrap.clientHeight;
+    var maxW = wrap.clientWidth;
+    if (!maxH || !maxW) return;
+    var ratio = artImg.naturalWidth / artImg.naturalHeight;
+    var h = Math.min(maxH, artImg.naturalHeight);
+    var w = h * ratio;
+    if (w > maxW) { w = maxW; h = w / ratio; }
+    card.style.width = w + 'px';
+    card.style.height = h + 'px';
+  });
+}
+sizeCertCards();
+window.addEventListener('resize', sizeCertCards);
+window.addEventListener('orientationchange', sizeCertCards);
+
 /* ── FILTER BUTTONS (desktop list + mobile toolbar, kept in sync) ── */
 var filterContainers = [document.getElementById('portFilters'), document.getElementById('portFiltersMobile')].filter(Boolean);
 filterContainers.forEach(function(container) {
@@ -904,6 +926,7 @@ filterContainers.forEach(function(container) {
       });
     });
     renderPortfolio(f === 'available' ? artworks.filter(function(a) { return a.status === 'available'; }) : artworks);
+    sizeCertCards();
   });
 });
 
@@ -917,6 +940,7 @@ function goTo(idx) {
   items[current].classList.add('active');
   displays[current].classList.add('active');
   items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  sizeCertCards();
 }
 
 document.getElementById('btnPrev').addEventListener('click', function() { goTo(current - 1); });
