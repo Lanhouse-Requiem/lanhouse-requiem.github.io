@@ -831,9 +831,30 @@ function renderPortfolio(items) {
 
     var imgWrap = document.createElement('div');
     imgWrap.className = 'artwork-img-wrap';
+
+    var certCard = document.createElement('div');
+    certCard.className = 'cert-card';
+
+    var logo = document.createElement('img');
+    logo.className = 'cert-logo';
+    logo.src = 'uploads/logo-cado.png';
+    logo.alt = '';
+
+    var artSlot = document.createElement('div');
+    artSlot.className = 'cert-art-slot';
     var img = document.createElement('img');
     img.src = a.img; img.alt = a.name;
-    imgWrap.appendChild(img);
+    artSlot.appendChild(img);
+
+    var sig = document.createElement('img');
+    sig.className = 'cert-signature';
+    sig.src = 'uploads/signature-clean.png';
+    sig.alt = 'Assinatura de Ricardo Souto Schützer';
+
+    certCard.appendChild(logo);
+    certCard.appendChild(artSlot);
+    certCard.appendChild(sig);
+    imgWrap.appendChild(certCard);
 
     var msg = encodeURIComponent('Olá! Tenho interesse na obra "' + a.name + '" (' + a.w + '×' + a.h + ' cm).');
     var ctaHTML = a.status === 'sold'
