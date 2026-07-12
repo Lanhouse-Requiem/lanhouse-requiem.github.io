@@ -158,8 +158,14 @@ nav {
   font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
   color: rgba(61,47,23,0.35);
 }
+.port-counter-left {
+  display: block;
+  font-size: 0.62rem; letter-spacing: 0.12em;
+  color: rgba(61,47,23,0.35);
+}
 .artwork-list {
-  flex: 1; display: flex; flex-direction: column;
+  display: none;
+  flex: 1; flex-direction: column;
   justify-content: safe center; gap: 0; padding: 0 0 2rem;
   min-height: 0; overflow-y: auto;
 }
@@ -360,6 +366,7 @@ nav {
   padding: 0.3rem 0.8rem; border-radius: 99px; width: fit-content;
 }
 .port-counter {
+  display: none;
   position: absolute; bottom: 28px; left: 56px;
   font-size: 0.62rem; color: rgba(61,47,23,0.25); letter-spacing: 0.12em; z-index: 5;
 }
@@ -531,6 +538,7 @@ footer {
   }
   .port-left .port-filters { display: none; }
   .port-header-row { display: none; }
+  .port-counter-left { display: none; }
   .artwork-list { display: none; }
   .artwork-list::-webkit-scrollbar { display: none; height: 0; }
   .artwork-item {
@@ -599,7 +607,7 @@ footer {
   .tag-medium { font-size: 0.845rem; }
   .tag-cta-wrap { width: 100%; display: flex; justify-content: flex-start; margin-top: 10px; }
   .tag-cta { padding: 0.45rem 1.1rem; font-size: 0.75rem; }
-  .port-counter { position: static; margin-top: 10px; text-align: left; }
+  .port-counter { display: block; position: static; margin-top: 10px; text-align: left; }
 
   /* ── SOBRE ── */
   .sobre-section {
@@ -691,6 +699,7 @@ footer {
       <button class="filter-btn active" data-filter="all">Todas</button>
       <button class="filter-btn" data-filter="available">Disponíveis</button>
     </div>
+    <span class="port-counter-left" id="portCounterLeft"></span>
     <div class="artwork-list" id="artworkList"></div>
   </div>
   <div class="port-toolbar-mobile" id="portToolbarMobile">
@@ -967,7 +976,14 @@ function renderPortfolio(items) {
   });
 }
 
+function updatePortCounterLeft() {
+  var el = document.getElementById('portCounterLeft');
+  if (!el || !currentArtworks.length) return;
+  el.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(currentArtworks.length).padStart(2, '0');
+}
+
 renderPortfolio(artworks);
+updatePortCounterLeft();
 
 /* ── CERT CARD SIZING (computed in JS, mirrors the --real-vh workaround above:
    avoids relying on aspect-ratio + flex auto-sizing resolving correctly) ── */
@@ -1004,6 +1020,7 @@ filterContainers.forEach(function(container) {
       });
     });
     renderPortfolio(f === 'available' ? artworks.filter(function(a) { return a.status === 'available'; }) : artworks);
+    updatePortCounterLeft();
     sizeCertCards();
   });
 });
@@ -1018,6 +1035,7 @@ function goTo(idx) {
   items[current].classList.add('active');
   displays[current].classList.add('active');
   items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  updatePortCounterLeft();
   sizeCertCards();
 }
 
