@@ -267,9 +267,22 @@ nav {
 }
 .artwork-display.active { opacity: 1; pointer-events: all; }
 .artwork-img-wrap {
+  position: relative;
   flex: 1; display: flex; align-items: center; justify-content: center;
   padding: 56px 32px 56px 56px; height: 100%; min-height: 0; overflow: hidden;
 }
+.card-nav-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid #3D2F17; background: #3D2F17; color: #E6D2AF;
+  font-size: 1.2rem; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  z-index: 10;
+}
+.card-nav-btn:active { background: #000; border-color: #000; }
+.card-nav-prev { left: 8px; }
+.card-nav-next { right: 8px; }
 .cert-card {
   position: relative;
   background: #E6D2AF;
@@ -717,13 +730,7 @@ footer {
       <button class="filter-btn" data-filter="available">Disponíveis</button>
     </div>
   </div>
-  <div class="port-right-wrap" id="portRightWrap">
-    <div class="port-right" id="portRight"></div>
-    <div class="port-nav-mobile" id="portNavMobile">
-      <button class="arrow-btn-h" id="btnPrevMobile" aria-label="Anterior">←</button>
-      <button class="arrow-btn-h" id="btnNextMobile" aria-label="Próxima">→</button>
-    </div>
-  </div>
+  <div class="port-right" id="portRight"></div>
 </section>
 
 <!-- SOBRE -->
@@ -955,6 +962,17 @@ function renderPortfolio(items) {
     certCard.appendChild(sig);
     imgWrap.appendChild(certCard);
 
+    var navPrev = document.createElement('button');
+    navPrev.className = 'card-nav-btn card-nav-prev';
+    navPrev.setAttribute('aria-label', 'Anterior');
+    navPrev.textContent = '←';
+    var navNext = document.createElement('button');
+    navNext.className = 'card-nav-btn card-nav-next';
+    navNext.setAttribute('aria-label', 'Próxima');
+    navNext.textContent = '→';
+    imgWrap.appendChild(navPrev);
+    imgWrap.appendChild(navNext);
+
     var msg = encodeURIComponent('Olá! Tenho interesse na obra "' + a.name + '" (' + a.w + '×' + a.h + ' cm).');
     var ctaHTML = a.status === 'sold'
       ? '<span class="tag-sold">Vendida</span>'
@@ -1051,8 +1069,12 @@ function goTo(idx) {
   sizeCertCards();
 }
 
-document.getElementById('btnPrevMobile').addEventListener('click', function() { goTo(current - 1); });
-document.getElementById('btnNextMobile').addEventListener('click', function() { goTo(current + 1); });
+portRight.addEventListener('click', function(e) {
+  var prevBtn = e.target.closest('.card-nav-prev');
+  var nextBtn = e.target.closest('.card-nav-next');
+  if (prevBtn) { goTo(current - 1); }
+  if (nextBtn) { goTo(current + 1); }
+});
 document.addEventListener('keydown', function(e) {
   var portfolio = document.getElementById('portfolio');
   var rect = portfolio.getBoundingClientRect();
