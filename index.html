@@ -35,7 +35,7 @@ html { scroll-behavior: smooth; scrollbar-width: none; scroll-snap-type: y manda
 }
 body {
   font-family: 'DM Sans', sans-serif;
-  background: #E2D8C2;
+  background: #E6D2AF;
   color: #3D2F17;
   font-weight: 300;
   overflow-x: hidden;
@@ -44,7 +44,7 @@ body {
 /* ── NAV ─────────────────────────────────────────────── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  background: rgba(226,216,194,0.92);
+  background: rgba(230,210,175,0.92);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(61,47,23,0.08);
 }
@@ -118,6 +118,7 @@ nav {
   image-rendering: pixelated; pointer-events: none;
   z-index: 2;
 }
+.hero-cachorro-mobile, .hero-sig-mobile { display: none; }
 
 /* scroll cue */
 .scroll-cue {
@@ -146,7 +147,7 @@ nav {
   justify-content: center;
   padding: 60px 36px;
   border-right: 1px solid rgba(61,47,23,0.08);
-  background: #E2D8C2;
+  background: #E6D2AF;
   height: 100%; min-height: 0; overflow-y: auto;
 }
 .port-header-row {
@@ -231,7 +232,7 @@ nav {
 
 /* right artwork display */
 .port-right {
-  position: relative; background: #DBD2BB; overflow: hidden;
+  position: relative; background: #DFCCA8; overflow: hidden;
   height: 100%;
 }
 .port-right::before {
@@ -253,7 +254,7 @@ nav {
 }
 .cert-card {
   position: relative;
-  background: #E2D8C2;
+  background: #E6D2AF;
   box-shadow: 0 12px 56px rgba(20,10,2,0.16);
   border: 1px solid rgba(61,47,23,0.1);
   transform: translateY(14px);
@@ -310,7 +311,7 @@ nav {
 .artwork-display.active .wall-tag { transform: translateX(0); opacity: 1; }
 .tag-card {
   position: relative; isolation: isolate;
-  background: #EFEADC;
+  background: #F2E4C9;
   border: 1px solid rgba(61,47,23,0.18);
   border-radius: 5px;
   padding: 30px 34px;
@@ -372,7 +373,7 @@ nav {
 .contato-section {
   display: flex; flex-direction: column; justify-content: center;
   padding: 120px 48px;
-  background: linear-gradient(to bottom, #E2D8C2, #DBD2BA);
+  background: linear-gradient(to bottom, #E6D2AF, #DFCCA7);
   min-height: 100vh;
   scroll-margin-top: 120px;
   scroll-snap-align: start;
@@ -420,7 +421,7 @@ footer {
   display: none;
   position: fixed; bottom: 24px; right: 24px; z-index: 9999;
   width: 260px;
-  background: #E2D8C2;
+  background: #E6D2AF;
   border: 1px solid rgba(61,47,23,0.14);
   border-radius: 10px;
   padding: 20px 18px 18px;
@@ -478,7 +479,7 @@ footer {
   }
   .hero {
     padding: 112px 24px 32px;
-    align-items: center; justify-content: center;
+    align-items: flex-start; justify-content: center;
     text-align: center;
   }
   .hero-inner { grid-template-columns: 1fr; justify-content: center; }
@@ -486,9 +487,18 @@ footer {
   .hero-eyebrow { justify-content: center; }
   .hero-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
   .hero-dash { display: none; }
-  .hero-sig { display: block; margin-top: 2em; margin-left: 0; }
+  .hero-sig { display: none; }
   .scroll-cue { display: none; }
-  .hero-cachorro { left: 50%; top: 64%; width: 38%; max-width: 200px; transform: translateX(-50%); z-index: 1; }
+  .hero-cachorro { display: none; }
+  .hero-cachorro-mobile {
+    display: block; margin: 18px auto; width: 38%; max-width: 200px;
+    image-rendering: pixelated;
+  }
+  .hero-sig-mobile {
+    display: block; font-family: 'DM Sans', sans-serif; font-weight: 300;
+    font-size: 27px; color: rgba(61,47,23,0.55); text-align: center;
+    margin-bottom: 1em;
+  }
 
   /* ── PORTFOLIO ── */
   #portfolio {
@@ -523,7 +533,7 @@ footer {
     display: flex; align-items: center; justify-content: space-between;
     gap: 10px;
     position: sticky; top: 80px; z-index: 5;
-    background: #E2D8C2;
+    background: #E6D2AF;
     padding: 10px 16px;
     border-top: 1px solid rgba(61,47,23,0.1);
     border-bottom: 1px solid rgba(61,47,23,0.08);
@@ -631,6 +641,8 @@ footer {
 <div class="hero-inner">
     <div class="hero-content">
       <h1 class="hero-title"><span style="color:#E6958A;">Arte original</span> em acrílica,<br>digital e nanquim. <span class="hero-sig"><span class="hero-dash">— </span>Por <span style="color:#000;">Cado Schutzer</span></span></h1>
+      <img src="uploads/cachorro.gif" class="hero-cachorro-mobile" alt="">
+      <p class="hero-sig-mobile">Por <span style="color:#000;">Cado Schutzer</span></p>
       <p class="hero-sub" style="font-size: 27px">Entrega para todo o Brasil.</p>
     </div>
   </div>
@@ -1042,7 +1054,7 @@ document.getElementById('tweaks-close').addEventListener('click', function() {
 
 // ── MOOD ──
 var moods = {
-  creme:   { bg: '#E2D8C2', text: '#3D2F17', accent: '#B87C55', portBg: '#DBD2BB', darkBg: '#3D2F17', darkAccent: '#E8C4B0', navBg: 'rgba(226,216,194,0.92)' },
+  creme:   { bg: '#E6D2AF', text: '#3D2F17', accent: '#B87C55', portBg: '#DFCCA8', darkBg: '#3D2F17', darkAccent: '#E8C4B0', navBg: 'rgba(230,210,175,0.92)' },
   noturno: { bg: '#1A1612', text: '#E8E0D4', accent: '#C4906A', portBg: '#221E19', darkBg: '#0E0B09', darkAccent: '#C4906A', navBg: 'rgba(26,22,18,0.95)' },
   nevoa:   { bg: '#EDF0F5', text: '#1E2433', accent: '#7A8FBB', portBg: '#E4E8F2', darkBg: '#1E2433', darkAccent: '#B8C6E0', navBg: 'rgba(237,240,245,0.92)' },
 };
