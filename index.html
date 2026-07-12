@@ -221,6 +221,7 @@ nav {
 }
 .arrow-btn-h:hover { background: #3D2F17; color: #E2D8C2; border-color: #3D2F17; }
 .port-nav-mobile { display: none; }
+.port-right-wrap { display: contents; }
 
 /* filter buttons */
 .port-filters { display: flex; gap: 0.4rem; margin-bottom: 1.4rem; }
@@ -567,17 +568,19 @@ footer {
   .port-toolbar-mobile .port-filters { margin-bottom: 0; }
   .port-toolbar-mobile .filter-btn { padding: 0.25rem 0.7rem; font-size: 0.62rem; }
 
+  .port-right-wrap { position: relative; }
   .port-nav-mobile {
-    display: flex; justify-content: center; align-items: center;
-    gap: 18px;
-    padding: 14px 0 6px;
+    display: block;
   }
   .port-nav-mobile .arrow-btn-h {
+    position: absolute; top: 50%; transform: translateY(-50%);
     width: 44px; height: 44px;
     border-width: 2px;
     background: #3D2F17; color: #E6D2AF; border-color: #3D2F17;
     font-size: 1.2rem; font-weight: 700;
   }
+  #btnPrevMobile { left: 8px; }
+  #btnNextMobile { right: 8px; }
 
   .port-right {
     position: relative;
@@ -721,10 +724,12 @@ footer {
       <button class="filter-btn" data-filter="available">Disponíveis</button>
     </div>
   </div>
-  <div class="port-right" id="portRight"></div>
-  <div class="port-nav-mobile" id="portNavMobile">
-    <button class="arrow-btn-h" id="btnPrevMobile" aria-label="Anterior">←</button>
-    <button class="arrow-btn-h" id="btnNextMobile" aria-label="Próxima">→</button>
+  <div class="port-right-wrap" id="portRightWrap">
+    <div class="port-right" id="portRight"></div>
+    <div class="port-nav-mobile" id="portNavMobile">
+      <button class="arrow-btn-h" id="btnPrevMobile" aria-label="Anterior">←</button>
+      <button class="arrow-btn-h" id="btnNextMobile" aria-label="Próxima">→</button>
+    </div>
   </div>
 </section>
 
