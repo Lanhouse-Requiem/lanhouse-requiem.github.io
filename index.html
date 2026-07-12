@@ -249,26 +249,26 @@ nav {
 }
 .cert-card {
   position: relative;
+  background: #E2D8C2;
   box-shadow: 0 12px 56px rgba(20,10,2,0.16);
+  border: 1px solid rgba(61,47,23,0.1);
   transform: translateY(14px);
   transition: transform 0.65s cubic-bezier(0.22,1,0.36,1) 0.1s;
   flex-shrink: 0;
-  overflow: hidden;
 }
 .artwork-display.active .cert-card { transform: translateY(0); }
+.cert-logo {
+  position: absolute; top: 6%; left: 5%; width: 20%; height: auto;
+}
 .cert-art-slot {
-  position: absolute; inset: 0;
+  position: absolute; top: 20%; left: 8%; width: 84%; height: 56%;
+  display: flex; align-items: center; justify-content: center;
 }
 .cert-art-slot img {
-  display: block; width: 100%; height: 100%;
-}
-.cert-logo {
-  position: absolute; top: 4%; left: 4%; width: 13%; height: auto;
-  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.45));
+  max-width: 100%; max-height: 100%; width: auto; height: auto; display: block;
 }
 .cert-signature {
-  position: absolute; bottom: 4%; right: 4%; width: 27%; height: auto;
-  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.45));
+  position: absolute; bottom: 6%; right: 6%; width: 46%; height: auto;
 }
 .wall-tag {
   flex-shrink: 0;
@@ -894,19 +894,18 @@ renderPortfolio(artworks);
 /* ── CERT CARD SIZING (computed in JS, mirrors the --real-vh workaround above:
    avoids relying on aspect-ratio + flex auto-sizing resolving correctly) ── */
 function sizeCertCards() {
-  document.querySelectorAll('.cert-card').forEach(function(card) {
-    var wrap = card.closest('.artwork-img-wrap');
-    var artImg = card.querySelector('.cert-art-slot img');
-    if (!wrap || !artImg || !artImg.naturalWidth) return;
-    var maxH = wrap.clientHeight;
-    var maxW = wrap.clientWidth;
-    if (!maxH || !maxW) return;
-    var ratio = artImg.naturalWidth / artImg.naturalHeight;
-    var h = Math.min(maxH, artImg.naturalHeight);
-    var w = h * ratio;
-    if (w > maxW) { w = maxW; h = w / ratio; }
-    card.style.width = w + 'px';
-    card.style.height = h + 'px';
+  var activeWrap = document.querySelector('.artwork-display.active .artwork-img-wrap');
+  if (!activeWrap) return;
+  var maxH = activeWrap.clientHeight;
+  var maxW = activeWrap.clientWidth;
+  if (!maxH || !maxW) return;
+  var ratio = 806 / 1242;
+  var h = maxH;
+  var w = h * ratio;
+  if (w > maxW) { w = maxW; h = w / ratio; }
+  document.querySelectorAll('.cert-card').forEach(function(c) {
+    c.style.width = w + 'px';
+    c.style.height = h + 'px';
   });
 }
 sizeCertCards();
