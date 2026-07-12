@@ -582,7 +582,9 @@ footer {
   }
   .sobre-inner { grid-template-columns: 1fr; gap: 2rem; text-align: left; }
   .sobre-inner > div:first-child { order: 2; }
-  .sobre-art { order: 1; }
+  .sobre-art { order: 1; grid-template-columns: 1fr; }
+  .sobre-ph:first-child { grid-row: auto; }
+  .sobre-label { display: none; }
 
   /* ── CONTATO ── */
   .contato-section {
@@ -597,6 +599,7 @@ footer {
   .contato-mada { left: 50%; right: auto; top: 0; width: 62%; max-width: 280px; transform: translateX(-50%); }
 
   footer { flex-direction: column; text-align: center; padding: 2rem 24px; }
+  .footer-copyright { font-size: 0.6rem; white-space: nowrap; margin-left: 0; }
 }
 @media (max-width: 980px) and (min-width: 769px) {
   .contato-inner { flex-wrap: wrap; justify-content: center; row-gap: 2.5rem; }
@@ -669,7 +672,7 @@ footer {
       <p class="sobre-sig">Ricardo Souto Schützer</p>
       <p class="sobre-label">Sobre</p>
       <p class="sobre-text" style="color: #F2D9CC;">
-        Sou Cado, artista visual paulista morando em Petrolina, Pernambuco. Trabalho com acrílica, digital e nanquim. Comecei a pintar em 2020, hoje estou em transição para a arte digital e o design gráfico. A abstração e a expressão tomam grande parte do processo criativo, moldando camadas infinitas de formas.
+        Sou Cado, artista visual paulista morando em Petrolina, Pernambuco. Trabalho com acrílica, digital e nanquim. Comecei a pintar em 2020, hoje estou em transição para a arte digital e o design gráfico. A abstração e a expressão tomam grande parte do processo criativo, moldando camadas infinitas de formas coloridas.
       </p>
       <p class="sobre-text">
         Envio para todo o Brasil e para o mundo. Entre em contato para encomendas ou obras disponíveis!
