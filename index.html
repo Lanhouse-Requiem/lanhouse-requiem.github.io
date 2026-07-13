@@ -126,10 +126,10 @@ nav {
   position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   color: rgba(61,47,23,0.3); font-size: 0.65rem; letter-spacing: 0.15em;
-  text-transform: uppercase; animation: bounce 2s ease-in-out infinite;
+  text-transform: uppercase;
 }
 .scroll-cue svg { opacity: 0.4; }
-.scroll-arrow-desktop { display: block; width: 390px; height: auto; image-rendering: pixelated; }
+.scroll-arrow-desktop { display: block; width: 195px; height: auto; image-rendering: pixelated; }
 .scroll-arrow-mobile { display: none; }
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -138,6 +138,7 @@ nav {
 
 /* ── PORTFOLIO ────────────────────────────────────────── */
 #portfolio {
+  position: relative;
   display: grid;
   grid-template-columns: 300px 1fr;
   grid-template-rows: 100%;
@@ -404,6 +405,7 @@ nav {
 
 /* ── SOBRE ────────────────────────────────────────────── */
 .sobre-section {
+  position: relative;
   display: flex; flex-direction: column; justify-content: center;
   background: #3D2F17; color: #E2D8C2;
   padding: 120px 48px;
@@ -541,7 +543,7 @@ footer {
   .hero-title { font-size: clamp(1.6rem, 6vw, 2.2rem); margin-top: 3rem; margin-bottom: 1.2rem; }
   .hero-dash { display: none; }
   .hero-sig { display: none; }
-  .scroll-cue { bottom: 12px; }
+  .scroll-cue { bottom: 12px; animation: bounce 2s ease-in-out infinite; }
   .scroll-arrow-desktop { display: none; }
   .scroll-arrow-mobile { display: block; }
   .hero-cachorro { display: none; }
