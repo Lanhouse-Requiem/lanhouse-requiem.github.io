@@ -122,16 +122,6 @@ nav {
 .hero-cachorro-mobile, .hero-sig-mobile { display: none; }
 
 /* scroll cue */
-.scroll-cue {
-  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  color: rgba(61,47,23,0.3); font-size: 0.65rem; letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-.scroll-cue svg { opacity: 0.4; }
-.scroll-arrow-desktop { display: block; width: 195px; height: auto; image-rendering: pixelated; }
-.scroll-arrow-mobile { display: none; }
-.scroll-text { display: none; }
 .section-cue {
   position: absolute; bottom: 24px; z-index: 20;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
@@ -141,8 +131,13 @@ nav {
 }
 .section-cue:hover { opacity: 0.7; }
 .section-cue-arrow { width: 102px; height: auto; image-rendering: pixelated; }
-.section-cue-sobre { right: 48px; color: #B87C55; }
-.section-cue-contato { right: 48px; color: #FFF8C2; }
+.section-cue-home { left: 50%; transform: translateX(-50%); color: #E6958A; }
+.section-cue-sobre, .section-cue-contato {
+  right: 48px; flex-direction: row; align-items: center; gap: 14px; font-size: 2.2rem;
+}
+.section-cue-sobre { color: #E6958A; }
+.section-cue-contato { color: #FFF8C2; }
+.section-cue-sobre .section-cue-arrow, .section-cue-contato .section-cue-arrow { width: 204px; }
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(6px); }
@@ -555,10 +550,11 @@ footer {
   .hero-title { font-size: clamp(1.6rem, 6vw, 2.2rem); margin-top: 3rem; margin-bottom: 1.2rem; }
   .hero-dash { display: none; }
   .hero-sig { display: none; }
-  .scroll-cue { bottom: 12px; animation: bounce 2s ease-in-out infinite; }
-  .scroll-arrow-desktop { display: none; }
-  .scroll-arrow-mobile { display: block; }
-  .scroll-text { display: inline; }
+  .section-cue-home { bottom: 12px; animation: bounce 2s ease-in-out infinite; }
+  .section-cue-sobre, .section-cue-contato {
+    flex-direction: column; gap: 6px; font-size: 1.1rem;
+  }
+  .section-cue-sobre .section-cue-arrow, .section-cue-contato .section-cue-arrow { width: 102px; }
   .hero-cachorro { display: none; }
   .hero-cachorro-mobile {
     display: block; margin: 18px auto; width: 64%; max-width: 338px;
@@ -727,11 +723,10 @@ footer {
       <p class="hero-sub" style="font-size: 27px">Entrega para todo o Brasil.</p>
     </div>
   </div>
-  <div class="scroll-cue">
-    <img src="uploads/seta-bitmap-pink.png" class="scroll-arrow-desktop" alt="">
-    <svg class="scroll-arrow-mobile" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span class="scroll-text">scroll</span>
-  </div>
+  <a href="#portfolio" class="section-cue section-cue-home">
+    <img src="uploads/seta-bitmap-pink.png" class="section-cue-arrow" alt="">
+    Portfólio
+  </a>
 </section>
 
 <!-- PORTFOLIO -->
@@ -776,7 +771,7 @@ footer {
     <div class="sobre-art" id="sobreArt"></div>
   </div>
   <a href="#contato" class="section-cue section-cue-contato">
-    <img src="uploads/seta-bitmap.png" class="section-cue-arrow" alt="">
+    <img src="uploads/seta-bitmap-yellow.png" class="section-cue-arrow" alt="">
     Contato
   </a>
 </section>
