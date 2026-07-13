@@ -282,7 +282,7 @@ nav {
 .artwork-display.active { opacity: 1; pointer-events: all; }
 .artwork-img-wrap {
   position: relative;
-  flex: 1; display: flex; align-items: center; justify-content: flex-end;
+  flex: 1; display: flex; align-items: center; justify-content: center;
   padding: 56px 32px 56px 56px; height: 100%; min-height: 0; overflow: hidden;
 }
 .card-nav-btn {
@@ -367,6 +367,7 @@ nav {
 .wall-tag {
   flex-shrink: 0;
   padding: 0 64px 72px 0;
+  margin-left: -140px;
   display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
   transform: translateX(-10px); opacity: 0;
   transition: transform 0.5s cubic-bezier(0.22,1,0.36,1) 0.22s, opacity 0.4s ease 0.22s;
@@ -640,7 +641,7 @@ footer {
     transform: none;
   }
   .wall-tag {
-    width: 100%; padding: 0;
+    width: 100%; padding: 0; margin-left: 0;
     align-items: flex-start;
     transform: none; opacity: 1;
   }
