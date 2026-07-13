@@ -282,7 +282,7 @@ nav {
 .artwork-display.active { opacity: 1; pointer-events: all; }
 .artwork-img-wrap {
   position: relative;
-  flex: 1; display: flex; align-items: center; justify-content: center;
+  flex: 1; display: flex; align-items: center; justify-content: flex-end;
   padding: 56px 32px 56px 56px; height: 100%; min-height: 0; overflow: hidden;
 }
 .card-nav-btn {
@@ -367,7 +367,7 @@ nav {
 .wall-tag {
   flex-shrink: 0;
   padding: 0 64px 72px 0;
-  display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
   transform: translateX(-10px); opacity: 0;
   transition: transform 0.5s cubic-bezier(0.22,1,0.36,1) 0.22s, opacity 0.4s ease 0.22s;
 }
@@ -379,6 +379,7 @@ nav {
   border-radius: 5px;
   padding: 30px 34px;
   width: 280px; box-sizing: border-box;
+  text-align: center;
   box-shadow: 0 10px 32px rgba(20,10,2,0.14), inset 0 0 0 1px rgba(255,255,255,0.35);
 }
 .tag-card::before {
@@ -387,7 +388,7 @@ nav {
   background-size: 250px; pointer-events: none;
 }
 .tag-card > * { position: relative; z-index: 1; }
-.tag-rule { width: 37px; height: 1px; background: #B87C55; margin-bottom: 1.2rem; }
+.tag-rule { width: 37px; height: 1px; background: #B87C55; margin: 0 auto 1.2rem; }
 .tag-name {
   font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.6rem;
   font-weight: 500; color: #3D2F17; line-height: 1.2; margin-bottom: 0.7rem;
