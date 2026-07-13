@@ -129,6 +129,8 @@ nav {
   text-transform: uppercase; animation: bounce 2s ease-in-out infinite;
 }
 .scroll-cue svg { opacity: 0.4; }
+.scroll-arrow-desktop { display: block; width: 26px; height: auto; image-rendering: pixelated; }
+.scroll-arrow-mobile { display: none; }
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(6px); }
@@ -540,6 +542,8 @@ footer {
   .hero-dash { display: none; }
   .hero-sig { display: none; }
   .scroll-cue { bottom: 12px; }
+  .scroll-arrow-desktop { display: none; }
+  .scroll-arrow-mobile { display: block; }
   .hero-cachorro { display: none; }
   .hero-cachorro-mobile {
     display: block; margin: 18px auto; width: 64%; max-width: 338px;
@@ -709,7 +713,8 @@ footer {
     </div>
   </div>
   <div class="scroll-cue">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <img src="uploads/seta-bitmap.png" class="scroll-arrow-desktop" alt="">
+    <svg class="scroll-arrow-mobile" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     scroll
   </div>
 </section>
