@@ -135,11 +135,10 @@ nav {
 .section-cue-home .section-cue-arrow { width: 204px; }
 .section-cue-home .home-cue-text { display: none; }
 .section-cue-sobre, .section-cue-contato {
-  right: 48px; flex-direction: row; align-items: center; gap: 14px; font-size: 2.2rem;
+  right: 32px; width: 40px; height: 40px;
 }
 .section-cue-sobre { color: #E6958A; }
 .section-cue-contato { color: #FFF8C2; }
-.section-cue-sobre .section-cue-arrow, .section-cue-contato .section-cue-arrow { width: 204px; }
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(6px); }
@@ -555,12 +554,8 @@ footer {
   .section-cue-home { bottom: 12px; animation: bounce 2s ease-in-out infinite; }
   .hero-sub { display: none; }
   .section-cue-home .section-cue-arrow { width: 102px; }
-  .section-cue-sobre, .section-cue-contato {
-    flex-direction: column; gap: 6px; font-size: 1.1rem;
-  }
-  .section-cue-sobre .section-cue-arrow, .section-cue-contato .section-cue-arrow { width: 102px; }
   .section-cue-contato {
-    position: static; margin-top: 20px; right: auto;
+    position: static; margin: 20px auto 0; right: auto;
   }
   .sobre-text-cta { display: none; }
   .hero-cachorro { display: none; }
@@ -757,9 +752,8 @@ footer {
     </div>
   </div>
   <div class="port-right" id="portRight"></div>
-  <a href="#sobre" class="section-cue section-cue-sobre">
-    <img src="uploads/seta-bitmap-pink.png" class="section-cue-arrow" alt="">
-    Sobre
+  <a href="#sobre" class="section-cue section-cue-sobre" aria-label="Ir para Sobre">
+    <svg width="22" height="22" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 </section>
 
@@ -778,9 +772,8 @@ footer {
     </div>
     <div class="sobre-art" id="sobreArt"></div>
   </div>
-  <a href="#contato" class="section-cue section-cue-contato">
-    <img src="uploads/seta-bitmap-yellow.png" class="section-cue-arrow" alt="">
-    Contato
+  <a href="#contato" class="section-cue section-cue-contato" aria-label="Ir para Contato">
+    <svg width="22" height="22" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 </section>
 
