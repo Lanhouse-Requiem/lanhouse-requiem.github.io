@@ -132,6 +132,8 @@ nav {
 .section-cue:hover { opacity: 0.7; }
 .section-cue-arrow { width: 102px; height: auto; image-rendering: pixelated; }
 .section-cue-home { left: 50%; transform: translateX(-50%); color: #E6958A; }
+.section-cue-home .section-cue-arrow { width: 204px; }
+.section-cue-home .home-cue-text { display: none; }
 .section-cue-sobre, .section-cue-contato {
   right: 48px; flex-direction: row; align-items: center; gap: 14px; font-size: 2.2rem;
 }
@@ -551,6 +553,8 @@ footer {
   .hero-dash { display: none; }
   .hero-sig { display: none; }
   .section-cue-home { bottom: 12px; animation: bounce 2s ease-in-out infinite; }
+  .section-cue-home .section-cue-arrow { width: 102px; }
+  .section-cue-home .home-cue-text { display: inline; }
   .section-cue-sobre, .section-cue-contato {
     flex-direction: column; gap: 6px; font-size: 1.1rem;
   }
@@ -725,7 +729,7 @@ footer {
   </div>
   <a href="#portfolio" class="section-cue section-cue-home">
     <img src="uploads/seta-bitmap-pink.png" class="section-cue-arrow" alt="">
-    Portfólio
+    <span class="home-cue-text">Portfólio</span>
   </a>
 </section>
 
