@@ -1129,6 +1129,7 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
 });
 portRight.addEventListener('wheel', function(e) {
+  if (!e.target.closest('.artwork-img-wrap')) return;
   e.preventDefault();
   if (e.deltaY > 30)  goTo(current + 1);
   if (e.deltaY < -30) goTo(current - 1);
