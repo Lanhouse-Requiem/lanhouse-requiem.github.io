@@ -116,7 +116,7 @@ nav {
 .hero-cachorro {
   position: absolute; left: 56.6%; top: 33.7%;
   width: 45%; max-width: 512px; height: auto;
-  image-rendering: pixelated; pointer-events: none;
+  pointer-events: none;
   z-index: 2;
 }
 .hero-cachorro-mobile, .hero-sig-mobile { display: none; }
@@ -130,9 +130,9 @@ nav {
   transition: opacity 0.2s;
 }
 .section-cue:hover { opacity: 0.7; }
-.section-cue-arrow { width: 102px; height: auto; image-rendering: pixelated; }
-.section-cue-home { left: 50%; transform: translateX(-50%); color: #E6958A; }
-.section-cue-home .section-cue-arrow { width: 204px; }
+.section-cue-arrow { width: 22px; height: auto; }
+.section-cue-home { left: 50%; transform: translateX(-50%); color: #3D2F17; }
+.section-cue-home .section-cue-arrow { width: 28px; }
 .section-cue-home .home-cue-text { display: inline; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.15em; }
 .section-cue-sobre, .section-cue-contato {
   right: 32px; width: 40px; height: 40px;
@@ -453,9 +453,8 @@ nav {
   display: flex; align-items: center; justify-content: center; gap: 4rem;
 }
 .contato-text { max-width: 480px; text-align: left; }
-.contato-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(61,47,23,0.4); margin-bottom: 0.8rem; display: block; }
 .contato-inner h2 { font-family: 'Cormorant Garant', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300; margin-bottom: 0.6rem; }
-.contato-sub { font-size: 0.88rem; color: rgba(61,47,23,0.5); margin-bottom: 2.8rem; }
+.contato-sub { font-size: 1.32rem; color: rgba(61,47,23,0.5); margin-bottom: 2.8rem; }
 .contact-links { display: flex; flex-direction: column; gap: 0.65rem; }
 .contact-link {
   display: flex; align-items: center; gap: 1rem;
@@ -553,7 +552,7 @@ footer {
   .hero-sig { display: none; }
   .section-cue-home { bottom: 12px; animation: bounce 2s ease-in-out infinite; }
   .hero-sub { display: none; }
-  .section-cue-home .section-cue-arrow { width: 102px; }
+  .section-cue-home .section-cue-arrow { width: 22px; }
   .section-cue-contato {
     position: static; margin: 20px auto 0; right: auto;
   }
@@ -561,7 +560,6 @@ footer {
   .hero-cachorro { display: none; }
   .hero-cachorro-mobile {
     display: block; margin: 18px auto; width: 64%; max-width: 338px;
-    image-rendering: pixelated;
   }
   .hero-sig-mobile {
     display: block; font-family: 'DM Sans', sans-serif; font-weight: 300;
@@ -686,6 +684,7 @@ footer {
   }
   .contato-inner { flex-direction: column; gap: 2rem; align-items: center; margin-top: 110px; }
   .contato-text { text-align: center; max-width: 100%; }
+  .contato-sub { font-size: 0.88rem; }
   .contact-link { text-align: left; }
   .contato-mada { left: 50%; right: auto; top: 0; width: 62%; max-width: 280px; transform: translateX(-50%); }
 
@@ -717,17 +716,17 @@ footer {
   <div class="hero-blob blob-1"></div>
   <div class="hero-blob blob-2"></div>
   <div class="hero-blob blob-3"></div>
-  <img src="uploads/cachorro.gif" class="hero-cachorro" alt="">
+  <img src="uploads/papa.png" class="hero-cachorro" alt="">
 <div class="hero-inner">
     <div class="hero-content">
       <h1 class="hero-title"><span style="color:#E6958A;">Arte original</span> em acrílica,<br>digital e nanquim. <span class="hero-sig"><span class="hero-dash">— </span>Por <span style="color:#000;">Cado Schützer</span></span></h1>
-      <img src="uploads/cachorro.gif" class="hero-cachorro-mobile" alt="">
+      <img src="uploads/papa.png" class="hero-cachorro-mobile" alt="">
       <p class="hero-sig-mobile">Por <span style="color:#000;">Cado Schützer</span></p>
       <p class="hero-sub" style="font-size: 27px">Entrega para todo o Brasil.</p>
     </div>
   </div>
   <a href="#portfolio" class="section-cue section-cue-home">
-    <img src="uploads/seta-bitmap-pink.png" class="section-cue-arrow" alt="">
+    <svg class="section-cue-arrow" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span class="home-cue-text">Scroll</span>
   </a>
 </section>
@@ -782,7 +781,6 @@ footer {
   <img src="uploads/mada.gif" class="contato-mada" alt="">
   <div class="contato-inner">
     <div class="contato-text">
-    <span class="contato-label">Contato</span>
     <h2>Vamos conversar</h2>
     <p class="contato-sub">Fala comigo! Aberto para encomendas e propostas.</p>
     <div class="contact-links">
@@ -1074,6 +1072,34 @@ function positionCardNavButtons() {
     prevBtn.style.left = Math.max(4, cardLeft - btnWidth - gap) + 'px';
     nextBtn.style.right = Math.max(4, cardRight - btnWidth - gap) + 'px';
   });
+  positionSobreCue();
+}
+
+/* Pin the "sobre" scroll cue directly to the right of the active tag-card
+   instead of the page corner, since the card floats at different heights
+   depending on card size */
+function positionSobreCue() {
+  var cue = document.querySelector('.section-cue-sobre');
+  var portfolio = document.getElementById('portfolio');
+  var card = document.querySelector('.artwork-display.active .tag-card');
+  if (!cue || !portfolio) return;
+  var isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (isMobile || !card) {
+    cue.style.left = '';
+    cue.style.top = '';
+    cue.style.right = '';
+    cue.style.bottom = '';
+    cue.style.transform = '';
+    return;
+  }
+  var portfolioRect = portfolio.getBoundingClientRect();
+  var cardRect = card.getBoundingClientRect();
+  var gap = 24;
+  cue.style.right = 'auto';
+  cue.style.bottom = 'auto';
+  cue.style.left = (cardRect.right - portfolioRect.left + gap) + 'px';
+  cue.style.top = (cardRect.top - portfolioRect.top + cardRect.height / 2) + 'px';
+  cue.style.transform = 'translateY(-50%)';
 }
 
 sizeCertCards();
