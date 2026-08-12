@@ -111,8 +111,7 @@ nav {
   font-weight: 700; line-height: 1.25;
   color: #2B0B12; margin-bottom: 2rem;
 }
-.hero-sig { font-family: 'DM Sans', sans-serif; font-style: normal; font-weight: 300; font-size: 27px; color: rgba(61,47,23,0.55); margin-left: 0.5rem; }
-.hero-sub { font-size: 0.9rem; color: rgba(61,47,23,0.55); margin-bottom: 2.8rem; }
+.hero-sig { font-family: 'DM Sans', sans-serif; font-style: normal; font-weight: 300; font-size: 27px; color: #000; margin-left: 0.5rem; }
 .hero-cachorro {
   position: absolute; left: 56.6%; top: 33.7%;
   width: 45%; max-width: 512px; height: auto;
@@ -135,10 +134,10 @@ nav {
 .section-cue-home .section-cue-arrow { width: 28px; }
 .section-cue-home .home-cue-text { display: inline; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.15em; }
 .section-cue-sobre, .section-cue-contato {
-  right: 32px; width: 40px; height: 40px;
+  width: 40px; height: 40px;
 }
-.section-cue-sobre { color: #E6958A; }
-.section-cue-contato { color: #FFF8C2; }
+.section-cue-sobre { color: #E6958A; left: 32px; }
+.section-cue-contato { color: #FFF8C2; right: 32px; }
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(6px); }
@@ -551,7 +550,6 @@ footer {
   .hero-dash { display: none; }
   .hero-sig { display: none; }
   .section-cue-home { bottom: 12px; animation: bounce 2s ease-in-out infinite; }
-  .hero-sub { display: none; }
   .section-cue-home .section-cue-arrow { width: 22px; }
   .section-cue-contato {
     position: static; margin: 20px auto 0; right: auto;
@@ -563,7 +561,7 @@ footer {
   }
   .hero-sig-mobile {
     display: block; font-family: 'DM Sans', sans-serif; font-weight: 300;
-    font-size: 27px; color: rgba(61,47,23,0.55); text-align: center;
+    font-size: 27px; color: #000; text-align: center;
     margin-bottom: 1em;
   }
 
@@ -719,10 +717,9 @@ footer {
   <img src="uploads/cachorro.gif" class="hero-cachorro" alt="">
 <div class="hero-inner">
     <div class="hero-content">
-      <h1 class="hero-title"><span style="color:#E6958A;">Arte original</span> em acrílica,<br>digital e nanquim. <span class="hero-sig"><span class="hero-dash">— </span>Por <span style="color:#000;">Cado Schützer</span></span></h1>
+      <h1 class="hero-title"><span style="color:#C1440E;">Arte original</span> em acrílica,<br>digital e nanquim. <span class="hero-sig"><span class="hero-dash">— </span>Por Cado Schützer</span></h1>
       <img src="uploads/papa.png" class="hero-cachorro-mobile" alt="">
       <p class="hero-sig-mobile">Por <span style="color:#000;">Cado Schützer</span></p>
-      <p class="hero-sub" style="font-size: 27px">Entrega para todo o Brasil.</p>
     </div>
   </div>
   <a href="#portfolio" class="section-cue section-cue-home">
@@ -1076,7 +1073,7 @@ function positionCardNavButtons() {
   positionSobreCue();
 }
 
-/* Pin the "sobre" scroll cue directly to the right of the active tag-card
+/* Pin the "sobre" scroll cue to the bottom-left of the active tag-card
    instead of the page corner, since the card floats at different heights
    depending on card size */
 function positionSobreCue() {
@@ -1096,11 +1093,11 @@ function positionSobreCue() {
   var portfolioRect = portfolio.getBoundingClientRect();
   var cardRect = card.getBoundingClientRect();
   var gap = 24;
-  cue.style.right = 'auto';
-  cue.style.bottom = 'auto';
-  cue.style.left = (cardRect.right - portfolioRect.left + gap) + 'px';
-  cue.style.top = (cardRect.top - portfolioRect.top + cardRect.height / 2) + 'px';
-  cue.style.transform = 'translateY(-50%)';
+  cue.style.left = 'auto';
+  cue.style.top = 'auto';
+  cue.style.right = (portfolioRect.right - cardRect.left + gap) + 'px';
+  cue.style.bottom = (portfolioRect.bottom - cardRect.bottom) + 'px';
+  cue.style.transform = '';
 }
 
 sizeCertCards();
