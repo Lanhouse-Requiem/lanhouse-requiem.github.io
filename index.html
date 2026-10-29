@@ -392,6 +392,12 @@ nav {
 .tag-dims { font-family: 'EB Garamond', serif; font-size: 1.22rem; color: rgba(61,47,23,0.5); letter-spacing: 0.05em; margin-bottom: 0.3rem; }
 .tag-medium { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: rgba(61,47,23,0.4); letter-spacing: 0.08em; text-transform: uppercase; }
 .tag-cta-wrap { margin-top: 22px; }
+.tag-price {
+  margin-top: 18px;
+  font-family: 'EB Garamond', serif; font-size: 1.45rem;
+  color: #3D2F17; letter-spacing: 0.04em;
+}
+.tag-price + .tag-cta-wrap { margin-top: 12px; }
 .tag-cta {
   display: inline-flex; align-items: center; gap: 0.55rem;
   padding: 0.7rem 1.4rem; background: #FFF8C2; color: #3D2F17 !important;
@@ -442,8 +448,9 @@ nav {
   position: relative;
 }
 .contato-mada {
-  position: absolute; right: 6%; top: 32.3%;
-  width: 44%; max-width: 520px; height: auto;
+  position: absolute; right: 2%; top: 32.3%;
+  /* cabe no vão à direita da coluna de 480px, sem cobrir os links */
+  width: min(340px, calc(48% - 270px)); height: auto;
   image-rendering: pixelated; pointer-events: none;
   z-index: 1;
 }
@@ -649,6 +656,8 @@ footer {
   .tag-dims { font-size: 1.04rem; margin-bottom: 0.15rem; }
   .tag-medium { font-size: 0.845rem; }
   .tag-cta-wrap { width: 100%; display: flex; justify-content: flex-start; margin-top: 10px; }
+  .tag-price { margin-top: 8px; padding-left: 2px; font-size: 1.15rem; }
+  .tag-price + .tag-cta-wrap { margin-top: 8px; }
   .tag-cta { padding: 0.45rem 1.1rem; font-size: 0.75rem; }
   .port-counter { display: block; position: static; margin-top: 10px; text-align: left; }
 
@@ -859,17 +868,17 @@ window.addEventListener('orientationchange', setRealVH);
 
 /* ── DATA ─────────────────────────────────────────────── */
 var artworks = [
-  { name: 'De Petrolina para Juazeiro', w: 120, h: 80,  img: 'uploads/120X80 - De Petrolina para Juazeiro.jpg', certId: 0, palette: ['#6D92A0', '#93502B'], medium: 'Acrílica', status: 'available' },
-  { name: 'Frescas Pescarias',          w: 120, h: 80,  img: 'uploads/120x80 - Frescas Pescarias.jpg', certId: 1, palette: ['#5A321D', '#C29078'], medium: 'Acrílica', status: 'available' },
+  { name: 'De Petrolina para Juazeiro', w: 120, h: 80,  img: 'uploads/120X80 - De Petrolina para Juazeiro.jpg', certId: 0, palette: ['#6D92A0', '#93502B'], medium: 'Acrílica', status: 'available', price: 1200 },
+  { name: 'Frescas Pescarias',          w: 120, h: 80,  img: 'uploads/120x80 - Frescas Pescarias.jpg', certId: 1, palette: ['#5A321D', '#C29078'], medium: 'Acrílica', status: 'available', price: 800 },
   { name: 'Tarot',                      w: 90,  h: 60,  img: 'uploads/Tarot.jpg', certId: 2, palette: ['#9E261F', '#B83E3D'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Reflexo',                    w: 80,  h: 54,  img: 'uploads/Reflexo.jpg', certId: 3, palette: ['#62371B', '#4D2C15'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Botanicografia',             w: 60,  h: 75,  img: 'uploads/Botanicografia.jpg', certId: 4, palette: ['#A85D3D', '#3C3D3A'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Raio',                       w: 60,  h: 43,  img: 'uploads/Raio.jpg', certId: 5, palette: ['#C58D3C', '#B5701C'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Zé Mosquitinho e elegante',  w: 50,  h: 63,  img: 'uploads/Zé Mosquitinho e elegante 2021.jpg', certId: 6, palette: ['#464025', '#4E694A'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Erva do Diabo',              w: 50,  h: 50,  img: 'uploads/50x50 - Erva do Diabo.jpg', certId: 7, palette: ['#34461F', '#7E8248'], medium: 'Acrílica', status: 'available' },
-  { name: 'Fire Gecko',                 w: 50,  h: 50,  img: 'uploads/50x50 - Fire Gecko.jpg', certId: 8, palette: ['#8A534C', '#AD8C65'], medium: 'Acrílica', status: 'available' },
-  { name: 'Miopia',                     w: 50,  h: 50,  img: 'uploads/50x50 - Miopia.jpg', certId: 9, palette: ['#A46838', '#AC855D'], medium: 'Acrílica', status: 'available' },
-  { name: 'Incommoditie',               w: 50,  h: 50,  img: 'uploads/50x50 -Incommoditie.jpg', certId: 10, palette: ['#425B47', '#AC6156'], medium: 'Acrílica', status: 'available' },
+  { name: 'Erva do Diabo',              w: 50,  h: 50,  img: 'uploads/50x50 - Erva do Diabo.jpg', certId: 7, palette: ['#34461F', '#7E8248'], medium: 'Acrílica', status: 'available', price: 450 },
+  { name: 'Fire Gecko',                 w: 50,  h: 50,  img: 'uploads/50x50 - Fire Gecko.jpg', certId: 8, palette: ['#8A534C', '#AD8C65'], medium: 'Acrílica', status: 'available', price: 300 },
+  { name: 'Miopia',                     w: 50,  h: 50,  img: 'uploads/50x50 - Miopia.jpg', certId: 9, palette: ['#A46838', '#AC855D'], medium: 'Acrílica', status: 'available', price: 400 },
+  { name: 'Incommoditie',               w: 50,  h: 50,  img: 'uploads/50x50 -Incommoditie.jpg', certId: 10, palette: ['#425B47', '#AC6156'], medium: 'Acrílica', status: 'available', price: 200 },
   { name: 'Roso',                       w: 50,  h: 50,  img: 'uploads/Roso.jpg', certId: 11, palette: ['#4F2D42', '#79445E'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Que cobre a nuvem',          w: 47,  h: 45,  img: 'uploads/Que cobre a nuvem.jpg', certId: 12, palette: ['#3D3310', '#B86721'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Casa',                       w: 46,  h: 36,  img: 'uploads/Sem Nome (2).jpg', certId: 13, palette: ['#D28D52', '#B73E32'], medium: 'Acrílica', status: 'unavailable' },
@@ -877,20 +886,20 @@ var artworks = [
   { name: 'Tratado',                    w: 40,  h: 32,  img: 'uploads/Tratiabs.jpg', certId: 15, palette: ['#729B86', '#8463A3'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Ceiros',                     w: 40,  h: 26,  img: 'uploads/Ceiros.jpg', certId: 17, palette: ['#305086', '#467173'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Taking care of love',        w: 38,  h: 26,  img: 'uploads/Taking care of love.jpg', certId: 18, palette: ['#E6C1C9', '#75847B'], medium: 'Giz Pastel', status: 'unavailable' },
-  { name: 'Quicá',                      w: 36,  h: 30,  img: 'uploads/Quiça.jpg', certId: 19, palette: ['#547CC7', '#9E5345'], medium: 'Acrílica', status: 'available' },
+  { name: 'Quicá',                      w: 36,  h: 30,  img: 'uploads/Quiça.jpg', certId: 19, palette: ['#547CC7', '#9E5345'], medium: 'Acrílica', status: 'available', price: 200 },
   { name: 'O molda-nuvem',              w: 36,  h: 36,  img: 'uploads/O molda-nuvem.jpg', certId: 20, palette: ['#B9736B', '#9F5C5F'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Sem nome',                   w: 35,  h: 23,  img: 'uploads/Sem nome.jpg', certId: 21, palette: ['#6093B0', '#C05843'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Trovão',                     w: 32,  h: 22,  img: 'uploads/Trovão.jpg', certId: 22, palette: ['#84541F', '#E3D9C3'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Fluxo Contínuo',             w: 30,  h: 30,  img: 'uploads/30x30 - Fluxo Contínuo.jpg', certId: 23, palette: ['#807049', '#765538'], medium: 'Acrílica', status: 'available' },
-  { name: 'Homem Cacto',                w: 30,  h: 30,  img: 'uploads/30x30 - Homem Cacto.jpg', certId: 24, palette: ['#B46555', '#AE918C'], medium: 'Acrílica', status: 'available' },
+  { name: 'Fluxo Contínuo',             w: 30,  h: 30,  img: 'uploads/30x30 - Fluxo Contínuo.jpg', certId: 23, palette: ['#807049', '#765538'], medium: 'Acrílica', status: 'available', price: 200 },
+  { name: 'Homem Cacto',                w: 30,  h: 30,  img: 'uploads/30x30 - Homem Cacto.jpg', certId: 24, palette: ['#B46555', '#AE918C'], medium: 'Acrílica', status: 'available', price: 150 },
   { name: 'Tempinho',                   w: 30,  h: 30,  img: 'uploads/Tempinho.jpg', certId: 25, palette: ['#427CD4', '#5E95DD'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Sorte',                      w: 30,  h: 16,  img: 'uploads/Sorte.jpg', certId: 26, palette: ['#796C96', '#D7783E'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Paisage',                    w: 30,  h: 14,  img: 'uploads/Paisage.jpg', certId: 27, palette: ['#2D3024', '#3E4A3D'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Nave Especial',              w: 30,  h: 20,  img: 'uploads/30x20 - Nave Especial.jpg', certId: 28, palette: ['#C1A4B4', '#A13228'], medium: 'Acrílica', status: 'available' },
-  { name: 'Trauma',                     w: 30,  h: 20,  img: 'uploads/20x30 - Trauma.jpg', certId: 29, palette: ['#5993C4', '#76BBDC'], medium: 'Acrílica', status: 'available' },
+  { name: 'Nave Especial',              w: 30,  h: 20,  img: 'uploads/30x20 - Nave Especial.jpg', certId: 28, palette: ['#C1A4B4', '#A13228'], medium: 'Acrílica', status: 'available', price: 200 },
+  { name: 'Trauma',                     w: 30,  h: 20,  img: 'uploads/20x30 - Trauma.jpg', certId: 29, palette: ['#5993C4', '#76BBDC'], medium: 'Acrílica', status: 'available', price: 300 },
   { name: 'Mato',                       w: 10,  h: 15,  img: 'uploads/Captura de tela 2026-05-02 155839.jpg', certId: 30, palette: ['#B88857', '#425349'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Memória de Carnaval',        w: 0,   h: 0,   img: 'uploads/Memoria de Carnaval.jpg', certId: 31, palette: ['#703817', '#B96624'], medium: 'Acrílica', status: 'unavailable' },
-  { name: 'Convergência',               w: 50,  h: 50,  img: 'uploads/Convergencia.jpg', certId: 32, palette: ['#AE4225', '#752313'], medium: 'Acrílica', status: 'available' },
+  { name: 'Convergência',               w: 50,  h: 50,  img: 'uploads/Convergencia.jpg', certId: 32, palette: ['#AE4225', '#752313'], medium: 'Acrílica', status: 'available', price: 350 },
   { name: 'Zuko',                       w: 0,   h: 0,   img: 'uploads/Zuko.jpg', certId: 33, palette: ['#807B6F', '#9A929C'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Libélula Elétrica',          w: 0,   h: 0,   img: 'uploads/Libélula Elétrica.jpg', certId: 34, palette: ['#EB835F', '#E1704F'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Narrativa',                  w: 0,   h: 0,   img: 'uploads/Narrativa.jpg', certId: 35, palette: ['#A14A44', '#6C252E'], medium: 'Acrílica', status: 'unavailable' },
@@ -898,8 +907,8 @@ var artworks = [
   { name: 'Kalo dando conta',           w: 0,   h: 0,   img: 'uploads/Kalo dando conta.jpg', certId: 37, palette: ['#C1845C', '#6E372E'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Jardim Encharcado',          w: 0,   h: 0,   img: 'uploads/Jardim Encharcado.jpg', certId: 38, palette: ['#7F7859', '#75654E'], medium: 'Acrílica', status: 'unavailable' },
   { name: 'Olhar',                      w: 0,   h: 0,   img: 'uploads/Ecobag Olho.jpg', certId: 39, palette: ['#D1BEA1', '#A48868'], medium: 'Tinta de Tecido', status: 'unavailable' },
-  { name: 'Transe',                     w: 50,  h: 50,  img: 'uploads/Transe.jpg', certId: 40, palette: ['#7B806E', '#D3CECB'], medium: 'Acrílica', status: 'available' },
-  { name: 'Fantoche',                   w: 80,  h: 120, img: 'uploads/Fantoche.jpg', certId: 41, palette: ['#D64A44', '#A96546'], medium: 'Acrílica', status: 'available' },
+  { name: 'Transe',                     w: 50,  h: 50,  img: 'uploads/Transe.jpg', certId: 40, palette: ['#7B806E', '#D3CECB'], medium: 'Acrílica', status: 'available', price: 300 },
+  { name: 'Fantoche',                   w: 80,  h: 120, img: 'uploads/Fantoche.jpg', certId: 41, palette: ['#D64A44', '#A96546'], medium: 'Acrílica', status: 'available', price: 1000 },
 ];
 
 var current = 0;
@@ -1005,6 +1014,9 @@ function renderPortfolio(items) {
         + 'Disponível</a>';
 
     var dimsHTML = a.status === 'unavailable' ? '' : '<p class="tag-dims">' + a.w + ' × ' + a.h + ' cm</p>';
+    var priceHTML = a.status === 'available' && a.price
+      ? '<p class="tag-price">' + a.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }) + '</p>'
+      : '';
 
     var tag = document.createElement('div');
     tag.className = 'wall-tag';
@@ -1015,6 +1027,7 @@ function renderPortfolio(items) {
         dimsHTML +
         '<p class="tag-medium">' + a.medium + '</p>' +
       '</div>' +
+      priceHTML +
       '<div class="tag-cta-wrap">' + ctaHTML + '</div>';
 
     var counter = document.createElement('div');
