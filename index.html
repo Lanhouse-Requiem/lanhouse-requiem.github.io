@@ -973,19 +973,22 @@ function renderPortfolio(items) {
 
     var logo = document.createElement('img');
     logo.className = 'cert-logo';
-    logo.src = 'uploads/cert/logo-' + certId + '.png';
+    logo.dataset.src = 'uploads/cert/logo-' + certId + '.png';
     logo.alt = '';
 
     var artSlot = document.createElement('div');
     artSlot.className = 'cert-art-slot';
     var img = document.createElement('img');
-    img.src = a.img; img.alt = a.name;
+    // card shows the lightweight copy in uploads/web/; the lightbox opens the original
+    img.dataset.src = a.img.replace('uploads/', 'uploads/web/');
+    img.dataset.full = a.img;
+    img.alt = a.name;
     img.onload = function() { sizeCertCards(); positionCardNavButtons(); };
     artSlot.appendChild(img);
 
     var sig = document.createElement('img');
     sig.className = 'cert-signature';
-    sig.src = 'uploads/cert/sig-' + certId + '.png';
+    sig.dataset.src = 'uploads/cert/sig-' + certId + '.png';
     sig.alt = 'Assinatura de Ricardo Souto Schützer';
 
     certCard.appendChild(logo);
@@ -1038,6 +1041,21 @@ function renderPortfolio(items) {
     display.appendChild(tag);
     display.appendChild(counter);
     portRight.appendChild(display);
+  });
+  loadAround(0);
+}
+
+/* Only fetch images for the active card and its neighbours, so opening the
+   site doesn't download every artwork at once */
+function loadAround(idx) {
+  var displays = portRight.querySelectorAll('.artwork-display');
+  var n = displays.length;
+  if (!n) return;
+  [idx, idx + 1, idx - 1].forEach(function(i) {
+    displays[(i + n) % n].querySelectorAll('img[data-src]').forEach(function(im) {
+      im.src = im.dataset.src;
+      im.removeAttribute('data-src');
+    });
   });
 }
 
@@ -1146,6 +1164,7 @@ function goTo(idx) {
   current = (idx + currentArtworks.length) % currentArtworks.length;
   items[current].classList.add('active');
   displays[current].classList.add('active');
+  loadAround(current);
   items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   updatePortCounterLeft();
   sizeCertCards();
@@ -1189,7 +1208,7 @@ function closeLightbox() {
 portRight.addEventListener('click', function(e) {
   var img = e.target.closest('.cert-art-slot img');
   if (!img) return;
-  openLightbox(img.src, img.alt);
+  openLightbox(img.dataset.full || img.src, img.alt);
 });
 document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', function(e) {
@@ -1201,7 +1220,7 @@ function updateLightboxToCurrent() {
   if (!activeDisplay) return;
   var img = activeDisplay.querySelector('.cert-art-slot img');
   if (!img) return;
-  lightboxImg.src = img.src;
+  lightboxImg.src = img.dataset.full || img.src;
   lightboxImg.alt = img.alt;
 }
 document.getElementById('lightboxPrev').addEventListener('click', function(e) {
