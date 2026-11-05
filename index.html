@@ -984,6 +984,10 @@ function renderPortfolio(items) {
     img.dataset.full = a.img;
     img.alt = a.name;
     img.onload = function() { sizeCertCards(); positionCardNavButtons(); };
+    img.onerror = function() {
+      // a newly added artwork may not have a web copy yet
+      if (this.src.indexOf('/uploads/web/') !== -1) this.src = this.dataset.full;
+    };
     artSlot.appendChild(img);
 
     var sig = document.createElement('img');
