@@ -835,7 +835,7 @@ html.js .reveal.in { opacity: 1; transform: none; }
   padding: 0 24px 0 28px; border-bottom: 1px solid rgba(61,47,23,0.14);
   font-family: 'EB Garamond', serif; font-size: 1.08rem;
 }
-.ficha-pos { color: rgba(61,47,23,0.65); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ficha-pos { flex: 1; min-width: 0; color: rgba(61,47,23,0.65); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ficha-bar-nav { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 .ficha-bar-nav button {
   height: 38px; min-width: 38px; padding: 0 12px; border-radius: 99px;
@@ -904,8 +904,9 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .carimbo {
   position: absolute; z-index: 2; top: 50%; left: 50%;
   transform: translate(-50%, -50%) rotate(-12deg);
-  border: 2px solid #B8361C; color: #B8361C; background: rgba(242,228,201,0.84);
-  padding: 2px 8px 1px; mix-blend-mode: multiply; pointer-events: none;
+  border: 2px solid #B8361C; color: #B8361C; background: rgba(242,228,201,0.92);
+  padding: 2px 8px 1px; pointer-events: none; white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(20,10,2,0.25);
   font-family: 'EB Garamond', serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
   transition: opacity 0.4s;
 }
@@ -942,7 +943,7 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .acervo-item:hover .acervo-img img { transform: scale(1.06); filter: none; }
 .acervo-item:hover .carimbo { opacity: 0; }
 .acervo-cap { font-family: 'EB Garamond', serif; font-size: 0.95rem; line-height: 1.2; color: #3D2F17; }
-.acervo-cap span { color: rgba(61,47,23,0.5); margin-right: 0.3rem; }
+.acervo-cap span { display: block; font-size: 0.82rem; color: rgba(61,47,23,0.5); }
 
 /* como comprar (dentro do contato) */
 .contato-section { padding: 64px 48px 80px; gap: 64px; }
@@ -975,7 +976,7 @@ footer { display: block; padding: 60px 48px 28px; color: #E2D8C2; }
   .hero-destaques { gap: 18px; }
 }
 @media (max-width: 768px) {
-  .hero.section-page, .hero { height: auto; min-height: 100dvh; overflow: visible; padding: 104px 20px 0; }
+  .hero.section-page, .hero { height: auto; min-height: 100dvh; overflow: hidden; padding: 104px 20px 0; }
   .hero-inner { flex: none; grid-template-columns: 1fr; padding: 0; }
   .hero-cachorro { display: none; }
   .hero-destaques {
@@ -988,7 +989,9 @@ footer { display: block; padding: 60px 48px 28px; color: #E2D8C2; }
   .destaque-img { height: 220px; }
   .marquee { margin: 0 -20px; font-size: 0.98rem; }
   .port-toolbar-mobile .port-filters { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
-  .port-toolbar-mobile .filter-btn { flex-shrink: 0; white-space: nowrap; }
+  .port-toolbar-mobile { padding: 10px 8px; }
+  .port-toolbar-mobile .port-filters { gap: 5px; }
+  .port-toolbar-mobile .filter-btn { flex-shrink: 0; white-space: nowrap; padding: 0.25rem 0.55rem; font-size: 0.58rem; letter-spacing: 0.04em; }
   .ficha-bar { height: 56px; padding: 0 10px 0 16px; }
   .ficha-corpo { display: block; overflow-y: auto; }
   .ficha-midia { height: 56vh; padding: 20px; }
@@ -1227,8 +1230,31 @@ footer { display: block; padding: 60px 48px 28px; color: #E2D8C2; }
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-name">Cado Schützer · Petrolina, PE · <a href="https://instagram.com/cado.bass" target="_blank" rel="noopener">@cado.bass</a></span>
-  <span class="footer-copyright">© 2026 Todas as imagens são de autoria e propriedade de Ricardo Souto Schützer.</span>
+  <div class="rodape-grade">
+    <div>
+      <p class="rodape-t">Contato</p>
+      <a href="https://wa.me/5511993268188" target="_blank" rel="noopener">WhatsApp ↗</a>
+      <a href="https://instagram.com/cado.bass" target="_blank" rel="noopener">Instagram ↗</a>
+      <a href="https://tiktok.com/@cadoschutzer" target="_blank" rel="noopener">TikTok ↗</a>
+    </div>
+    <div>
+      <p class="rodape-t">Site</p>
+      <a href="#portfolio">Obras à venda</a>
+      <a href="#acervo">Acervo</a>
+      <a href="#sobre">Sobre</a>
+    </div>
+    <div>
+      <p class="rodape-t">Cado Art</p>
+      <span>Petrolina, Pernambuco</span>
+      <span>Envio para todo o Brasil</span>
+      <span>Encomendas abertas</span>
+    </div>
+  </div>
+  <img class="rodape-assinatura" src="uploads/assinatura.svg" alt="Assinatura de Ricardo Souto Schützer">
+  <div class="rodape-pe">
+    <span>© 2026 Ricardo Souto Schützer</span>
+    <span>Todas as imagens são de autoria e propriedade do artista.</span>
+  </div>
 </footer>
 
 <script>
@@ -1287,14 +1313,41 @@ var artworks = [
 
 var current = 0;
 
-/* "Todas" opens with the works for sale, biggest first; the rest keep their order */
+/* the portfolio shows the works for sale, biggest first; everything else is
+   sold and goes to the Acervo grid */
 var availableWorks = artworks
   .filter(function(a) { return a.status === 'available'; })
   .sort(function(a, b) { return (b.w * b.h) - (a.w * a.h); });
-var allWorks = availableWorks.concat(artworks.filter(function(a) { return a.status !== 'available'; }));
-document.querySelectorAll('.filter-btn[data-filter="available"]').forEach(function(b) {
-  b.textContent = 'Disponíveis (' + availableWorks.length + ')';
+var soldWorks = artworks.filter(function(a) { return a.status !== 'available'; });
+
+/* catalogue number = position in the artworks list, so it never changes with filters */
+function catNum(a) { return 'Nº ' + String(artworks.indexOf(a) + 1).padStart(2, '0'); }
+function tamanhoDe(a) {
+  var m = Math.max(a.w, a.h);
+  return m >= 80 ? 'grandes' : m >= 45 ? 'medias' : 'pequenas';
+}
+var filtroNomes = { all: 'Todas', grandes: 'Grandes', medias: 'Médias', pequenas: 'Pequenas' };
+function listaDoFiltro(f) {
+  return f === 'all' ? availableWorks : availableWorks.filter(function(a) { return tamanhoDe(a) === f; });
+}
+document.querySelectorAll('.filter-btn').forEach(function(b) {
+  var n = listaDoFiltro(b.dataset.filter).length;
+  b.textContent = filtroNomes[b.dataset.filter] + ' (' + n + ')';
+  if (!n) b.style.display = 'none';
 });
+document.getElementById('portAcervoLink').textContent = soldWorks.length + ' obras vendidas ↓';
+
+function webOf(a) { return a.img.replace('uploads/', 'uploads/web/'); }
+function thumbOf(a) { return a.img.replace('uploads/', 'uploads/thumb/'); }
+/* if a resized copy is missing, fall back to the original photo */
+function comFallback(img, a) {
+  img.onerror = function() {
+    if (this.src.indexOf('/uploads/thumb/') !== -1 || this.src.indexOf('/uploads/web/') !== -1) {
+      this.onerror = null; this.src = a.img;
+    }
+  };
+  return img;
+}
 
 var WA = 'https://wa.me/5511993268188?text=';
 function fmtPrice(p) {
@@ -1338,7 +1391,57 @@ function encomendaLink(a) {
   document.head.appendChild(s);
 })();
 
-/* hero art removed */
+/* ── HERO: three works for sale (highest prices) + running strip ── */
+(function() {
+  var box = document.getElementById('heroDestaques');
+  availableWorks.slice()
+    .sort(function(a, b) { return (b.price || 0) - (a.price || 0); })
+    .slice(0, 3)
+    .forEach(function(a, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'destaque reveal';
+      b.style.transitionDelay = (0.15 + i * 0.1) + 's';
+      b.innerHTML =
+        '<span class="destaque-img"><img alt=""></span>' +
+        '<span class="destaque-cap">' +
+          '<span class="destaque-num">' + catNum(a) + '</span>' +
+          '<span class="destaque-nome">' + a.name + '</span>' +
+          '<span class="destaque-preco">' + fmtPrice(a.price) + '</span>' +
+        '</span>';
+      var img = comFallback(b.querySelector('img'), a);
+      img.alt = a.name;
+      img.src = webOf(a);
+      b.addEventListener('click', function() { abrirFicha(availableWorks, availableWorks.indexOf(a), 'hero'); });
+      box.appendChild(b);
+    });
+
+  var frases = ['Arte original', availableWorks.length + ' obras disponíveis', 'Acrílica, digital e nanquim',
+                'Envio para todo o Brasil', 'Encomendas abertas', 'Petrolina, Pernambuco'];
+  var html = frases.map(function(f) { return '<span>' + f + '</span>'; }).join('');
+  document.getElementById('marqueeTrack').innerHTML = html + html + html + html;
+})();
+
+/* ── ACERVO: sold works with a stamp ── */
+(function() {
+  document.getElementById('numObras').textContent = artworks.length;
+  document.getElementById('numVendidas').textContent = soldWorks.length;
+  var grade = document.getElementById('acervoGrade');
+  soldWorks.forEach(function(a, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'acervo-item reveal';
+    b.style.transitionDelay = ((i % 9) * 0.05) + 's';
+    b.innerHTML =
+      '<span class="acervo-img"><img alt="" loading="lazy"><span class="carimbo">Vendida</span></span>' +
+      '<span class="acervo-cap"><span>' + catNum(a) + '</span>' + a.name + '</span>';
+    var img = comFallback(b.querySelector('img'), a);
+    img.alt = a.name;
+    img.src = thumbOf(a);
+    b.addEventListener('click', function() { abrirFicha(soldWorks, i, 'acervo'); });
+    grade.appendChild(b);
+  });
+})();
 
 /* ── SOBRE ART ────────────────────────────────────────── */
 (function() {
@@ -1404,7 +1507,7 @@ function renderPortfolio(items) {
     var artSlot = document.createElement('div');
     artSlot.className = 'cert-art-slot';
     var img = document.createElement('img');
-    // card shows the lightweight copy in uploads/web/; the lightbox opens the original
+    // card shows the lightweight copy in uploads/web/; the zoom in the ficha opens the original
     img.dataset.src = a.img.replace('uploads/', 'uploads/web/');
     img.dataset.full = a.img;
     img.alt = a.name;
@@ -1459,6 +1562,7 @@ function renderPortfolio(items) {
     tag.innerHTML =
       '<div class="tag-card">' +
         '<div class="tag-rule"></div>' +
+        '<p class="tag-num">' + catNum(a) + '</p>' +
         '<p class="tag-name">' + a.name + '</p>' +
         dimsHTML +
         '<p class="tag-medium">' + a.medium + '</p>' +
@@ -1499,7 +1603,7 @@ function updatePortCounterLeft() {
   el.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(currentArtworks.length).padStart(2, '0');
 }
 
-renderPortfolio(allWorks);
+renderPortfolio(availableWorks);
 updatePortCounterLeft();
 
 /* ── CERT CARD SIZING (computed in JS, mirrors the --real-vh workaround above:
@@ -1578,7 +1682,7 @@ function applyFilter(f) {
       b.classList.toggle('active', b.dataset.filter === f);
     });
   });
-  renderPortfolio(f === 'available' ? availableWorks : allWorks);
+  renderPortfolio(listaDoFiltro(f));
   updatePortCounterLeft();
   sizeCertCards();
   positionCardNavButtons();
@@ -1591,10 +1695,10 @@ filterContainers.forEach(function(container) {
   });
 });
 
-/* hero button: open the portfolio already filtered to works for sale */
+/* hero button: open the portfolio from the first work for sale */
 document.getElementById('heroVerDisponiveis').addEventListener('click', function(e) {
   e.preventDefault();
-  applyFilter('available');
+  applyFilter('all');
   document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
 });
 
@@ -1612,7 +1716,6 @@ function goTo(idx) {
   updatePortCounterLeft();
   sizeCertCards();
   positionCardNavButtons();
-  if (lightbox && lightbox.classList.contains('active')) updateLightboxToCurrent();
 }
 
 portRight.addEventListener('click', function(e) {
@@ -1622,6 +1725,7 @@ portRight.addEventListener('click', function(e) {
   if (nextBtn) { goTo(current + 1); }
 });
 document.addEventListener('keydown', function(e) {
+  if (document.getElementById('ficha').classList.contains('aberta')) return;
   var portfolio = document.getElementById('portfolio');
   var rect = portfolio.getBoundingClientRect();
   if (rect.top > window.innerHeight || rect.bottom < 0) return;
@@ -1635,56 +1739,99 @@ portRight.addEventListener('wheel', function(e) {
   if (e.deltaY < -30) goTo(current - 1);
 }, { passive: false });
 
-/* ── LIGHTBOX (click artwork to enlarge) ─────────────── */
-var lightbox = document.getElementById('lightbox');
-var lightboxImg = document.getElementById('lightboxImg');
-var lightboxCaption = document.getElementById('lightboxCaption');
+/* ── FICHA DA OBRA (opens from the portfolio card, the hero and the acervo) ── */
+var ficha = document.getElementById('ficha');
+var fichaImg = document.getElementById('fichaImg');
+var fichaInfo = document.getElementById('fichaInfo');
+var fichaPos = document.getElementById('fichaPos');
+var fichaMidia = document.getElementById('fichaMidia');
+var fichaCarimbo = document.getElementById('fichaCarimbo');
 var wallScene = document.getElementById('wallScene');
 var wallArt = document.getElementById('wallArt');
 var wallSofa = document.getElementById('wallSofa');
+var fichaLista = [], fichaIdx = 0, fichaFonte = '', fichaVoltaFoco = null;
+var WA_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
 
-function openLightbox(src, alt) {
-  lightboxImg.src = src;
-  lightboxImg.alt = alt;
-  lightbox.classList.add('active');
-  renderLightboxCaption();
+function fichaAberta() { return ficha.classList.contains('aberta'); }
+
+function abrirFicha(lista, idx, fonte, parede) {
+  fichaLista = lista; fichaIdx = idx; fichaFonte = fonte;
+  fichaVoltaFoco = document.activeElement;
+  ficha.classList.remove('zoom');
+  ficha.classList.toggle('parede', !!parede);
+  renderFicha();
+  ficha.classList.add('aberta');
+  ficha.setAttribute('aria-hidden', 'false');
+  document.documentElement.style.overflow = 'hidden';
+  setTimeout(function() { document.getElementById('fichaClose').focus({ preventScroll: true }); }, 60);
 }
-function closeLightbox() {
-  lightbox.classList.remove('active');
-  lightbox.classList.remove('wall-mode');
-  lightboxImg.src = '';
+function fecharFicha() {
+  ficha.classList.remove('aberta', 'zoom', 'parede');
+  ficha.setAttribute('aria-hidden', 'true');
+  document.documentElement.style.overflow = '';
+  if (fichaVoltaFoco && fichaVoltaFoco.focus) fichaVoltaFoco.focus({ preventScroll: true });
+}
+function fichaIr(d) {
+  var n = fichaLista.length;
+  if (n < 2) return;
+  fichaIdx = (fichaIdx + d + n) % n;
+  if (fichaFonte === 'portfolio') goTo(fichaIdx);   // keep the carousel on the same work
+  ficha.classList.remove('zoom');
+  renderFicha();
 }
 
-/* title, size, price and buy button under the enlarged image */
-function renderLightboxCaption() {
-  var a = currentArtworks[current];
-  if (!a) { lightboxCaption.innerHTML = ''; return; }
-  var meta = [];
-  if (a.status === 'available' && hasDims(a)) meta.push(dimsText(a));
-  meta.push(a.medium);
-  if (a.status === 'available' && a.price) meta.push(fmtPrice(a.price));
-  var html = '<span class="lb-name">' + a.name + '</span>' +
-             '<span class="lb-meta">' + meta.join(' · ') + '</span>';
-  if (hasDims(a) && a.status === 'available') {
-    html += '<button type="button" class="lb-btn" id="lbWallToggle">' +
-            (lightbox.classList.contains('wall-mode') ? 'Ver a obra' : 'Ver na parede') + '</button>';
+function renderFicha() {
+  var a = fichaLista[fichaIdx];
+  if (!a) return;
+  var venda = a.status === 'available';
+  if (!venda || !hasDims(a)) ficha.classList.remove('parede');
+  var parede = ficha.classList.contains('parede');
+
+  fichaPos.textContent = catNum(a) + ' · ' + (fichaIdx + 1) + ' de ' + fichaLista.length +
+    (venda ? ' à venda' : ' vendidas');
+  var src = webOf(a);
+  if (fichaImg.getAttribute('src') !== src) {
+    fichaImg.classList.add('carregando');
+    fichaImg.onload = function() { fichaImg.classList.remove('carregando'); };
+    comFallback(fichaImg, a);
+    fichaImg.src = src;
   }
-  if (a.status === 'available') {
-    html += '<a class="lb-btn lb-btn-buy" href="' + buyLink(a) + '" target="_blank" rel="noopener">Quero esta obra</a>';
-  }
-  lightboxCaption.innerHTML = html;
+  fichaImg.alt = a.name;
+  fichaCarimbo.style.display = venda ? 'none' : '';
+
+  var dados = [['Nº', catNum(a).replace('Nº ', '')], ['Técnica', a.medium]];
+  if (venda && hasDims(a)) dados.push(['Dimensões', dimsText(a)]);
+  dados.push(venda ? ['Obra', 'Original, peça única'] : ['Situação', 'Vendida']);
+  if (venda) dados.push(['Envio', 'Para todo o Brasil']);
+
+  var acoes = venda
+    ? '<a class="fbtn fbtn-escuro" href="' + buyLink(a) + '" target="_blank" rel="noopener">' + WA_ICON +
+        'Quero esta obra' + (a.price ? ' — ' + fmtPrice(a.price) : '') + '</a>' +
+      (hasDims(a) ? '<button type="button" class="fbtn fbtn-claro" id="fichaParede">' + (parede ? 'Ver a obra' : 'Ver na parede') + '</button>' : '')
+    : '<a class="fbtn fbtn-escuro" href="' + encomendaLink(a) + '" target="_blank" rel="noopener">' + WA_ICON + 'Encomendar uma obra assim</a>';
+
+  fichaInfo.innerHTML =
+    '<p class="ficha-tipo">' + a.medium + (venda ? ' · à venda' : ' · vendida') + '</p>' +
+    '<h2 class="ficha-nome">' + a.name + '</h2>' +
+    (venda && a.price ? '<p class="ficha-preco">' + fmtPrice(a.price) + '</p>' : '') +
+    '<dl class="ficha-dados">' + dados.map(function(d) { return '<div><dt>' + d[0] + '</dt><dd>' + d[1] + '</dd></div>'; }).join('') + '</dl>' +
+    '<div class="ficha-acoes">' + acoes + '</div>' +
+    '<a class="ficha-duvida" href="' + WA + encodeURIComponent('Olá, Cado! Tenho uma dúvida sobre a obra "' + a.name + '".') +
+      '" target="_blank" rel="noopener">Dúvida sobre esta obra? Chama no WhatsApp ↗</a>';
+  fichaInfo.scrollTop = 0;
+  if (parede) renderWall();
 }
 
 /* "Ver na parede": the painting next to a 2 m sofa, both at the same scale */
 function renderWall() {
-  var a = currentArtworks[current];
-  if (!a || !hasDims(a) || a.status !== 'available') { lightbox.classList.remove('wall-mode'); return; }
+  var a = fichaLista[fichaIdx];
+  if (!a || !hasDims(a)) return;
   var sofaW = 200, sofaH = 85, gap = 25, floor = 18;
   var W = Math.max(320, a.w + 140);
   var H = Math.max(230, sofaH + gap + a.h + 30) + floor;
-  var mobile = window.matchMedia('(max-width: 768px)').matches;
-  var maxW = mobile ? window.innerWidth - 24 : Math.min(window.innerWidth * 0.92, window.innerWidth - 180);
-  var maxH = window.innerHeight - (mobile ? 260 : 150);
+  var cs = getComputedStyle(fichaMidia);
+  var maxW = fichaMidia.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  var maxH = fichaMidia.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
   var s = Math.min(maxW / W, maxH / H);
   wallScene.style.width = (W * s) + 'px';
   wallScene.style.height = (H * s) + 'px';
@@ -1697,64 +1844,69 @@ function renderWall() {
   wallArt.style.height = (a.h * s) + 'px';
   wallArt.style.left = ((W - a.w) / 2 * s) + 'px';
   wallArt.style.bottom = ((floor + sofaH + gap) * s) + 'px';
-  var web = a.img.replace('uploads/', 'uploads/web/');
-  wallArt.onerror = function() { if (this.src.indexOf('/uploads/web/') !== -1) this.src = a.img; };
-  wallArt.src = web;
+  comFallback(wallArt, a);
+  wallArt.src = webOf(a);
   wallArt.alt = a.name + ' na parede, em escala';
 }
-function setWallMode(on) {
-  lightbox.classList.toggle('wall-mode', on);
-  if (on) renderWall();
-  renderLightboxCaption();
-}
-lightboxCaption.addEventListener('click', function(e) {
-  if (e.target.closest('#lbWallToggle')) {
-    e.stopPropagation();
-    setWallMode(!lightbox.classList.contains('wall-mode'));
+
+fichaInfo.addEventListener('click', function(e) {
+  if (e.target.closest('#fichaParede')) {
+    ficha.classList.toggle('parede');
+    renderFicha();
+    // on phones the image sits above the text: bring it back into view
+    document.querySelector('.ficha-corpo').scrollTo({ top: 0, behavior: 'smooth' });
   }
+});
+fichaMidia.addEventListener('click', function() {
+  if (ficha.classList.contains('parede')) return;
+  if (!ficha.classList.contains('zoom')) {
+    // the zoom shows the full-resolution original
+    var a = fichaLista[fichaIdx];
+    if (a && fichaImg.getAttribute('src') !== a.img) { fichaImg.onerror = null; fichaImg.src = a.img; }
+  }
+  ficha.classList.toggle('zoom');
+});
+document.getElementById('fichaPrev').addEventListener('click', function() { fichaIr(-1); });
+document.getElementById('fichaNext').addEventListener('click', function() { fichaIr(1); });
+document.getElementById('fichaClose').addEventListener('click', fecharFicha);
+document.addEventListener('keydown', function(e) {
+  if (!fichaAberta()) return;
+  if (e.key === 'Escape') { if (ficha.classList.contains('zoom')) ficha.classList.remove('zoom'); else fecharFicha(); }
+  if (e.key === 'ArrowRight') fichaIr(1);
+  if (e.key === 'ArrowLeft') fichaIr(-1);
 });
 window.addEventListener('resize', function() {
-  if (lightbox.classList.contains('wall-mode')) renderWall();
+  if (fichaAberta() && ficha.classList.contains('parede')) renderWall();
 });
+/* swipe between works on touch screens */
+(function() {
+  var x0 = null, y0 = null;
+  fichaMidia.addEventListener('touchstart', function(e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  fichaMidia.addEventListener('touchend', function(e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) fichaIr(dx < 0 ? 1 : -1);
+    x0 = null;
+  });
+})();
 
+/* portfolio card: the painting and "Ver na parede" open the ficha */
 portRight.addEventListener('click', function(e) {
-  var img = e.target.closest('.cert-art-slot img');
-  var wallBtn = e.target.closest('.tag-wall');
-  if (wallBtn) {
-    var cardImg = portRight.querySelector('.artwork-display.active .cert-art-slot img');
-    if (cardImg) openLightbox(cardImg.dataset.full || cardImg.src, cardImg.alt);
-    setWallMode(true);
-    return;
-  }
-  if (!img) return;
-  openLightbox(img.dataset.full || img.src, img.alt);
-});
-document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', function(e) {
-  if (e.target === lightbox) closeLightbox();
+  if (e.target.closest('.tag-wall')) { abrirFicha(currentArtworks, current, 'portfolio', true); return; }
+  if (e.target.closest('.cert-art-slot img')) abrirFicha(currentArtworks, current, 'portfolio');
 });
 
-function updateLightboxToCurrent() {
-  var activeDisplay = portRight.querySelector('.artwork-display.active');
-  if (!activeDisplay) return;
-  var img = activeDisplay.querySelector('.cert-art-slot img');
-  if (!img) return;
-  lightboxImg.src = img.dataset.full || img.src;
-  lightboxImg.alt = img.alt;
-  if (lightbox.classList.contains('wall-mode')) renderWall();
-  renderLightboxCaption();
-}
-document.getElementById('lightboxPrev').addEventListener('click', function(e) {
-  e.stopPropagation();
-  goTo(current - 1);
-});
-document.getElementById('lightboxNext').addEventListener('click', function(e) {
-  e.stopPropagation();
-  goTo(current + 1);
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
-});
+/* ── REVEAL ON SCROLL ── */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
+  els.forEach(function(el) { io.observe(el); });
+})();
 
 /* ── TWEAKS ───────────────────────────────────────────── */
 var tweaksPanel = document.getElementById('tweaks-panel');
