@@ -756,7 +756,7 @@ footer {
   .contato-inner { flex-wrap: wrap; justify-content: center; row-gap: 2.5rem; }
 }
 
-/* ══ V2: destaques, faixa, ficha, acervo, como comprar, rodapé ══════════ */
+/* ══ V2: ficha, acervo, como comprar, rodapé ══════════ */
 body {
   background-color: #E6D2AF;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
@@ -765,39 +765,7 @@ body {
 html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); }
 html.js .reveal.in { opacity: 1; transform: none; }
 
-/* hero: texto + cachorro em cima, três obras embaixo, faixa corrida no pé */
-.hero { flex-direction: column; align-items: stretch; justify-content: space-between; padding: 120px 48px 0; }
-.hero-inner { flex: 1; min-height: 0; grid-template-columns: 1fr auto; padding: 16px 0; }
-.hero-cachorro { position: static; width: clamp(200px, 21vw, 340px); max-width: none; justify-self: end; margin-right: 3%; }
-.section-cue-home { display: none; }
-.hero-destaques {
-  position: relative; z-index: 3;
-  max-width: 1200px; width: 100%; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
-  padding-bottom: 40px;
-}
-.destaque {
-  display: flex; flex-direction: column; gap: 10px;
-  padding: 0; border: 0; background: none; color: inherit; font: inherit;
-  text-align: left; cursor: pointer;
-}
-.destaque:focus-visible, .acervo-item:focus-visible { outline: 2px solid #3D2F17; outline-offset: 4px; }
-.destaque-img {
-  height: clamp(170px, 33vh, 330px);
-  display: flex; align-items: flex-end; justify-content: center;
-}
-.destaque-img img {
-  display: block; max-width: 100%; max-height: 100%;
-  box-shadow: 0 16px 34px rgba(40,25,10,0.3), 0 2px 6px rgba(40,25,10,0.16);
-  transition: transform 0.9s cubic-bezier(0.22,1,0.36,1);
-}
-.destaque:hover .destaque-img img { transform: scale(1.045); }
-.destaque-cap {
-  display: flex; align-items: baseline; justify-content: center; gap: 12px;
-  padding-top: 6px; font-family: 'EB Garamond', serif; color: #3D2F17;
-}
-.destaque-nome { min-width: 0; font-style: italic; font-size: 1.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.destaque-preco { font-size: 1.1rem; white-space: nowrap; }
+.acervo-item:focus-visible { outline: 2px solid #3D2F17; outline-offset: 4px; }
 
 /* portfólio */
 .port-acervo-link {
@@ -971,21 +939,8 @@ footer { display: block; padding: 60px 48px 28px; color: #E2D8C2; }
 
 @media (min-width: 769px) and (max-width: 1100px) {
   .acervo-grade { grid-template-columns: repeat(4, 1fr); }
-  .hero-destaques { gap: 22px; }
 }
 @media (max-width: 768px) {
-  .hero.section-page, .hero { height: auto; min-height: 100dvh; overflow: hidden; padding: 104px 20px 0; }
-  .hero-inner { flex: none; grid-template-columns: 1fr; padding: 0; }
-  .hero-cachorro { display: none; }
-  .hero-destaques {
-    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 76%; gap: 14px;
-    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-    margin: 28px -20px 0; padding: 0 20px 22px; width: auto;
-  }
-  .hero-destaques::-webkit-scrollbar { display: none; }
-  .destaque { scroll-snap-align: start; }
-  .destaque-img { height: 260px; }
-  .hero-destaques { padding-bottom: 32px; scroll-padding-left: 20px; }
   .card-nav-btn { width: 38px; height: 38px; font-size: 1rem; background: rgba(61,47,23,0.78); border-color: transparent; }
   .artwork-img-wrap { padding: 0; }
   .wall-tag { padding: 0; }
@@ -1036,6 +991,7 @@ footer { display: block; padding: 60px 48px 28px; color: #E2D8C2; }
   <div class="hero-blob blob-1"></div>
   <div class="hero-blob blob-2"></div>
   <div class="hero-blob blob-3"></div>
+  <img src="uploads/cachorro.gif" class="hero-cachorro" alt="">
   <div class="hero-inner">
     <div class="hero-content reveal">
       <h1 class="hero-title"><span style="color:#C1440E;">Arte original</span> em acrílica,<br>digital e nanquim. <span class="hero-sig"><span class="hero-dash">— </span>Por Cado Schützer</span></h1>
@@ -1046,9 +1002,11 @@ footer { display: block; padding: 60px 48px 28px; color: #E2D8C2; }
         <a href="https://wa.me/5511993268188?text=Ol%C3%A1%2C%20Cado!%20Vi%20seu%20site%20e%20queria%20conversar%20sobre%20uma%20encomenda." target="_blank" rel="noopener" class="hero-link">Encomendar uma obra</a>
       </div>
     </div>
-    <img src="uploads/cachorro.gif" class="hero-cachorro" alt="">
   </div>
-  <div class="hero-destaques" id="heroDestaques"></div>
+  <a href="#portfolio" class="section-cue section-cue-home">
+    <svg class="section-cue-arrow" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="home-cue-text">Scroll</span>
+  </a>
 </section>
 
 <!-- PORTFOLIO -->
@@ -1348,32 +1306,6 @@ function encomendaLink(a) {
   s.type = 'application/ld+json';
   s.textContent = JSON.stringify(ld);
   document.head.appendChild(s);
-})();
-
-/* ── HERO: three works for sale (highest prices) ── */
-(function() {
-  var box = document.getElementById('heroDestaques');
-  availableWorks.slice()
-    .sort(function(a, b) { return (b.price || 0) - (a.price || 0); })
-    .slice(0, 3)
-    .forEach(function(a, i) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'destaque reveal';
-      b.style.transitionDelay = (0.15 + i * 0.1) + 's';
-      b.innerHTML =
-        '<span class="destaque-img"><img alt=""></span>' +
-        '<span class="destaque-cap">' +
-          '<span class="destaque-nome">' + a.name + '</span>' +
-          '<span class="destaque-preco">' + fmtPrice(a.price) + '</span>' +
-        '</span>';
-      var img = comFallback(b.querySelector('img'), a);
-      img.alt = a.name;
-      img.src = webOf(a);
-      b.addEventListener('click', function() { abrirFicha(availableWorks, availableWorks.indexOf(a), 'hero'); });
-      box.appendChild(b);
-    });
-
 })();
 
 /* ── ACERVO: sold works with a stamp ── */
