@@ -856,10 +856,6 @@ footer {
       <h1 class="hero-title"><span style="color:#C1440E;">Arte original</span> em acrílica,<br>digital e nanquim. <span class="hero-sig"><span class="hero-dash">— </span>Por Cado Schützer</span></h1>
       <img src="uploads/papa.png" class="hero-cachorro-mobile" alt="">
       <p class="hero-sig-mobile">Por Cado Schützer</p>
-      <div class="hero-actions">
-        <a href="#portfolio" class="hero-btn" id="heroVerDisponiveis">Ver obras à venda</a>
-        <a href="https://wa.me/5511993268188?text=Ol%C3%A1%2C%20Cado!%20Vi%20seu%20site%20e%20queria%20conversar%20sobre%20uma%20encomenda." target="_blank" rel="noopener" class="hero-link">Encomendar uma obra</a>
-      </div>
     </div>
   </div>
   <a href="#portfolio" class="section-cue section-cue-home">
@@ -1367,12 +1363,6 @@ filterContainers.forEach(function(container) {
   });
 });
 
-/* hero button: open the portfolio already filtered to works for sale */
-document.getElementById('heroVerDisponiveis').addEventListener('click', function(e) {
-  e.preventDefault();
-  applyFilter('available');
-  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
-});
 
 /* ── NAVIGATE ─────────────────────────────────────────── */
 function goTo(idx) {
